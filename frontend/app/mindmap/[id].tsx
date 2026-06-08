@@ -197,7 +197,7 @@ export default function TreeScreen() {
             <ImageBackground
               source={{ uri: TREE_IMAGE }}
               style={{ width: W, height: H }}
-              resizeMode="contain"
+              resizeMode="cover"
             />
           </Animated.View>
 
