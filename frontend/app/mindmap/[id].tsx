@@ -6,72 +6,43 @@ import { Body, Caption, H2, H3, Label } from '@/src/ui';
 import { api, AnalysisResult, MindMapNode } from '@/src/api';
 import { colors, fonts, radius, spacing } from '@/src/theme';
 
-const TREE_IMAGE = 'https://customer-assets.emergentagent.com/job_furkan-docs/artifacts/tmoijzj2_Gemini_Generated_Image_eawg7aeawg7aeawg%20%281%29.png';
+const TREE_IMAGE = 'https://customer-assets.emergentagent.com/job_furkan-docs/artifacts/zu71oc24_1000113809.jpeg';
 
-// Görseldeki TÜM boş oval çerçevelerin tam konumları (analiz ile doğrulandı)
-// Bunlar 27 çerçevenin merkezleridir, 6 sıra halinde.
-// Kullanıcının "asla taşmasın" isteği için: her düğüm bu konumlardan birine ve çerçeve çapına oturur.
-type Frame = { x: number; y: number };
-const ALL_FRAMES: Frame[] = [
-  // Row 1 (top - 3 frames)
-  { x: 0.32, y: 0.13 }, { x: 0.50, y: 0.09 }, { x: 0.68, y: 0.12 },
-  // Row 2 (5 frames)
-  { x: 0.23, y: 0.24 }, { x: 0.38, y: 0.24 }, { x: 0.56, y: 0.22 }, { x: 0.72, y: 0.22 }, { x: 0.86, y: 0.23 },
-  // Row 3 (6 frames)
-  { x: 0.14, y: 0.35 }, { x: 0.29, y: 0.35 }, { x: 0.45, y: 0.35 }, { x: 0.62, y: 0.35 }, { x: 0.77, y: 0.35 }, { x: 0.91, y: 0.36 },
-  // Row 4 (5 frames)
-  { x: 0.19, y: 0.48 }, { x: 0.33, y: 0.48 }, { x: 0.48, y: 0.47 }, { x: 0.65, y: 0.47 }, { x: 0.80, y: 0.48 },
-  // Row 5 (5 frames)
-  { x: 0.25, y: 0.62 }, { x: 0.39, y: 0.62 }, { x: 0.55, y: 0.62 }, { x: 0.71, y: 0.62 }, { x: 0.87, y: 0.63 },
-  // Row 6 (bottom - 3 frames; merkez = self)
-  { x: 0.32, y: 0.77 }, { x: 0.51, y: 0.76 }, { x: 0.72, y: 0.77 },
-];
+// Yeni görsel: önceden tanımlı çerçeve yok — düğümler dalların üzerine yerleşir.
+// Görsel kare; ağaç tacı yaklaşık y=0.05..0.78 arasında, gövde y=0.78..0.97, kökler altta.
+// Self: gövdenin başladığı yer (tacın altı), atalar yukarı doğru artan kuşak halinde.
 
-// Görseldeki tüm çerçevelerin standart çapı (image genişliğinin oranı olarak)
-const FRAME_DIAMETER_RATIO = 0.085; // çerçeve içine biraz boşlukla sığsın diye <=0.09
+// Self konumu: gövde başlangıcı / tacın hemen altı
+const SELF_FRAME = { x: 0.50, y: 0.74 };
 
-// Self: gövdenin tam üstündeki merkez çerçeve (Row 6 col 2)
-const SELF_FRAME: Frame = { x: 0.51, y: 0.76 };
-
-// Önemli akrabalar için sabit çerçeve eşlemesi (görseldeki gerçek çerçevelerin tam üzerine)
-const ANCESTOR_FRAMES: Record<string, Frame> = {
-  // Ebeveynler: self'in alt sırasında, sol & sağ
-  anne:           { x: 0.32, y: 0.77 },
-  baba:           { x: 0.72, y: 0.77 },
-  // Büyükanne/büyükbabalar: bir üst sırada
-  anneanne:       { x: 0.39, y: 0.62 },
-  anne_babasi:    { x: 0.25, y: 0.62 },
-  babaanne:       { x: 0.71, y: 0.62 },
-  baba_babasi:    { x: 0.87, y: 0.63 },
-  // Teyze/dayı/hala/amca: bir üst sırada (4. sıra)
-  teyze:          { x: 0.33, y: 0.48 },
-  dayi:           { x: 0.19, y: 0.48 },
-  hala:           { x: 0.65, y: 0.47 },
-  amca:           { x: 0.80, y: 0.48 },
-  // Büyük ataların ataları (3. sıra)
-  anne_buyuk_anne:{ x: 0.29, y: 0.35 },
-  anne_buyuk_dede:{ x: 0.14, y: 0.35 },
-  baba_buyuk_anne:{ x: 0.77, y: 0.35 },
-  baba_buyuk_dede:{ x: 0.91, y: 0.36 },
+// Önemli akrabalar için sabit konum (tacın içinde yerleştirilmiş)
+const ANCESTOR_FRAMES: Record<string, { x: number; y: number }> = {
+  // 1. kuşak — ebeveynler: tacın alt seviyesinde, gövdenin iki yanında
+  anne:           { x: 0.32, y: 0.66 },
+  baba:           { x: 0.68, y: 0.66 },
+  // 2. kuşak — büyük-anne / büyük-baba: orta seviyede
+  anneanne:       { x: 0.22, y: 0.50 },
+  anne_babasi:    { x: 0.40, y: 0.45 },
+  babaanne:       { x: 0.60, y: 0.45 },
+  baba_babasi:    { x: 0.78, y: 0.50 },
+  // Yan akrabalar — alt köşelerde
+  teyze:          { x: 0.13, y: 0.62 },
+  dayi:           { x: 0.13, y: 0.46 },
+  hala:           { x: 0.87, y: 0.46 },
+  amca:           { x: 0.87, y: 0.62 },
+  // 3. kuşak — büyük dede/anne: tacın üst kısmında
+  anne_buyuk_anne:{ x: 0.30, y: 0.30 },
+  anne_buyuk_dede:{ x: 0.42, y: 0.22 },
+  baba_buyuk_anne:{ x: 0.58, y: 0.22 },
+  baba_buyuk_dede:{ x: 0.70, y: 0.30 },
 };
 
-// Eşlenmeyen akrabalar için yedek çerçeve havuzu — sıraya göre tahsis edilir
-// (Anne soyu için sol tarafa eğimli, Baba soyu için sağ tarafa eğimli)
-const FALLBACK_FRAMES_MATERNAL: Frame[] = [
-  { x: 0.48, y: 0.47 }, // 4. sıra merkez-sol
-  { x: 0.55, y: 0.62 }, // 5. sıra merkez (boştaysa)
-  { x: 0.45, y: 0.35 }, // 3. sıra merkez-sol
-  { x: 0.23, y: 0.24 }, // 2. sıra sol
-  { x: 0.38, y: 0.24 }, // 2. sıra sol-merkez
-  { x: 0.32, y: 0.13 }, // 1. sıra sol
+// Eşlenmeyen akrabalar için yedek konum havuzu
+const FALLBACK_FRAMES_MATERNAL = [
+  { x: 0.20, y: 0.36 }, { x: 0.30, y: 0.55 }, { x: 0.40, y: 0.55 }, { x: 0.13, y: 0.30 },
 ];
-const FALLBACK_FRAMES_PATERNAL: Frame[] = [
-  { x: 0.62, y: 0.35 }, // 3. sıra merkez-sağ
-  { x: 0.56, y: 0.22 }, // 2. sıra merkez
-  { x: 0.72, y: 0.22 }, // 2. sıra sağ
-  { x: 0.86, y: 0.23 }, // 2. sıra en sağ
-  { x: 0.68, y: 0.12 }, // 1. sıra sağ
-  { x: 0.50, y: 0.09 }, // 1. sıra merkez (en tepe)
+const FALLBACK_FRAMES_PATERNAL = [
+  { x: 0.80, y: 0.36 }, { x: 0.70, y: 0.55 }, { x: 0.60, y: 0.55 }, { x: 0.87, y: 0.30 },
 ];
 
 export default function TreeScreen() {
@@ -226,7 +197,7 @@ export default function TreeScreen() {
             <ImageBackground
               source={{ uri: TREE_IMAGE }}
               style={{ width: W, height: H }}
-              resizeMode="cover"
+              resizeMode="contain"
             />
           </Animated.View>
 
