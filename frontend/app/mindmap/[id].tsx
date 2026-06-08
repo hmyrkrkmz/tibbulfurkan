@@ -236,8 +236,8 @@ export default function TreeScreen() {
             if (!p) return null;
             const anim = nodeAnimsRef.current[i];
             const isSelf = n.type === 'self';
-            // Düğüm çapı = çerçeve çapına oturur (asla taşmaz)
-            const size = Math.round(W * FRAME_DIAMETER_RATIO);
+            // Düğüm boyutu: görsel genişliğinin yaklaşık %12'si (self biraz daha büyük)
+            const size = isSelf ? Math.round(W * 0.13) : Math.round(W * 0.11);
             const r = size / 2;
             const hasIssue = (n.diseases?.length || 0) + (n.events?.length || 0) + (n.sins_admitted?.length || 0) > 0;
             const sideColor = n.side === 'maternal' ? '#C87971' : n.side === 'paternal' ? '#4F6D7A' : '#5C4126';
