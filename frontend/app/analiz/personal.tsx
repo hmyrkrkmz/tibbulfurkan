@@ -73,7 +73,7 @@ export default function AnalizPersonal() {
                 label="MEDENİ DURUM"
                 value={state.medeni_durum}
                 onChangeText={(t) => state.set({ medeni_durum: t })}
-                placeholder="Evli / Bekâr / Dul / Boşanmış"
+                placeholder="Evli / Bekâr"
                 testID="medeni"
               />
               <Input
