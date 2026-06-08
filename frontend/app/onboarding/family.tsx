@@ -64,6 +64,7 @@ export default function FamilyStage() {
   const fromAnaliz = !!source_form_id;
   const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<Ancestor | null>(null);
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [customMaternal, setCustomMaternal] = useState('');
   const [customPaternal, setCustomPaternal] = useState('');
   const [loading, setLoading] = useState(false);
@@ -86,6 +87,7 @@ export default function FamilyStage() {
   };
 
   const openWithRelation = (relation: string, side: 'maternal' | 'paternal', relation_key?: string) => {
+    setEditingIndex(null);
     setEditing({
       relation,
       relation_key,
@@ -100,6 +102,20 @@ export default function FamilyStage() {
     setModal(true);
   };
 
+  const openExisting = (idx: number) => {
+    const a = ancestors[idx];
+    if (!a) return;
+    setEditingIndex(idx);
+    setEditing({
+      ...a,
+      diseases: [...(a.diseases || [])],
+      events: [...(a.events || [])],
+      unfulfilled_vows: [...(a.unfulfilled_vows || [])],
+      sins_admitted: [...(a.sins_admitted || [])],
+    });
+    setModal(true);
+  };
+
   const addCustom = (side: 'maternal' | 'paternal') => {
     const text = (side === 'maternal' ? customMaternal : customPaternal).trim();
     if (!text) return;
@@ -110,8 +126,23 @@ export default function FamilyStage() {
 
   const saveAncestor = () => {
     if (!editing) return;
-    set({ ancestors: [...ancestors, editing] });
+    if (editingIndex !== null) {
+      // Mevcut atayı güncelle
+      const copy = [...ancestors];
+      copy[editingIndex] = editing;
+      set({ ancestors: copy });
+    } else {
+      // Yeni ata ekle
+      set({ ancestors: [...ancestors, editing] });
+    }
     setEditing(null);
+    setEditingIndex(null);
+    setModal(false);
+  };
+
+  const closeModal = () => {
+    setEditing(null);
+    setEditingIndex(null);
     setModal(false);
   };
 
@@ -199,23 +230,34 @@ export default function FamilyStage() {
               <Card><Caption style={{ textAlign: 'center' }}>Henüz ata eklenmedi.</Caption></Card>
             ) : (
               ancestors.map((a, i) => (
-                <Card key={i} style={[styles.ancestorCard, { borderLeftColor: a.side === 'maternal' ? colors.maternalPrimary : colors.paternalPrimary }]}>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <View style={{ flex: 1 }}>
-                      <H3 style={{ fontSize: 18 }}>{a.relation}{a.name ? ` · ${a.name}` : ''}</H3>
-                      <Caption style={{ color: a.side === 'maternal' ? colors.maternalPrimary : colors.paternalPrimary }}>
-                        {a.side === 'maternal' ? 'Anne soyu' : 'Baba soyu'}{a.relation_key ? ` · ${a.relation_key}` : ' · özel'}
-                      </Caption>
-                      {(a.diseases?.length || 0) > 0 && <Caption style={{ marginTop: 4 }}>Hastalıklar: {a.diseases?.join(', ')}</Caption>}
-                      {(a.events?.length || 0) > 0 && <Caption>Olaylar: {a.events?.join(', ')}</Caption>}
-                      {(a.unfulfilled_vows?.length || 0) > 0 && <Caption style={{ color: colors.errorVow }}>Yarım adak: {a.unfulfilled_vows?.join(', ')}</Caption>}
-                      {(a.sins_admitted?.length || 0) > 0 && <Caption>Bilinen günahlar: {a.sins_admitted?.join(', ')}</Caption>}
+                <TouchableOpacity
+                  key={i}
+                  activeOpacity={0.7}
+                  onPress={() => openExisting(i)}
+                  testID={`ancestor-card-${i}`}
+                >
+                  <Card style={[styles.ancestorCard, { borderLeftColor: a.side === 'maternal' ? colors.maternalPrimary : colors.paternalPrimary }]}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <View style={{ flex: 1 }}>
+                        <H3 style={{ fontSize: 18 }}>{a.relation}{a.name ? ` · ${a.name}` : ''}</H3>
+                        <Caption style={{ color: a.side === 'maternal' ? colors.maternalPrimary : colors.paternalPrimary }}>
+                          {a.side === 'maternal' ? 'Anne soyu' : 'Baba soyu'}{a.relation_key ? ` · ${a.relation_key}` : ' · özel'}  ·  Düzenle ›
+                        </Caption>
+                        {(a.diseases?.length || 0) > 0 && <Caption style={{ marginTop: 4 }}>Hastalıklar: {a.diseases?.join(', ')}</Caption>}
+                        {(a.events?.length || 0) > 0 && <Caption>Olaylar: {a.events?.join(', ')}</Caption>}
+                        {(a.unfulfilled_vows?.length || 0) > 0 && <Caption style={{ color: colors.errorVow }}>Yarım adak: {a.unfulfilled_vows?.join(', ')}</Caption>}
+                        {(a.sins_admitted?.length || 0) > 0 && <Caption>Bilinen günahlar: {a.sins_admitted?.join(', ')}</Caption>}
+                      </View>
+                      <TouchableOpacity
+                        onPress={(e) => { e.stopPropagation?.(); set({ ancestors: ancestors.filter((_, x) => x !== i) }); }}
+                        testID={`remove-ancestor-${i}`}
+                        hitSlop={8}
+                      >
+                        <Body style={{ color: colors.errorVow, fontSize: 22, paddingHorizontal: 6 }}>×</Body>
+                      </TouchableOpacity>
                     </View>
-                    <TouchableOpacity onPress={() => set({ ancestors: ancestors.filter((_, x) => x !== i) })} testID={`remove-ancestor-${i}`}>
-                      <Body style={{ color: colors.errorVow, fontSize: 20 }}>×</Body>
-                    </TouchableOpacity>
-                  </View>
-                </Card>
+                  </Card>
+                </TouchableOpacity>
               ))
             )}
           </ScrollView>
@@ -232,17 +274,19 @@ export default function FamilyStage() {
       <AncestorEditModal
         visible={modal}
         ancestor={editing}
+        isEditing={editingIndex !== null}
         onChange={(a) => setEditing(a)}
-        onClose={() => { setEditing(null); setModal(false); }}
+        onClose={closeModal}
         onSave={saveAncestor}
       />
     </SafeAreaView>
   );
 }
 
-function AncestorEditModal({ visible, ancestor, onChange, onClose, onSave }: {
+function AncestorEditModal({ visible, ancestor, isEditing, onChange, onClose, onSave }: {
   visible: boolean;
   ancestor: Ancestor | null;
+  isEditing: boolean;
   onChange: (a: Ancestor) => void;
   onClose: () => void;
   onSave: () => void;
@@ -348,7 +392,7 @@ function AncestorEditModal({ visible, ancestor, onChange, onClose, onSave }: {
             <SafeAreaView edges={['bottom']} style={styles.modalFooter}>
               <View style={{ flexDirection: 'row', gap: spacing.sm, paddingHorizontal: spacing.lg, paddingTop: spacing.sm }}>
                 <Button title="İptal" variant="secondary" onPress={onClose} style={{ flex: 1 }} />
-                <Button title="✓ Atayı Ekle" onPress={onSave} testID="save-ancestor" style={{ flex: 1.4 }} />
+                <Button title={isEditing ? '✓ Kaydet' : '✓ Atayı Ekle'} onPress={onSave} testID="save-ancestor" style={{ flex: 1.4 }} />
               </View>
             </SafeAreaView>
           </KeyboardAvoidingView>

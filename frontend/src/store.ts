@@ -62,43 +62,39 @@ export const useOnboarding = create<OnboardingState>((set, get) => ({
     const gender: 'erkek' | 'kadın' | '' =
       c.startsWith('e') ? 'erkek' : (c.startsWith('k') ? 'kadın' : '');
 
-    // Form'daki büyüklerden atalar oluştur (anne, baba, anneanne, anne_babasi, babaanne, baba_babasi)
+    // Form'daki anne ve babadan ata oluştur (sadece bu ikisi - dede/anneanne/babaanne istenirse manuel eklenir)
     type ElderEntry = {
-      key: keyof FormSubmission;
+      durumKey: keyof FormSubmission;
+      hastalikKey?: keyof FormSubmission;
       relation: string;
       relation_key: string;
       side: 'maternal' | 'paternal';
-      diseases?: string[];
     };
-    const annePart = (form.anne_hastalik || '').trim();
-    const babaPart = (form.baba_hastalik || '').trim();
 
     const elders: ElderEntry[] = [
-      { key: 'anne_durum',          relation: 'Anne',           relation_key: 'anne',          side: 'maternal', diseases: annePart && annePart.toLowerCase() !== 'yok' ? [annePart] : [] },
-      { key: 'anneanne_durum',      relation: 'Anneanne',       relation_key: 'anneanne',      side: 'maternal' },
-      { key: 'anne_babasi_durum',   relation: 'Annenin Babası', relation_key: 'anne_babasi',   side: 'maternal' },
-      { key: 'baba_durum',          relation: 'Baba',           relation_key: 'baba',          side: 'paternal', diseases: babaPart && babaPart.toLowerCase() !== 'yok' ? [babaPart] : [] },
-      { key: 'babaanne_durum',      relation: 'Babaanne',       relation_key: 'babaanne',      side: 'paternal' },
-      { key: 'baba_babasi_durum',   relation: 'Babanın Babası', relation_key: 'baba_babasi',   side: 'paternal' },
+      { durumKey: 'anne_durum', hastalikKey: 'anne_hastalik', relation: 'Anne', relation_key: 'anne', side: 'maternal' },
+      { durumKey: 'baba_durum', hastalikKey: 'baba_hastalik', relation: 'Baba', relation_key: 'baba', side: 'paternal' },
     ];
 
     const ancestors: Ancestor[] = [];
     for (const e of elders) {
-      const raw = String(form[e.key] || '').trim();
-      if (!raw) continue;
+      const raw = String(form[e.durumKey] || '').trim();
+      const hastalik = e.hastalikKey ? String(form[e.hastalikKey] || '').trim() : '';
+      // Yalnızca Anne/Baba ile ilgili herhangi bir bilgi verilmişse ekle
+      if (!raw && (!hastalik || hastalik.toLowerCase() === 'yok')) continue;
       const isAlive = /sağ|sag/i.test(raw);
       const events: string[] = [];
-      // "Vefat, 2010" gibi içeriklerden yıl bilgisini olay olarak ekle
       const vefatMatch = raw.match(/vefat[,\s]*(.*)/i);
       if (vefatMatch && vefatMatch[1]?.trim()) {
         events.push(`Vefat: ${vefatMatch[1].trim()}`);
       }
+      const diseases = hastalik && hastalik.toLowerCase() !== 'yok' ? [hastalik] : [];
       ancestors.push({
         relation: e.relation,
         relation_key: e.relation_key,
         side: e.side,
         name: '',
-        diseases: e.diseases || [],
+        diseases,
         events,
         unfulfilled_vows: [],
         sins_admitted: [],
