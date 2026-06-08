@@ -60,7 +60,8 @@ function detectRelationKey(text: string, side: 'maternal' | 'paternal'): string 
 export default function FamilyStage() {
   const router = useRouter();
   const state = useOnboarding();
-  const { ancestors, set, toCreatePayload } = state;
+  const { ancestors, set, toCreatePayload, source_form_id } = state;
+  const fromAnaliz = !!source_form_id;
   const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<Ancestor | null>(null);
   const [customMaternal, setCustomMaternal] = useState('');
@@ -119,14 +120,29 @@ export default function FamilyStage() {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <Screen>
           <View style={{ paddingTop: spacing.md }}>
-            <Caption style={{ color: colors.accentSage }}>3. AŞAMA / 3</Caption>
-            <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
-              <ProgressBar step={3} total={3} />
-            </View>
-            <H2>Aile & Soy Ağacı</H2>
-            <Body style={{ color: colors.textSecondary, marginTop: spacing.xs }}>
-              Anne, baba ve ataların hastalıkları, yaşadıkları olaylar ve bilinen günahları.
-            </Body>
+            {fromAnaliz ? (
+              <>
+                <Caption style={{ color: colors.maternalPrimary, letterSpacing: 2 }}>SOY AĞACI</Caption>
+                <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
+                  <ProgressBar step={1} total={1} />
+                </View>
+                <H2>Aile & Soy Ağacı</H2>
+                <Body style={{ color: colors.textSecondary, marginTop: spacing.xs }}>
+                  Analiz formundan gelen anne-baba bilgileri aşağıda hazırlandı. Soy ağacınızı zenginleştirmek için anne ve baba soyundan başka kişiler ekleyebilirsiniz.
+                </Body>
+              </>
+            ) : (
+              <>
+                <Caption style={{ color: colors.accentSage }}>3. AŞAMA / 3</Caption>
+                <View style={{ marginTop: spacing.xs, marginBottom: spacing.lg }}>
+                  <ProgressBar step={3} total={3} />
+                </View>
+                <H2>Aile & Soy Ağacı</H2>
+                <Body style={{ color: colors.textSecondary, marginTop: spacing.xs }}>
+                  Anne, baba ve ataların hastalıkları, yaşadıkları olaylar ve bilinen günahları.
+                </Body>
+              </>
+            )}
           </View>
 
           <ScrollView contentContainerStyle={{ paddingBottom: spacing.xxl }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator>

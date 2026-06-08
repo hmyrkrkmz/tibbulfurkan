@@ -42,8 +42,9 @@ export default function Home() {
   };
 
   const startSoyAgaci = () => {
+    if (loading) return;
     resetOnboarding();
-    router.push('/onboarding/personal');
+    router.push('/onboarding/select-analiz');
   };
 
   const deleteForm = (id: string, name: string) => {
@@ -176,7 +177,7 @@ export default function Home() {
           {forms.length === 0 && profiles.length === 0 && !loading && (
             <Card style={{ marginTop: spacing.lg }}>
               <Body style={{ color: colors.textSecondary, textAlign: 'center' }}>
-                Henüz kayıt yok. Yukarıdan "Analiz" veya "Soy Ağacı" ile başlayabilirsiniz.
+                Henüz kayıt yok. Yukarıdan &quot;Analiz&quot; veya &quot;Soy Ağacı&quot; ile başlayabilirsiniz.
               </Body>
             </Card>
           )}
