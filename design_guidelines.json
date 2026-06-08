@@ -1,0 +1,106 @@
+{
+  "theme": "Light",
+  "archetype": "1_Organic_Earthy",
+  "domain": "Spiritual Health & Ancestral Burden Analysis",
+  "vibe": "Spiritual, earthy, contemplative, trustworthy, mystical but modern",
+  "color_palette": {
+    "background_primary": "#F9F6F0",
+    "background_secondary": "#EBE5D9",
+    "background_card": "#FFFFFF",
+    "text_primary": "#2C3531",
+    "text_secondary": "#5C6B64",
+    "accent_sage": "#89A894",
+    "maternal_primary": "#C87971",
+    "maternal_light": "#F2D5D1",
+    "paternal_primary": "#4F6D7A",
+    "paternal_light": "#D0DEE5",
+    "border_subtle": "#DCD5C6",
+    "error_vow": "#A94438"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Cormorant Garamond",
+      "style": "Elegant, mystical, spiritual tone",
+      "h1_size": 36,
+      "h2_size": 28,
+      "h3_size": 22,
+      "letter_spacing": -0.5
+    },
+    "body": {
+      "font_family": "Manrope",
+      "style": "Clean, highly readable, modern",
+      "body_size": 16,
+      "caption_size": 12,
+      "line_height": 24
+    },
+    "forbidden_fonts": ["Inter", "Roboto", "Open Sans"]
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous spacing for breathing room and contemplation. Avoid dense layouts.",
+    "screen_padding": 24,
+    "component_gap": 16,
+    "section_gap": 32,
+    "border_radius": {
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "round": 9999
+    }
+  },
+  "components_strategy": {
+    "buttons": {
+      "primary": "Solid #2C3531 background, #F9F6F0 text, 16px border-radius. TouchableOpacity with subtle scale on press.",
+      "secondary": "Transparent background, 1px border #2C3531, #2C3531 text."
+    },
+    "inputs": {
+      "style": "Flushed or subtle bottom-bordered TextInput for a classic, diary-like entry feel. Use placeholder text in #89A894.",
+      "behavior": "Guided step-by-step 4-stage form (Personal -> Health -> Ancestry -> Spirituality). Wrap in KeyboardAvoidingView and ScrollView."
+    },
+    "cards": {
+      "style": "Flat, pure white (#FFFFFF) or extremely light beige, 1px border (#DCD5C6), NO heavy shadows, extremely soft ambient shadow if necessary (elevation: 2)."
+    }
+  },
+  "mind_map_visualization": {
+    "tech_stack": "react-native-svg, react-native-gesture-handler (PinchGestureHandler, PanGestureHandler)",
+    "layout": "Radial or Vertical Hierarchical. Center node is the User.",
+    "maternal_branch": "Nodes and connecting strokes in #C87971 (Terracotta) tones.",
+    "paternal_branch": "Nodes and connecting strokes in #4F6D7A (Slate Blue) tones.",
+    "node_design": "Circle or rounded-rectangle with soft #F9F6F0 background, 2px border in branch color, icon or initials in center. Clickable via TouchableWithoutFeedback.",
+    "interaction": "Tapping a node opens a bottom sheet (BottomSheetModal) revealing diseases, vows, events, and spiritual causes."
+  },
+  "media_and_images": {
+    "philosophy": "Use subtle, high-quality spiritual and organic textures. Avoid literal meditative clichés.",
+    "image_urls": [
+      {
+        "category": "background_pattern",
+        "url": "https://static.prod-images.emergentagent.com/jobs/a8e0387a-3118-42ae-a69b-79e3d2f34d2c/images/94e5609f6cf42b3524e9ba410942cfc792b2971de9c67cea6dab6426d058193c.png",
+        "description": "Minimalist modern Islamic geometric pattern background in warm sand and bone-white. Use as extremely low opacity (10%) View background for spiritual screens."
+      },
+      {
+        "category": "onboarding_illustration_tree",
+        "url": "https://static.prod-images.emergentagent.com/jobs/a8e0387a-3118-42ae-a69b-79e3d2f34d2c/images/75a4b8658202069535b43c8c05e348743a825f5b8f9f3b58c9b189c5b8ef99aa.png",
+        "description": "Ancestral tree illustration for stage 3 of onboarding (Family/Ancestry)."
+      },
+      {
+        "category": "onboarding_illustration_healing",
+        "url": "https://static.prod-images.emergentagent.com/jobs/a8e0387a-3118-42ae-a69b-79e3d2f34d2c/images/71d7aac669bb5ccf3f5eb57da6967e495b309260c9ad75cc2ce115a41a1e5fe1.png",
+        "description": "Spiritual healing illustration for stage 4 of onboarding (Spirituality & Vows)."
+      },
+      {
+        "category": "vintage_texture",
+        "url": "https://images.pexels.com/photos/16557322/pexels-photo-16557322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Vintage parchment texture. Can be blended into the mind map background for a 'historical record' aesthetic."
+      }
+    ]
+  },
+  "testing": {
+    "instructions": "All interactive elements, inputs, and mind-map nodes MUST include a testID (React Native equivalent of data-testid) for automated testing. Example: testID='onboarding-next-button'."
+  },
+  "instructions_to_main_agent": [
+    "Use ONLY React Native components (View, Text, ScrollView, TouchableOpacity, TextInput). DO NOT use HTML elements.",
+    "For the 4-stage data entry, implement a progressive wizard flow with a top progress bar. Don't overwhelm the user with all fields at once.",
+    "For the Mind Map, use react-native-svg to draw the connections and nodes, and wrap it in a gesture handler for pan/zoom. Ensure maternal nodes are styled with maternal_primary and paternal with paternal_primary.",
+    "Always apply testID to interactive elements for testing.",
+    "Avoid standard tech gradients and AI purple. Rely on solid earthy tones, minimal borders, and generous padding."
+  ]
+}
