@@ -1,34 +1,43 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Modal, ScrollView, ImageBackground, Animated, Easing, Dimensions } from 'react-native';
-import Svg, { Path, G, Ellipse } from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { Body, Caption, H2, H3, Label } from '@/src/ui';
 import { api, AnalysisResult, MindMapNode } from '@/src/api';
 import { colors, fonts, radius, spacing } from '@/src/theme';
 
-const PARCHMENT_URL = 'https://images.pexels.com/photos/16557322/pexels-photo-16557322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=900';
+const TREE_IMAGE = 'https://customer-assets.emergentagent.com/job_furkan-docs/artifacts/tmoijzj2_Gemini_Generated_Image_eawg7aeawg7aeawg%20%281%29.png';
 
-// Düğüm pozisyonlama: hayat ağacı düzeni — alt: self (gövdenin tepesinde), üst: atalar (taç içinde)
-type Pos = { x: number; y: number };
+// Görseldeki boş çerçevelerin normalleştirilmiş konumları (0..1)
+// Görsel kare olduğu için x ve y aynı oranla ölçeklenir.
+// Self: gövdenin tam üstündeki büyük merkez çerçeve
+const SELF_FRAME = { x: 0.50, y: 0.62 };
 
-const ANCESTOR_LAYOUT_KEYS: Record<string, Pos> = {
-  // x: -1..1 (sol-sağ), y: 0..1 (alt-üst, 0 = self yakını, 1 = tepe)
-  anne:           { x: -0.30, y: 0.30 },
-  baba:           { x:  0.30, y: 0.30 },
-  anneanne:       { x: -0.55, y: 0.62 },
-  anne_babasi:    { x: -0.18, y: 0.62 },
-  babaanne:       { x:  0.18, y: 0.62 },
-  baba_babasi:    { x:  0.55, y: 0.62 },
-  anne_buyuk_anne:{ x: -0.70, y: 0.88 },
-  anne_buyuk_dede:{ x: -0.42, y: 0.92 },
-  baba_buyuk_anne:{ x:  0.42, y: 0.92 },
-  baba_buyuk_dede:{ x:  0.70, y: 0.88 },
-  teyze:          { x: -0.78, y: 0.45 },
-  dayi:           { x: -0.78, y: 0.30 },
-  hala:           { x:  0.78, y: 0.45 },
-  amca:           { x:  0.78, y: 0.30 },
+// Önemli akrabalar için sabit konum (görseldeki belirli çerçevelere denk gelir)
+const ANCESTOR_FRAMES: Record<string, { x: number; y: number }> = {
+  anne:           { x: 0.36, y: 0.50 },
+  baba:           { x: 0.64, y: 0.50 },
+  anneanne:       { x: 0.20, y: 0.40 },
+  anne_babasi:    { x: 0.36, y: 0.34 },
+  babaanne:       { x: 0.64, y: 0.34 },
+  baba_babasi:    { x: 0.80, y: 0.40 },
+  teyze:          { x: 0.16, y: 0.52 },
+  dayi:           { x: 0.20, y: 0.28 },
+  hala:           { x: 0.80, y: 0.28 },
+  amca:           { x: 0.84, y: 0.52 },
+  anne_buyuk_anne:{ x: 0.30, y: 0.20 },
+  anne_buyuk_dede:{ x: 0.42, y: 0.18 },
+  baba_buyuk_anne:{ x: 0.58, y: 0.18 },
+  baba_buyuk_dede:{ x: 0.70, y: 0.20 },
 };
+
+// relation_key tanımı olmayan ataları doldurmak için yedek çerçeve havuzu (anne/baba'dan boşta kalanlar)
+const FALLBACK_FRAMES_MATERNAL = [
+  { x: 0.16, y: 0.62 }, { x: 0.10, y: 0.45 }, { x: 0.28, y: 0.62 }, { x: 0.14, y: 0.36 },
+];
+const FALLBACK_FRAMES_PATERNAL = [
+  { x: 0.84, y: 0.62 }, { x: 0.90, y: 0.45 }, { x: 0.72, y: 0.62 }, { x: 0.86, y: 0.36 },
+];
 
 export default function TreeScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -46,122 +55,105 @@ export default function TreeScreen() {
 
   const nodes = useMemo(() => analysis?.mind_map?.nodes || [], [analysis]);
 
-  // Canvas boyutu: ekrana göre, ama sabit yüksek aspect-ratio
+  // Görsel boyutu — kare aspect, ekran genişliğine sığacak şekilde
   const screenW = Dimensions.get('window').width;
   const W = Math.min(screenW, 480);
-  const H = Math.round(W * 1.25);
+  const H = W; // 1:1
 
-  // Düğüm pozisyonları
+  // Düğüm pozisyonları (normalize → piksel)
   const positions = useMemo(() => {
-    const pos: Record<string, Pos> = {};
-    const cx = W / 2;
-    const trunkTop = H * 0.78; // self düğümü gövdenin tepesinde
-    const canopyTop = H * 0.10; // taçın tepe sınırı
-    const canopyHeight = trunkTop - canopyTop;
+    const pos: Record<string, { x: number; y: number }> = {};
+    pos['self'] = { x: SELF_FRAME.x * W, y: SELF_FRAME.y * H };
 
-    pos['self'] = { x: cx, y: trunkTop };
-
-    const placed = new Set<string>(['self']);
-    const otherMaternal: MindMapNode[] = [];
-    const otherPaternal: MindMapNode[] = [];
-
+    let matFb = 0;
+    let patFb = 0;
     nodes.forEach((n) => {
       if (n.id === 'self') return;
       const key = n.relation_key;
-      if (key && ANCESTOR_LAYOUT_KEYS[key]) {
-        const layout = ANCESTOR_LAYOUT_KEYS[key];
-        pos[n.id] = {
-          x: cx + layout.x * (W * 0.42),
-          y: trunkTop - layout.y * canopyHeight,
-        };
-        placed.add(n.id);
+      if (key && ANCESTOR_FRAMES[key]) {
+        const f = ANCESTOR_FRAMES[key];
+        pos[n.id] = { x: f.x * W, y: f.y * H };
+      } else if (n.side === 'maternal') {
+        const f = FALLBACK_FRAMES_MATERNAL[matFb % FALLBACK_FRAMES_MATERNAL.length];
+        pos[n.id] = { x: f.x * W, y: f.y * H };
+        matFb++;
       } else {
-        if (n.side === 'maternal') otherMaternal.push(n);
-        else otherPaternal.push(n);
+        const f = FALLBACK_FRAMES_PATERNAL[patFb % FALLBACK_FRAMES_PATERNAL.length];
+        pos[n.id] = { x: f.x * W, y: f.y * H };
+        patFb++;
       }
     });
-
-    // Manuel akrabalar — kenar yaylara yerleştir
-    otherMaternal.forEach((n, i) => {
-      const t = (i + 1) / (otherMaternal.length + 1);
-      pos[n.id] = {
-        x: cx - W * 0.42,
-        y: trunkTop - canopyHeight * (0.20 + t * 0.55),
-      };
-    });
-    otherPaternal.forEach((n, i) => {
-      const t = (i + 1) / (otherPaternal.length + 1);
-      pos[n.id] = {
-        x: cx + W * 0.42,
-        y: trunkTop - canopyHeight * (0.20 + t * 0.55),
-      };
-    });
-
     return pos;
   }, [nodes, W, H]);
 
-  // ANIMASYON: Gövde fade-in (0→1, 1500ms), sonra düğümler staggered pulse
-  const trunkOpacity = useRef(new Animated.Value(0)).current;
-  const canopyOpacity = useRef(new Animated.Value(0)).current;
-  const nodeAnimsRef = useRef<{ opacity: Animated.Value; scale: Animated.Value }[]>([]);
+  // ANIMASYON: ağaç görseli fade-in, ardından düğümler staggered pulse
+  const treeOpacity = useRef(new Animated.Value(0)).current;
+  const nodeAnimsRef = useRef<{ opacity: Animated.Value; scale: Animated.Value; glow: Animated.Value }[]>([]);
 
-  // Düğümler için animasyon değerleri (lazy init / nodes değişince yenile)
   if (nodeAnimsRef.current.length !== nodes.length) {
     nodeAnimsRef.current = nodes.map(() => ({
       opacity: new Animated.Value(0),
-      scale: new Animated.Value(0.4),
+      scale: new Animated.Value(0.5),
+      glow: new Animated.Value(0),
     }));
   }
 
   useEffect(() => {
     if (nodes.length === 0) return;
-    // Gövde + kök fade-in (0 → 1, 1.5s ease-in)
-    Animated.timing(trunkOpacity, {
+    // 1) Ağaç görseli yumuşak fade-in (1.5s ease-in)
+    Animated.timing(treeOpacity, {
       toValue: 1,
       duration: 1500,
       easing: Easing.in(Easing.ease),
       useNativeDriver: true,
     }).start();
 
-    // Yaprak/dal — gövdenin biraz öncesinden belirir
-    Animated.timing(canopyOpacity, {
-      toValue: 1,
-      duration: 1400,
-      delay: 600,
-      easing: Easing.out(Easing.ease),
-      useNativeDriver: true,
-    }).start();
-
-    // Düğümler: gövde tamamlandıktan sonra staggered pulse ile beliriyor
-    const anims = nodeAnimsRef.current.map((a, i) =>
-      Animated.sequence([
-        Animated.delay(1400 + i * 180),
-        Animated.parallel([
-          Animated.timing(a.opacity, {
-            toValue: 1,
-            duration: 700,
-            easing: Easing.out(Easing.cubic),
+    // 2) Düğümler — ağaç belirginleştikten sonra sırayla parla
+    const anims = nodeAnimsRef.current.map((a) =>
+      Animated.parallel([
+        Animated.timing(a.opacity, {
+          toValue: 1,
+          duration: 700,
+          easing: Easing.out(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.sequence([
+          Animated.timing(a.scale, {
+            toValue: 1.22,
+            duration: 480,
+            easing: Easing.out(Easing.back(2)),
             useNativeDriver: true,
           }),
-          Animated.sequence([
-            Animated.timing(a.scale, {
-              toValue: 1.18,
-              duration: 480,
-              easing: Easing.out(Easing.back(1.6)),
-              useNativeDriver: true,
-            }),
-            Animated.timing(a.scale, {
-              toValue: 1,
-              duration: 380,
-              easing: Easing.inOut(Easing.ease),
-              useNativeDriver: true,
-            }),
-          ]),
+          Animated.timing(a.scale, {
+            toValue: 1,
+            duration: 380,
+            easing: Easing.inOut(Easing.ease),
+            useNativeDriver: true,
+          }),
+        ]),
+        // Parlama efekti (glow halkası)
+        Animated.sequence([
+          Animated.timing(a.glow, {
+            toValue: 1,
+            duration: 500,
+            easing: Easing.out(Easing.ease),
+            useNativeDriver: true,
+          }),
+          Animated.timing(a.glow, {
+            toValue: 0,
+            duration: 700,
+            easing: Easing.in(Easing.ease),
+            useNativeDriver: true,
+          }),
         ]),
       ]),
     );
-    Animated.stagger(0, anims).start();
-  }, [nodes.length, trunkOpacity, canopyOpacity]);
+
+    Animated.sequence([
+      Animated.delay(1400),
+      Animated.stagger(220, anims),
+    ]).start();
+  }, [nodes.length, treeOpacity]);
 
   if (!analysis) {
     return (
@@ -173,14 +165,8 @@ export default function TreeScreen() {
     );
   }
 
-  // Sayılar
   const matCount = nodes.filter((n) => n.side === 'maternal').length;
   const patCount = nodes.filter((n) => n.side === 'paternal').length;
-
-  // Çizim koordinatları
-  const cx = W / 2;
-  const trunkBase = H * 0.95;
-  const trunkTop = H * 0.78;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#E8DCBE' }} edges={['top']}>
@@ -196,200 +182,96 @@ export default function TreeScreen() {
       </View>
 
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: spacing.xxl }} showsVerticalScrollIndicator={false}>
-        <ImageBackground
-          source={{ uri: PARCHMENT_URL }}
-          imageStyle={{ opacity: 0.55, resizeMode: 'cover' }}
-          style={[styles.parchment, { width: W, height: H, alignSelf: 'center' }]}
-        >
-          {/* Sıcak ton overlay */}
-          <View style={[styles.warmOverlay, { width: W, height: H }]} pointerEvents="none" />
-
-          {/* Ağaç gövdesi & dallar SVG (animasyon ile fade-in) */}
+        <View style={{ width: W, height: H, alignSelf: 'center', marginTop: spacing.sm }}>
+          {/* Ağaç fotoğrafı arka plan (fade-in animasyonlu) */}
           <Animated.View
-            style={[
-              StyleSheet.absoluteFillObject,
-              { opacity: trunkOpacity },
-            ]}
+            style={[StyleSheet.absoluteFillObject, { opacity: treeOpacity }]}
             pointerEvents="none"
           >
-            <Svg width={W} height={H}>
-              {/* Kökler */}
-              <G>
-                <Path
-                  d={`M ${cx} ${trunkBase} C ${cx - 30} ${trunkBase + 10} ${cx - 70} ${trunkBase + 5} ${cx - 110} ${trunkBase + 20}`}
-                  stroke="#5C4A33" strokeWidth={4} fill="none" strokeLinecap="round"
-                />
-                <Path
-                  d={`M ${cx} ${trunkBase} C ${cx + 30} ${trunkBase + 10} ${cx + 70} ${trunkBase + 5} ${cx + 110} ${trunkBase + 20}`}
-                  stroke="#5C4A33" strokeWidth={4} fill="none" strokeLinecap="round"
-                />
-                <Path
-                  d={`M ${cx} ${trunkBase} C ${cx - 8} ${trunkBase + 12} ${cx - 18} ${trunkBase + 18} ${cx - 35} ${trunkBase + 28}`}
-                  stroke="#6B5236" strokeWidth={2.5} fill="none" strokeLinecap="round"
-                />
-                <Path
-                  d={`M ${cx} ${trunkBase} C ${cx + 8} ${trunkBase + 12} ${cx + 18} ${trunkBase + 18} ${cx + 35} ${trunkBase + 28}`}
-                  stroke="#6B5236" strokeWidth={2.5} fill="none" strokeLinecap="round"
-                />
-              </G>
-
-              {/* Ana gövde */}
-              <Path
-                d={`M ${cx - 24} ${trunkBase} C ${cx - 22} ${trunkBase - 60} ${cx - 18} ${trunkBase - 120} ${cx - 14} ${trunkTop + 10} L ${cx + 14} ${trunkTop + 10} C ${cx + 18} ${trunkBase - 120} ${cx + 22} ${trunkBase - 60} ${cx + 24} ${trunkBase} Z`}
-                fill="#6B4E2F"
-                stroke="#4A3520"
-                strokeWidth={1}
-              />
-              {/* Gövde dokusu */}
-              <Path
-                d={`M ${cx - 10} ${trunkBase - 30} L ${cx - 8} ${trunkTop + 20}`}
-                stroke="#4A3520" strokeWidth={1} fill="none" strokeOpacity={0.4}
-              />
-              <Path
-                d={`M ${cx + 6} ${trunkBase - 20} L ${cx + 8} ${trunkTop + 30}`}
-                stroke="#4A3520" strokeWidth={1} fill="none" strokeOpacity={0.4}
-              />
-            </Svg>
+            <ImageBackground
+              source={{ uri: TREE_IMAGE }}
+              style={{ width: W, height: H }}
+              resizeMode="cover"
+            />
           </Animated.View>
 
-          {/* Dallar ve yapraklar */}
-          <Animated.View
-            style={[StyleSheet.absoluteFillObject, { opacity: canopyOpacity }]}
-            pointerEvents="none"
-          >
-            <Svg width={W} height={H}>
-              {/* Ana dallar — self'ten her bir düğüme curve */}
-              {nodes.map((n) => {
-                if (n.id === 'self') return null;
-                const p = positions[n.id];
-                if (!p) return null;
-                // Bezier ile yumuşak dal
-                const startX = cx;
-                const startY = trunkTop + 5;
-                const ctrlX = (startX + p.x) / 2;
-                const ctrlY = (startY + p.y) / 2 + 15;
-                const branchColor = '#5C4126';
-                return (
-                  <Path
-                    key={`b-${n.id}`}
-                    d={`M ${startX} ${startY} Q ${ctrlX} ${ctrlY} ${p.x} ${p.y}`}
-                    stroke={branchColor}
-                    strokeWidth={3}
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeOpacity={0.85}
-                  />
-                );
-              })}
-
-              {/* Yaprak kümeleri — düğümlerin etrafına */}
-              {nodes.map((n) => {
-                if (n.id === 'self') return null;
-                const p = positions[n.id];
-                if (!p) return null;
-                const leaves: React.ReactNode[] = [];
-                const leafColors = ['#8FA982', '#7A9472', '#A5BC95', '#6E8C68'];
-                // Her düğümün etrafına 6-8 yaprak
-                for (let i = 0; i < 7; i++) {
-                  const angle = (i / 7) * Math.PI * 2;
-                  const dist = 38 + (i % 2) * 8;
-                  const lx = p.x + Math.cos(angle) * dist;
-                  const ly = p.y + Math.sin(angle) * dist;
-                  const rotation = (angle * 180) / Math.PI + 30;
-                  const color = leafColors[i % leafColors.length];
-                  leaves.push(
-                    <Ellipse
-                      key={`leaf-${n.id}-${i}`}
-                      cx={lx}
-                      cy={ly}
-                      rx={9}
-                      ry={5}
-                      fill={color}
-                      opacity={0.85}
-                      transform={`rotate(${rotation} ${lx} ${ly})`}
-                    />,
-                  );
-                }
-                return <G key={`leaves-${n.id}`}>{leaves}</G>;
-              })}
-
-              {/* Gövdenin tepesinde yaprak kümesi (self yakını) */}
-              {[...Array(12)].map((_, i) => {
-                const angle = (i / 12) * Math.PI * 2;
-                const dist = 30 + (i % 3) * 6;
-                const lx = cx + Math.cos(angle) * dist;
-                const ly = trunkTop - 5 + Math.sin(angle) * dist * 0.6;
-                const rotation = (angle * 180) / Math.PI + 30;
-                const colors2 = ['#8FA982', '#A5BC95'];
-                return (
-                  <Ellipse
-                    key={`tl-${i}`}
-                    cx={lx}
-                    cy={ly}
-                    rx={8}
-                    ry={4}
-                    fill={colors2[i % 2]}
-                    opacity={0.7}
-                    transform={`rotate(${rotation} ${lx} ${ly})`}
-                  />
-                );
-              })}
-            </Svg>
-          </Animated.View>
-
-          {/* Düğümler — Animated.View overlay'leri, tıklanabilir oval çerçeveler */}
+          {/* Düğümler — çerçevelerin üzerine yerleştirilmiş tıklanabilir noktalar */}
           {nodes.map((n, i) => {
             const p = positions[n.id];
             if (!p) return null;
             const anim = nodeAnimsRef.current[i];
             const isSelf = n.type === 'self';
-            const r = isSelf ? 34 : 28;
+            // Düğüm boyutu: görsel genişliğinin yaklaşık %12'si (self biraz daha büyük)
+            const size = isSelf ? Math.round(W * 0.13) : Math.round(W * 0.11);
+            const r = size / 2;
             const hasIssue = (n.diseases?.length || 0) + (n.events?.length || 0) + (n.sins_admitted?.length || 0) > 0;
-            const sideColor = n.side === 'maternal' ? '#C87971' : n.side === 'paternal' ? '#4F6D7A' : '#8B6F47';
-            // Kısa label
+            const sideColor = n.side === 'maternal' ? '#C87971' : n.side === 'paternal' ? '#4F6D7A' : '#5C4126';
             const shortLabel = (n.relation || n.label || 'Kişi').split(' ')[0];
+
+            // Glow halkası — parlama animasyonu sırasında genişler
+            const glowOpacity = anim?.glow?.interpolate
+              ? anim.glow.interpolate({ inputRange: [0, 1], outputRange: [0, 0.55] })
+              : 0;
+            const glowScale = anim?.glow?.interpolate
+              ? anim.glow.interpolate({ inputRange: [0, 1], outputRange: [1, 1.6] })
+              : 1;
+
             return (
-              <Animated.View
+              <View
                 key={n.id}
-                pointerEvents="box-none"
                 style={[
-                  styles.nodeWrap,
-                  {
-                    left: p.x - r,
-                    top: p.y - r,
-                    width: r * 2,
-                    height: r * 2,
+                  styles.nodeAbs,
+                  { left: p.x - r, top: p.y - r, width: size, height: size },
+                ]}
+                pointerEvents="box-none"
+              >
+                {/* Parlama halkası */}
+                <Animated.View
+                  pointerEvents="none"
+                  style={[
+                    styles.glow,
+                    {
+                      width: size,
+                      height: size,
+                      borderRadius: r,
+                      backgroundColor: sideColor,
+                      opacity: glowOpacity,
+                      transform: [{ scale: glowScale }],
+                    },
+                  ]}
+                />
+                <Animated.View
+                  style={{
                     opacity: anim?.opacity ?? 1,
                     transform: [{ scale: anim?.scale ?? 1 }],
-                  },
-                ]}
-              >
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => setSelected(n)}
-                  testID={`tree-node-${n.id}`}
-                  style={[
-                    styles.nodeFrame,
-                    isSelf && styles.nodeSelf,
-                    { width: r * 2, height: r * 2, borderRadius: r },
-                  ]}
+                  }}
                 >
-                  <View style={[styles.nodeInner, { width: r * 2 - 8, height: r * 2 - 8, borderRadius: r - 4 }]}>
+                  <TouchableOpacity
+                    activeOpacity={0.75}
+                    onPress={() => setSelected(n)}
+                    testID={`tree-node-${n.id}`}
+                    style={[
+                      styles.nodeBtn,
+                      { width: size, height: size, borderRadius: r, borderColor: sideColor, borderWidth: isSelf ? 2.5 : 2 },
+                      isSelf && styles.nodeSelf,
+                    ]}
+                  >
                     <Caption
                       numberOfLines={1}
-                      style={[styles.nodeText, { color: sideColor, fontSize: isSelf ? 11 : 10 }]}
+                      style={[
+                        styles.nodeText,
+                        { color: sideColor, fontSize: isSelf ? 11 : 10 },
+                      ]}
                     >
                       {shortLabel}
                     </Caption>
-                    {hasIssue && (
-                      <View style={[styles.issueDot, { backgroundColor: colors.errorVow }]} />
-                    )}
-                  </View>
-                </TouchableOpacity>
-              </Animated.View>
+                    {hasIssue && <View style={[styles.issueDot, { backgroundColor: colors.errorVow }]} />}
+                  </TouchableOpacity>
+                </Animated.View>
+              </View>
             );
           })}
-        </ImageBackground>
+        </View>
 
         <View style={styles.statsRow}>
           <View style={styles.statBox}>
@@ -421,7 +303,7 @@ function NodeDetailModal({ node, onClose }: { node: MindMapNode | null; onClose:
   const isSelf = node.type === 'self';
   const sideColor = node.side === 'maternal' ? '#C87971' : node.side === 'paternal' ? '#4F6D7A' : '#8B6F47';
   const sideBg = node.side === 'maternal' ? '#F2D5D1' : node.side === 'paternal' ? '#D0DEE5' : colors.bgSecondary;
-  const burdenCount = (node.diseases?.length || 0) + (node.events?.length || 0) + (node.sins_admitted?.length || 0) + (node.unfulfilled_vows?.length || 0);
+  const burdenCount = (node.diseases?.length || 0) + (node.events?.length || 0) + (node.sins_admitted?.length || 0);
 
   return (
     <Modal visible={!!node} animationType="slide" transparent onRequestClose={onClose}>
@@ -444,7 +326,6 @@ function NodeDetailModal({ node, onClose }: { node: MindMapNode | null; onClose:
                 </TouchableOpacity>
               </View>
 
-              {/* Manevi yük özeti */}
               <View style={[styles.summaryBox, { borderLeftColor: sideColor }]}>
                 <Caption style={{ color: sideColor, fontFamily: fonts.bodySemi, letterSpacing: 1 }}>MANEVİ YÜK ÖZETİ</Caption>
                 {burdenCount === 0 ? (
@@ -516,47 +397,27 @@ const styles = StyleSheet.create({
   },
   backButton: { paddingVertical: 8, paddingHorizontal: 4, minWidth: 70 },
 
-  parchment: {
-    backgroundColor: '#D9C695',
-    overflow: 'hidden',
-    marginTop: spacing.sm,
-  },
-  warmOverlay: {
-    position: 'absolute',
-    top: 0, left: 0,
-    backgroundColor: '#C9A85B',
-    opacity: 0.18,
-  },
-
-  nodeWrap: {
+  nodeAbs: {
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  nodeFrame: {
-    backgroundColor: '#A8895F',
-    borderWidth: 2.5,
-    borderColor: '#5C4126',
+  glow: {
+    position: 'absolute',
+  },
+  nodeBtn: {
+    backgroundColor: 'rgba(242,228,200,0.78)', // krem yarı şeffaf — çerçevenin üzerinde
     alignItems: 'center',
     justifyContent: 'center',
-    // Hafif ortam gölgesi (web/iOS)
+    // Hafif gölge
     shadowColor: '#000',
     shadowOpacity: 0.18,
     shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
+    shadowRadius: 3,
     elevation: 3,
   },
   nodeSelf: {
-    borderColor: '#3F2C18',
-    borderWidth: 3,
-    backgroundColor: '#C8A86C',
-  },
-  nodeInner: {
-    backgroundColor: '#F2E4C8',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#B89968',
+    backgroundColor: 'rgba(248,228,184,0.85)',
   },
   nodeText: {
     fontFamily: fonts.bodySemi,
@@ -564,8 +425,8 @@ const styles = StyleSheet.create({
   },
   issueDot: {
     position: 'absolute',
-    top: 2,
-    right: 4,
+    top: 4,
+    right: 6,
     width: 7,
     height: 7,
     borderRadius: 4,
