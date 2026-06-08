@@ -245,7 +245,6 @@ export default function FamilyStage() {
                         </Caption>
                         {(a.diseases?.length || 0) > 0 && <Caption style={{ marginTop: 4 }}>Hastalıklar: {a.diseases?.join(', ')}</Caption>}
                         {(a.events?.length || 0) > 0 && <Caption>Olaylar: {a.events?.join(', ')}</Caption>}
-                        {(a.unfulfilled_vows?.length || 0) > 0 && <Caption style={{ color: colors.errorVow }}>Yarım adak: {a.unfulfilled_vows?.join(', ')}</Caption>}
                         {(a.sins_admitted?.length || 0) > 0 && <Caption>Bilinen günahlar: {a.sins_admitted?.join(', ')}</Caption>}
                       </View>
                       <TouchableOpacity
@@ -293,7 +292,6 @@ function AncestorEditModal({ visible, ancestor, isEditing, onChange, onClose, on
 }) {
   const [d, setD] = useState('');
   const [ev, setEv] = useState('');
-  const [v, setV] = useState('');
   const [sin, setSin] = useState('');
 
   if (!ancestor) return null;
@@ -363,17 +361,6 @@ function AncestorEditModal({ visible, ancestor, isEditing, onChange, onClose, on
               <View style={styles.chipWrap}>
                 {ancestor.events?.map((it, i) => (
                   <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, events: ancestor.events?.filter((_, x) => x !== i) })} />
-                ))}
-              </View>
-
-              <Label style={{ marginTop: spacing.sm, marginBottom: spacing.sm }}>YARIM KALMIŞ ADAKLAR</Label>
-              <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                <Input value={v} onChangeText={setV} placeholder="Örn: Kurban adağı, hatim adağı" style={{ flex: 1 }} />
-                <Button title="+" variant="secondary" onPress={() => addTo('unfulfilled_vows', v, () => setV(''))} style={{ marginLeft: spacing.sm, marginBottom: spacing.md, paddingHorizontal: 16 }} />
-              </View>
-              <View style={styles.chipWrap}>
-                {ancestor.unfulfilled_vows?.map((it, i) => (
-                  <Chip key={i} label={it} side={ancestor.side} onRemove={() => onChange({ ...ancestor, unfulfilled_vows: ancestor.unfulfilled_vows?.filter((_, x) => x !== i) })} />
                 ))}
               </View>
 

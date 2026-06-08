@@ -99,7 +99,7 @@ export default function ProfileDetail() {
           </Card>
 
           <Button
-            title="Zihin Haritasını Aç"
+            title="Soy Ağacını Aç"
             onPress={() => router.push(`/mindmap/${id}`)}
             style={{ marginTop: spacing.md }}
             testID="mindmap-btn"
