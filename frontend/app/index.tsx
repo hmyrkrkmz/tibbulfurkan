@@ -102,9 +102,9 @@ export default function Home() {
               <Caption style={{ color: colors.accentSage, letterSpacing: 2 }}>✦  TESPİT</Caption>
               <H3 style={styles.bigCardTitle}>Analiz</H3>
               <Body style={styles.bigCardDesc}>
-                Form üzerinden yapay zekâ destekli soy yükü tespiti.
+                Soy yükü tespiti.
               </Body>
-              <Body style={styles.cta}>Forma başla  ›</Body>
+              <Body style={styles.cta}>Analize başla  ›</Body>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={startSoyAgaci} activeOpacity={0.85} style={[styles.bigCard, styles.cardSoy]} testID="start-soy-btn">
