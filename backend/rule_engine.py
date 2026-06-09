@@ -184,12 +184,9 @@ def build_aile_sikinti(doc: Dict) -> List[str]:
 # ============================================================
 GONUL_ACIKLAMALARI = {
     "ofke": (
-        "**Öfke ve Aniden Parlama:** Sık ve kontrolsüz yaşadığınız öfke; adak hayvanı yükü (boğa, dana, öküz) "
-        "ve anne-baba zulmü ile ilişkilidir. Adaklarınızı tespit etmeniz ve helalleşmeniz gerekir."
-    ),
-    "aniden_parlama": (
-        "**Aniden Parlama:** Aniden parlama halleriniz, adak hayvanı yükü ve anne-babaya öfke ile bağlantılıdır. "
-        "Adakların tespiti ve anne-baba ile helalleşme şarttır."
+        "**Öfke ve Aniden Parlama:** Sık ve kontrolsüz yaşadığınız öfke ve aniden parlama halleri; "
+        "adak hayvanı yükü (boğa, dana, öküz) ve anne-baba zulmü ile ilişkilidir. "
+        "Adaklarınızı tespit etmeniz ve helalleşmeniz gerekir."
     ),
     "es_soguklugu": (
         "**Eş Soğukluğu:** Eşinize karşı hissettiğiniz soğukluk; adak hayvanı uyuşmazlığı "
@@ -239,12 +236,18 @@ GONUL_ACIKLAMALARI = {
 def build_gonul(doc: Dict) -> List[str]:
     """Ruhsal ve duygusal durumları analiz eder."""
     bullets = []
-    
+
+    # "ofke" ya da "aniden_parlama" form alanlarından herhangi biri Evet ise birleşik bullet'ı ekle
+    if _is_evet(_f(doc, "ofke")) or _is_evet(_f(doc, "aniden_parlama")):
+        bullets.append(GONUL_ACIKLAMALARI["ofke"])
+
     for key, aciklama in GONUL_ACIKLAMALARI.items():
+        if key == "ofke":
+            continue  # yukarıda halledildi
         val = _f(doc, key)
         if _is_evet(val):
             bullets.append(aciklama)
-    
+
     return bullets
 
 
