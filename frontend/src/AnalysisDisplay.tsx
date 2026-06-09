@@ -187,7 +187,7 @@ export function AnalysisDisplay({ markdown }: { markdown: string }) {
               <View key={j} style={[styles.bulletCard, { borderLeftColor: meta.color + '55' }]}>
                 {b.topic && (
                   <Caption style={[styles.topic, { color: meta.color }]} numberOfLines={2}>
-                    {b.topic}
+                    {b.topic.toLocaleUpperCase('tr-TR')}
                   </Caption>
                 )}
                 {b.body ? <Body style={styles.bulletText}>{b.body}</Body> : null}
@@ -292,7 +292,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodyBold,
     fontSize: 13,
     letterSpacing: 0.3,
-    textTransform: 'uppercase',
     marginBottom: 4,
   },
   bulletText: {
