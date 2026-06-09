@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, RefreshControl, ImageBackground, ScrollView, Alert } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, RefreshControl, ImageBackground, ScrollView, Alert, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { Body, Caption, Card, H1, H3, Label } from '@/src/ui';
+import { Body, Caption, Card, H3, Label } from '@/src/ui';
 import { api, Profile } from '@/src/api';
 import { formApi, FormSubmission } from '@/src/formApi';
 import { colors, fonts, radius, spacing } from '@/src/theme';
@@ -10,6 +10,7 @@ import { useOnboarding } from '@/src/store';
 import { useFormStore } from '@/src/formStore';
 
 const PATTERN_URL = 'https://static.prod-images.emergentagent.com/jobs/a8e0387a-3118-42ae-a69b-79e3d2f34d2c/images/94e5609f6cf42b3524e9ba410942cfc792b2971de9c67cea6dab6426d058193c.png';
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_furkan-docs/artifacts/g5eybie1_Adsiz-tasarim-8-e1772656467876.png';
 
 export default function Home() {
   const router = useRouter();
@@ -85,11 +86,13 @@ export default function Home() {
           style={styles.hero}
         >
           <View style={styles.heroInner}>
-            <Caption style={{ letterSpacing: 4, color: colors.accentSage }}>ﺑِﺴْﻢِ ﺍﻟﻠّٰﻪِ ﺍﻟﺮَّﺣْﻤٰﻦِ ﺍﻟﺮَّﺣِﻴﻢِ</Caption>
-            <H1 style={styles.title} testID="app-title">Tıbb-ul Furkan</H1>
-            <Body style={styles.subtitle}>
-              Şifaya açılan kapı, genetik yüklerden arınma vakti
-            </Body>
+            <Caption style={{ letterSpacing: 4, color: colors.accentSage, marginBottom: spacing.sm }}>ﺑِﺴْﻢِ ﺍﻟﻠّٰﻪِ ﺍﻟﺮَّﺣْﻤٰﻦِ ﺍﻟﺮَّﺣِﻴﻢِ</Caption>
+            <Image
+              source={{ uri: LOGO_URL }}
+              style={styles.heroLogo}
+              resizeMode="contain"
+              testID="app-logo"
+            />
           </View>
         </ImageBackground>
 
@@ -209,7 +212,8 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   hero: { height: 240, backgroundColor: colors.bgSecondary, marginBottom: spacing.lg },
-  heroInner: { flex: 1, paddingHorizontal: spacing.lg, justifyContent: 'flex-end', paddingBottom: spacing.lg },
+  heroInner: { flex: 1, paddingHorizontal: spacing.lg, justifyContent: 'flex-end', paddingBottom: spacing.lg, alignItems: 'flex-start' },
+  heroLogo: { width: 240, height: 110, alignSelf: 'flex-start', marginTop: spacing.xs },
   title: { fontSize: 42, marginTop: spacing.sm },
   subtitle: { color: colors.textSecondary, marginTop: spacing.xs, fontFamily: fonts.body, fontStyle: 'italic' },
 
