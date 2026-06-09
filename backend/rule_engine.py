@@ -436,7 +436,7 @@ def generate_analysis(doc: Dict) -> Dict:
     lines.append("")
     lines.append("---")
     lines.append("")
-    lines.append("**Kesin tespit ve uygulamaya yönelik yönlendirme için seans alınması önerilir.**")
+    lines.append("**Adak, zekât ve genel soy yüklerinin doğru tespitinin yapılabilmesi ve kefaretleri uygulamaya yönelik yönlendirmeler için seans alınması önerilir.**")
     
     markdown = "\n".join(lines)
     

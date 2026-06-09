@@ -80,6 +80,8 @@ function parseAnalysis(md: string): { intro: string | null; sections: Section[];
   let closing: string | null = null;
   let body = md;
   const closingPatterns = [
+    /\*\*Adak[^*]*seans\s*alınması\s*önerilir\.?\*\*/i,
+    /Adak[^.]*seans\s*alınması\s*önerilir\.?/i,
     /\*\*Kesin\s+tespit[^*]+\*\*\.?/i,
     /lütfen\s*seans\s*alınız\.?/i,
     /seans\s+alınması\s+önerilir\.?/i,

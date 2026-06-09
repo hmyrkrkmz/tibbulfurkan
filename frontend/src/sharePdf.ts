@@ -6,13 +6,24 @@ type Section = { title: string; bullets: string[] };
 
 function parseAnalysisToSections(md: string): { sections: Section[]; closing: string | null } {
   if (!md) return { sections: [], closing: null };
-  const closingRegex = /lütfen\s*seans\s*alınız\.?/i;
+
+  // Yeni & eski kapanış kalıpları
+  const closingPatterns = [
+    /\*\*Adak[^*]*seans\s*alınması\s*önerilir\.?\*\*/i,
+    /Adak[^.]*seans\s*alınması\s*önerilir\.?/i,
+    /\*\*Kesin\s+tespit[^*]+\*\*\.?/i,
+    /Kesin\s+tespit[^.]+\.?/i,
+    /lütfen\s*seans\s*alınız\.?/i,
+  ];
   let closing: string | null = null;
   let body = md;
-  const m = md.match(closingRegex);
-  if (m) {
-    closing = 'Lütfen seans alınız.';
-    body = md.slice(0, m.index).trim();
+  for (const re of closingPatterns) {
+    const m = md.match(re);
+    if (m) {
+      closing = m[0].replace(/\*\*/g, '').trim();
+      body = md.slice(0, m.index).trim();
+      break;
+    }
   }
 
   const lines = body.split('\n').map((l) => l.trim());
@@ -119,6 +130,12 @@ function buildHtml(opts: {
     padding-bottom: 14px;
     margin-bottom: 22px;
   }
+  .header img.logo {
+    max-width: 180px;
+    max-height: 90px;
+    margin: 0 auto 8px;
+    display: block;
+  }
   .brand {
     color: #5C8474;
     font-size: 12px;
@@ -197,6 +214,7 @@ function buildHtml(opts: {
 </head>
 <body>
   <div class="header">
+    <img class="logo" src="https://customer-assets.emergentagent.com/job_furkan-docs/artifacts/g5eybie1_Adsiz-tasarim-8-e1772656467876.png" alt="Tıbb-ul Furkan" />
     <div class="brand">Tıbb-ul Furkan</div>
     <div class="brand-name">Soy Yükü Analizi</div>
   </div>
