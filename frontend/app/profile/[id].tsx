@@ -106,7 +106,7 @@ export default function ProfileDetail() {
           />
 
           <Caption style={{ marginTop: spacing.lg, textAlign: 'center', color: colors.textSecondary, fontStyle: 'italic' }}>
-            Detaylı manevi analiz için ana sayfadaki "Analiz" bölümünü kullanın.
+            Detaylı soy analizi için ana sayfadaki &quot;Analiz&quot; bölümünü kullanın.
           </Caption>
         </ScrollView>
       </Screen>
