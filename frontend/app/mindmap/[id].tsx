@@ -380,7 +380,7 @@ function NodeDetailModal({ node, onClose }: { node: MindMapNode | null; onClose:
               <Caption style={{ marginTop: spacing.lg, fontStyle: 'italic', textAlign: 'center', color: colors.textSecondary }}>
                 {isSelf
                   ? 'Genetik yükleriniz — anne ve baba taraflarından gelen yükleri gözden geçirin.'
-                  : 'Bu atadan size sızan iz, manevi analizde değerlendirildi.'}
+                  : 'Bu atadan size gelen genetik yük soy analizinde değerlendirildi.'}
               </Caption>
             </ScrollView>
           </SafeAreaView>
