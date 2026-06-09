@@ -137,10 +137,11 @@ function buildHtml(opts: {
     display: block;
   }
   .brand {
-    color: #5C8474;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    color: #8A8378;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-style: italic;
+    opacity: 0.7;
     margin-bottom: 4px;
   }
   .brand-name {
@@ -215,7 +216,6 @@ function buildHtml(opts: {
 <body>
   <div class="header">
     <img class="logo" src="https://customer-assets.emergentagent.com/job_furkan-docs/artifacts/g5eybie1_Adsiz-tasarim-8-e1772656467876.png" alt="Tıbb-ul Furkan" />
-    <div class="brand">Tıbb-ul Furkan</div>
     <div class="brand-name">Soy Yükü Analizi</div>
   </div>
 
