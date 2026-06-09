@@ -67,7 +67,7 @@ DISEASE_PATTERNS = [
         "category": "Hematolojik/Genetik",
         "symptoms": ["kansızlık", "akdeniz anemisi", "talasemi", "kan bozukluğu"],
         "causes": ["beddua", "isyan", "lanet", "zekat", "adak_eylem"],
-        "description": "Beddua, kahır, intizar, isyan, lanet ('Zehir zıkkım olsun, ben yiyemedim siz de yiyemeyin' sözü) ve verilmeyen zekât. Yerine getirilmeyen adak."
+        "description": "Beddua, kahır, intizar, isyan, lanet ('Zehir zıkkım olsun, ben yiyemedim siz de yiyemeyin' sözü) ve verilmeyen veya eksik verilen zekât. Yerine getirilmeyen adak."
     },
     
     {
@@ -251,7 +251,7 @@ DISEASE_PATTERNS = [
         "category": "Onkolojik/Dermatolojik",
         "symptoms": ["deri kanseri", "cilt kanseri", "melanom"],
         "causes": ["adak_eti", "zekat", "kinama", "adak_eylem", "hayrat_mali"],
-        "description": "Adak eti yemek, verilmeyen zekât, kınama zulmü, çocuk giydirme/sevindirme adakları, hayrat derisi gasp edip yeme."
+        "description": "Adak eti yemek, verilmeyen veya eksik verilen zekât, kınama zulmü, çocuk giydirme/sevindirme adakları, hayrat derisi gasp edip yeme."
     },
     
     {
@@ -259,7 +259,7 @@ DISEASE_PATTERNS = [
         "category": "Dermatolojik",
         "symptoms": ["deri hastalığı", "cilt problemi", "deri döküntüsü"],
         "causes": ["adak_eti", "zekat", "kinama", "adak_eylem", "hayrat_mali"],
-        "description": "Adak eti yemek, verilmeyen zekât, kınama zulmü, çocuk giydirme/sevindirme adakları, hayrat derisi gasp edip yeme."
+        "description": "Adak eti yemek, verilmeyen veya eksik verilen zekât, kınama zulmü, çocuk giydirme/sevindirme adakları, hayrat derisi gasp edip yeme."
     },
     
     {
@@ -291,7 +291,7 @@ DISEASE_PATTERNS = [
         "category": "Endokrin",
         "symptoms": ["diyabet", "şeker hastalığı", "yüksek şeker", "kan şekeri yüksekliği"],
         "causes": ["zekat", "kinama", "beddua", "miras_laneti", "adak_eylem", "adak_eti"],
-        "description": "Verilmeyen zekât, kınama, beddua, miras/soy laneti, 'Şeker bana haram olsun' sözü, şeker/tatlı dağıtma adakları, bolca yenilmiş hayvan adakları."
+        "description": "Verilmeyen veya eksik verilen zekât, kınama, beddua, miras/soy laneti, 'Şeker bana haram olsun' sözü, şeker/tatlı dağıtma adakları, bolca yenilmiş hayvan adakları."
     },
     
     {
@@ -619,7 +619,7 @@ DISEASE_PATTERNS = [
         "category": "Metabolik",
         "symptoms": ["obezite", "aşırı kilo", "şişmanlık"],
         "causes": ["adak_eylem", "zekat", "hak_haram", "kinama", "beddua"],
-        "description": "İnek, düve, fakir doyurma adakları, harami eşme, verilmeyen zekât, hak haramlığı, kınama, beddua."
+        "description": "İnek, düve, fakir doyurma adakları, harami eşme, verilmeyen veya eksik verilen zekât, hak haramlığı, kınama, beddua."
     },
     
     {
@@ -763,7 +763,7 @@ DISEASE_PATTERNS = [
         "category": "Kardiyovasküler",
         "symptoms": ["tansiyon", "hipertansiyon", "yüksek tansiyon"],
         "causes": ["zekat", "adak_eylem", "isyan", "zulum_anne_baba", "sirk"],
-        "description": "Verilmeyen zekât, adak, isyan (özellikle namazı vaktinde kılamamaya isyan, kadere/şükürsüzlüğe isyan), anne babaya isyan, şirk."
+        "description": "Verilmeyen veya eksik verilen zekât, adak, isyan (özellikle namazı vaktinde kılamamaya isyan, kadere/şükürsüzlüğe isyan), anne babaya isyan, şirk."
     },
     
     {
@@ -885,7 +885,7 @@ DISEASE_PATTERNS = [
         "category": "Psikiyatrik",
         "symptoms": ["bipolar", "manik depresif", "duygudurum bozukluğu"],
         "causes": ["zekat", "adak_eylem", "zulum_anne_baba", "zulum_hayvan"],
-        "description": "Verilmeyen zekât (özellikle anne babanın vermediği zekât), yerine getirilmeyen adak, anne babaya zulüm (dövme, işkence) ve hayvan zulümleri."
+        "description": "Verilmeyen veya eksik verilen zekât (özellikle anne babanın vermediği zekât), yerine getirilmeyen adak, anne babaya zulüm (dövme, işkence) ve hayvan zulümleri."
     },
     
     {
@@ -981,7 +981,7 @@ DISEASE_PATTERNS = [
         "category": "Psikiyatrik",
         "symptoms": ["öfke krizi", "kontrolsüz öfke", "aniden parlama"],
         "causes": ["adak_hayvan", "zulum_anne_baba", "zekat", "haramzade"],
-        "description": "Büyükbaş adak (boğa, dana, öküz), anne babaya kin/isyan, verilmeyen zekât, haramzade olmak."
+        "description": "Büyükbaş adak (boğa, dana, öküz), anne babaya kin/isyan, verilmeyen veya eksik verilen zekât, haramzade olmak."
     },
     
     {

@@ -106,7 +106,7 @@ def build_rizik(doc: Dict) -> List[str]:
     
     if zekat == "hayır":
         bullets.append(
-            "**Zekât Eksikliği:** Verilmeyen zekât, pek çok hastalığın kökeninde yatan temel sebeplerdendir. "
+            "**Zekât Eksikliği:** Verilmeyen veya eksik verilen zekât, pek çok hastalığın kökeninde yatan temel sebeplerdendir. "
             "Böbrek rahatsızlıkları, tansiyon, diyabet, epilepsi, bipolar bozukluk ve şizofreni gibi rahatsızlıklar "
             "doğrudan zekât eksikliği ile ilişkilidir. Birikmiş zekât borcunun hesaplanıp ödenmesi tavsiye edilir."
         )

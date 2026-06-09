@@ -50,7 +50,7 @@ DISEASES = [
         "category": "Nörolojik",
         "symptoms": ["Unutkanlık", "Hafıza kaybı", "Bilinç bulanıklığı"],
         "causes": [
-            {"category": "zekat", "weight": 10, "detail": "Kişinin ve soyunun verilmeyen zekatı yüksek"},
+            {"category": "zekat", "weight": 10, "detail": "Kişinin ve soyunun verilmeyen veya eksik verilen zekâtı yüksek"},
             {"category": "adak_eylem", "weight": 9, "detail": "Zamanı geçmiş yerine getirilmemiş adaklar"},
             {"category": "sirk", "weight": 8, "detail": "Şirk devreye girer"},
             {"category": "zulum_anne_baba", "weight": 9, "detail": "Anne babayı terk etme, onları unutma, ah alma"},
@@ -88,7 +88,7 @@ DISEASES = [
         "causes": [
             {"category": "hayrat_mali", "weight": 10, "detail": "Hayrat malı yeme"},
             {"category": "zulum_insan", "weight": 8, "detail": "Kafaya zulüm"},
-            {"category": "zekat", "weight": 9, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 9, "detail": "Verilmeyen veya eksik verilen zekât"},
         ],
         "remedy": "Hayrat malı iadesi, zekat tövbesi."
     },
@@ -163,7 +163,7 @@ DISEASES = [
         "symptoms": ["Cilt lezyonları", "Kanser"],
         "causes": [
             {"category": "adak_eti", "weight": 9, "detail": "Adak eti yeme"},
-            {"category": "zekat", "weight": 10, "detail": "Verilmeyen zekat (kanserde zekat yüksek)"},
+            {"category": "zekat", "weight": 10, "detail": "Verilmeyen veya eksik verilen zekât (kanserde zekat yüksek)"},
             {"category": "kinama", "weight": 7, "detail": "Kınama zulmü"},
             {"category": "adak_eylem", "weight": 6, "detail": "Çocuk giydirme ve sevindirme adakları"},
             {"category": "hayrat_mali", "weight": 8, "detail": "Hayrat derisi gasp edip yeme"},
@@ -185,7 +185,7 @@ DISEASES = [
         "category": "Endokrin",
         "symptoms": ["Yüksek şeker", "Tatlı kontrolsüzlüğü"],
         "causes": [
-            {"category": "zekat", "weight": 10, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 10, "detail": "Verilmeyen veya eksik verilen zekât"},
             {"category": "kinama", "weight": 7, "detail": "Kınama"},
             {"category": "soy_laneti", "weight": 9, "detail": "Soy lâneti - tövbe etmeden ölen yakının tutan bedduası"},
             {"category": "beddua", "weight": 8, "detail": "Şeker bana haram olsun sözü"},
@@ -214,7 +214,7 @@ DISEASES = [
         "symptoms": ["Cilt iltihabı", "Kaşıntı"],
         "causes": [
             {"category": "adak_eti", "weight": 8, "detail": "Yenmiş adak eti"},
-            {"category": "zekat", "weight": 8, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 8, "detail": "Verilmeyen veya eksik verilen zekât"},
             {"category": "zulum_insan", "weight": 7, "detail": "Zulüm"},
         ],
         "remedy": "Adak, zekat ve zulüm tövbesi."
@@ -260,7 +260,7 @@ DISEASES = [
         "causes": [
             {"category": "zina_ensest", "weight": 10, "detail": "Soydan tecavüzler"},
             {"category": "adak_hayvan", "weight": 9, "detail": "Karşı cins yoğun adaklar"},
-            {"category": "zekat", "weight": 8, "detail": "Verilmeyen zekat (kişinin veya anne babasının)"},
+            {"category": "zekat", "weight": 8, "detail": "Verilmeyen veya eksik verilen zekât (kişinin veya anne babasının)"},
             {"category": "beddua", "weight": 7, "detail": "Lânet ve beddualar"},
         ],
         "remedy": "Zekat tamamlama, adak tespiti, soy ensest tövbesi."
@@ -289,7 +289,7 @@ DISEASES = [
             {"category": "adak_eylem", "weight": 7, "detail": "Adak"},
             {"category": "sirk", "weight": 8, "detail": "Şirk"},
             {"category": "isyan", "weight": 7, "detail": "İsyan"},
-            {"category": "zekat", "weight": 8, "detail": "Çok verilmeyen zekat"},
+            {"category": "zekat", "weight": 8, "detail": "Çok verilmeyen veya eksik verilen zekât"},
             {"category": "zulum_hayvan", "weight": 9, "detail": "Hayvana zulüm, işkence, yakma"},
         ],
         "remedy": "Tüm zulümlerden helalleşme, zekat tamamlama."
@@ -381,7 +381,7 @@ DISEASES = [
         "category": "İç Hastalıkları",
         "symptoms": ["Karaciğer şişmesi"],
         "causes": [
-            {"category": "zekat", "weight": 9, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 9, "detail": "Verilmeyen veya eksik verilen zekât"},
             {"category": "beddua", "weight": 9, "detail": "Ciğerin şişsin, patlasın bedduaları"},
             {"category": "adak_eti", "weight": 8, "detail": "Adak hayvanının ciğerini yeme"},
         ],
@@ -392,7 +392,7 @@ DISEASES = [
         "category": "Onkolojik",
         "symptoms": ["Karaciğer kanseri"],
         "causes": [
-            {"category": "zekat", "weight": 10, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 10, "detail": "Verilmeyen veya eksik verilen zekât"},
             {"category": "beddua", "weight": 9, "detail": "Ciğerin kurusun, yansın, batsın bedduaları"},
             {"category": "adak_eti", "weight": 8, "detail": "Adak ciğeri yeme"},
         ],
@@ -406,7 +406,7 @@ DISEASES = [
             {"category": "beddua", "weight": 9, "detail": "Elin ayağın kırılsın gibi beddualar"},
             {"category": "adak_eti", "weight": 8, "detail": "Adak eti yeme"},
             {"category": "adak_eylem", "weight": 8, "detail": "Yerine getirilmeyen adak"},
-            {"category": "zekat", "weight": 8, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 8, "detail": "Verilmeyen veya eksik verilen zekât"},
         ],
         "remedy": "Anne baba beddua tövbesi, adak yerine getirme."
     },
@@ -505,7 +505,7 @@ DISEASES = [
         "symptoms": ["Aşırı kilo"],
         "causes": [
             {"category": "harami_esme", "weight": 9, "detail": "Harami eşme"},
-            {"category": "zekat", "weight": 9, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 9, "detail": "Verilmeyen veya eksik verilen zekât"},
             {"category": "hak_haram", "weight": 8, "detail": "Hak haramlığı"},
             {"category": "kinama", "weight": 7, "detail": "Kınama"},
             {"category": "beddua", "weight": 7, "detail": "Beddua"},
@@ -542,7 +542,7 @@ DISEASES = [
         "causes": [
             {"category": "adak_hayvan", "weight": 9, "detail": "Büyükbaş adak, küçükbaş çok adak"},
             {"category": "zulum_anne_baba", "weight": 9, "detail": "Anne babaya kin ve öfke"},
-            {"category": "zekat", "weight": 8, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 8, "detail": "Verilmeyen veya eksik verilen zekât"},
             {"category": "haramzade", "weight": 8, "detail": "Haramzade"},
         ],
         "remedy": "Adak ve helalleşme."
@@ -603,7 +603,7 @@ DISEASES = [
             {"category": "kinama", "weight": 9, "detail": "Kör insanı kınama"},
             {"category": "zulum_insan", "weight": 9, "detail": "Gözü kör etme zulmü"},
             {"category": "beddua", "weight": 9, "detail": "Gözün batsın, kör olsun bedduaları"},
-            {"category": "zekat", "weight": 8, "detail": "Verilmeyen zekat"},
+            {"category": "zekat", "weight": 8, "detail": "Verilmeyen veya eksik verilen zekât"},
             {"category": "zina_ensest", "weight": 7, "detail": "Göz zinası"},
         ],
         "remedy": "Adak yerine getirme, kınama tövbesi."
