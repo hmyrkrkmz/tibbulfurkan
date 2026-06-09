@@ -379,7 +379,7 @@ function NodeDetailModal({ node, onClose }: { node: MindMapNode | null; onClose:
 
               <Caption style={{ marginTop: spacing.lg, fontStyle: 'italic', textAlign: 'center', color: colors.textSecondary }}>
                 {isSelf
-                  ? 'Soy izleriniz bugüne sızıyor — anne ve baba taraflarından gelen yükleri gözden geçirin.'
+                  ? 'Genetik yükleriniz — anne ve baba taraflarından gelen yükleri gözden geçirin.'
                   : 'Bu atadan size sızan iz, manevi analizde değerlendirildi.'}
               </Caption>
             </ScrollView>
