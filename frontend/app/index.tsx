@@ -85,7 +85,7 @@ export default function Home() {
           style={styles.hero}
         >
           <View style={styles.heroInner}>
-            <Caption style={{ letterSpacing: 4, color: colors.accentSage }}>ﺗﺐ ﺍﻟﻔﺮﻗﺎﻥ</Caption>
+            <Caption style={{ letterSpacing: 4, color: colors.accentSage }}>ﺑِﺴْﻢِ ﺍﻟﻠّٰﻪِ ﺍﻟﺮَّﺣْﻤٰﻦِ ﺍﻟﺮَّﺣِﻴﻢِ</Caption>
             <H1 style={styles.title} testID="app-title">Tıbb-ul Furkan</H1>
             <Body style={styles.subtitle}>
               Şifaya açılan kapı, genetik yüklerden arınma vakti
