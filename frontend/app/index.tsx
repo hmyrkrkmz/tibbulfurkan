@@ -93,6 +93,7 @@ export default function Home() {
               resizeMode="contain"
               testID="app-logo"
             />
+            <Caption style={styles.heroTagline}>Şifaya Açılan Kapı</Caption>
           </View>
         </ImageBackground>
 
@@ -213,7 +214,16 @@ export default function Home() {
 const styles = StyleSheet.create({
   hero: { height: 240, backgroundColor: colors.bgSecondary, marginBottom: spacing.lg },
   heroInner: { flex: 1, paddingHorizontal: 0, justifyContent: 'flex-end', paddingBottom: spacing.lg, alignItems: 'flex-start' },
-  heroLogo: { width: 260, height: 130, marginLeft: -spacing.md },
+  heroLogo: { width: 260, height: 130, marginLeft: -spacing.lg - spacing.sm },
+  heroTagline: {
+    marginLeft: spacing.lg,
+    marginTop: -spacing.sm,
+    fontStyle: 'italic',
+    color: colors.textSecondary,
+    opacity: 0.55,
+    fontSize: 11,
+    letterSpacing: 1,
+  },
   bismillah: {
     position: 'absolute',
     top: spacing.md,
