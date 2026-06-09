@@ -94,7 +94,23 @@ export default function Home() {
         </ImageBackground>
 
         <View style={{ paddingHorizontal: spacing.lg }}>
-          <Label style={{ marginBottom: spacing.sm }}>BAŞLA</Label>
+          {/* TIBB-UL FURKAN NEDİR */}
+          <Card style={styles.infoCard}>
+            <View style={styles.infoHeader}>
+              <View style={styles.infoBadge}>
+                <Body style={styles.infoBadgeIcon}>◈</Body>
+              </View>
+              <H3 style={styles.infoTitle}>Tıbb-ul Furkan Nedir?</H3>
+            </View>
+            <Body style={styles.infoSubtitle}>
+              Tıbb-ul Furkan ilmi;
+            </Body>
+            <Body style={styles.infoBody}>
+              Tıbb-ul Furkan ilmi; başımıza gelen bela, musibet ve sıkıntıların arka yüzündeki gerçek sebeplerini bulabilme, analiz etme ve bunların çözümünü kişiye sunabilme ilmidir.
+            </Body>
+          </Card>
+
+          <Label style={{ marginTop: spacing.lg, marginBottom: spacing.sm }}>BAŞLA</Label>
 
           {/* İKİ ANA BÖLÜM: Analiz · Soy Ağacı */}
           <View style={styles.twoCol}>
@@ -116,22 +132,6 @@ export default function Home() {
               <Body style={styles.cta}>Ağacı oluştur  ›</Body>
             </TouchableOpacity>
           </View>
-
-          {/* TIBB-UL FURKAN NEDİR */}
-          <Card style={styles.infoCard}>
-            <View style={styles.infoHeader}>
-              <View style={styles.infoBadge}>
-                <Body style={styles.infoBadgeIcon}>◈</Body>
-              </View>
-              <H3 style={styles.infoTitle}>Tıbb-ul Furkan Nedir?</H3>
-            </View>
-            <Body style={styles.infoSubtitle}>
-              Başımıza gelen musibetlerin gerçek sebeplerini bilme ve gerçek çözümlerini sunabilme
-            </Body>
-            <Body style={styles.infoBody}>
-              Tıbb-ul Furkan ilmi; başımıza gelen bela, musibet ve sıkıntıların arka yüzündeki gerçek sebeplerini bulabilme, analiz etme ve bunların çözümünü kişiye sunabilme ilmidir.
-            </Body>
-          </Card>
 
           {/* ANALİZ KAYITLARI */}
           {forms.length > 0 && (
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   arrow: { fontSize: 22, color: colors.accentSage, marginLeft: spacing.sm },
 
   infoCard: {
-    marginTop: spacing.lg,
+    marginBottom: spacing.xs,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.md,
     backgroundColor: colors.bgCard,
