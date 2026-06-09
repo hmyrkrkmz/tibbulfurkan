@@ -331,7 +331,7 @@ DISEASE_PATTERNS = [
         "category": "Dermatolojik",
         "symptoms": ["sivilce", "akne", "ergenlik sivilcesi"],
         "causes": ["adak_hayvan", "zekat", "kinama"],
-        "description": "Erkekte koyun adağı, kadında koç adağı, zekât enerjisi, sivilceli insanları kınama, 'Sakal bırakacağım' adağı."
+        "description": "Erkekte koyun adağı, kadında koç adağı, verilmeyen veya eksik verilen zekât, sivilceli insanları kınama, 'Sakal bırakacağım' adağı."
     },
     
     {
@@ -675,7 +675,7 @@ DISEASE_PATTERNS = [
         "category": "Romatolojik",
         "symptoms": ["romatizma", "eklem ağrısı", "eklem iltihabı"],
         "causes": ["isyan", "beddua", "zulum_insan", "adak_eylem", "zekat", "zulum_anne_baba"],
-        "description": "Yağmura intizar ('Bir bitmedin'), 'Dizin batsın' bedduası, hayata isyan, dizle vurarak zulüm, su adağı, deve adakları, zekât enerjisi, anne babayı soğukta dondurma."
+        "description": "Yağmura intizar ('Bir bitmedin'), 'Dizin batsın' bedduası, hayata isyan, dizle vurarak zulüm, su adağı, deve adakları, verilmeyen veya eksik verilen zekât, anne babayı soğukta dondurma."
     },
     
     {
@@ -683,7 +683,7 @@ DISEASE_PATTERNS = [
         "category": "Ortopedik",
         "symptoms": ["bacak ağrısı", "baldır ağrısı"],
         "causes": ["isyan", "beddua", "zulum_insan", "adak_eylem", "zekat", "zulum_anne_baba"],
-        "description": "Yağmura intizar ('Bir bitmedin'), 'Dizin batsın' bedduası, hayata isyan, dizle vurarak zulüm, su adağı, deve adakları, zekât enerjisi, anne babayı soğukta dondurma."
+        "description": "Yağmura intizar ('Bir bitmedin'), 'Dizin batsın' bedduası, hayata isyan, dizle vurarak zulüm, su adağı, deve adakları, verilmeyen veya eksik verilen zekât, anne babayı soğukta dondurma."
     },
     
     {
@@ -691,7 +691,7 @@ DISEASE_PATTERNS = [
         "category": "Ortopedik",
         "symptoms": ["baldır ağrısı", "baldırda çekme"],
         "causes": ["isyan", "beddua", "zulum_insan", "adak_eylem", "zekat", "zulum_anne_baba"],
-        "description": "Yağmura intizar, 'Dizin batsın' bedduası, hayata isyan, dizle vurarak zulüm, su adağı, deve adakları, zekât enerjisi, anne babayı soğukta dondurma."
+        "description": "Yağmura intizar, 'Dizin batsın' bedduası, hayata isyan, dizle vurarak zulüm, su adağı, deve adakları, verilmeyen veya eksik verilen zekât, anne babayı soğukta dondurma."
     },
     
     {
