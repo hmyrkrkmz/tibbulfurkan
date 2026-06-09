@@ -88,7 +88,9 @@ export const useOnboarding = create<OnboardingState>((set, get) => ({
       if (vefatMatch && vefatMatch[1]?.trim()) {
         events.push(`Vefat: ${vefatMatch[1].trim()}`);
       }
-      const diseases = hastalik && hastalik.toLowerCase() !== 'yok' ? [hastalik] : [];
+      const diseases = hastalik && hastalik.toLowerCase() !== 'yok'
+        ? hastalik.split(/[,;\n/]+/).map((d) => d.trim()).filter(Boolean)
+        : [];
       ancestors.push({
         relation: e.relation,
         relation_key: e.relation_key,
