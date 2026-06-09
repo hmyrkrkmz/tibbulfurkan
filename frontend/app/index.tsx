@@ -106,7 +106,7 @@ export default function Home() {
               Tıbb-ul Furkan ilmi;
             </Body>
             <Body style={styles.infoBody}>
-              Tıbb-ul Furkan ilmi; başımıza gelen bela, musibet ve sıkıntıların arka yüzündeki gerçek sebeplerini bulabilme, analiz etme ve bunların çözümünü kişiye sunabilme ilmidir.
+              Başımıza gelen bela, musibet ve sıkıntıların arka yüzündeki gerçek sebeplerini bulabilme, analiz etme ve bunların çözümünü kişiye sunabilme ilmidir.
             </Body>
           </Card>
 
