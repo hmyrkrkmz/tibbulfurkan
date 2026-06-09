@@ -85,8 +85,8 @@ export default function Home() {
           imageStyle={{ opacity: 0.08, resizeMode: 'cover' }}
           style={styles.hero}
         >
+          <Caption style={styles.bismillah}>ﺑِﺴْﻢِ ﺍﻟﻠّٰﻪِ ﺍﻟﺮَّﺣْﻤٰﻦِ ﺍﻟﺮَّﺣِﻴﻢِ</Caption>
           <View style={styles.heroInner}>
-            <Caption style={{ letterSpacing: 4, color: colors.accentSage, marginBottom: spacing.sm }}>ﺑِﺴْﻢِ ﺍﻟﻠّٰﻪِ ﺍﻟﺮَّﺣْﻤٰﻦِ ﺍﻟﺮَّﺣِﻴﻢِ</Caption>
             <Image
               source={{ uri: LOGO_URL }}
               style={styles.heroLogo}
@@ -212,8 +212,16 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   hero: { height: 240, backgroundColor: colors.bgSecondary, marginBottom: spacing.lg },
-  heroInner: { flex: 1, paddingHorizontal: spacing.lg, justifyContent: 'flex-end', paddingBottom: spacing.lg, alignItems: 'flex-start' },
-  heroLogo: { width: 240, height: 110, alignSelf: 'flex-start', marginTop: spacing.xs },
+  heroInner: { flex: 1, paddingHorizontal: 0, justifyContent: 'flex-end', paddingBottom: spacing.lg, alignItems: 'flex-start' },
+  heroLogo: { width: 260, height: 130, marginLeft: -spacing.md },
+  bismillah: {
+    position: 'absolute',
+    top: spacing.md,
+    right: spacing.lg,
+    letterSpacing: 3,
+    color: colors.accentSage,
+    textAlign: 'right',
+  },
   title: { fontSize: 42, marginTop: spacing.sm },
   subtitle: { color: colors.textSecondary, marginTop: spacing.xs, fontFamily: fonts.body, fontStyle: 'italic' },
 
