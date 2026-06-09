@@ -47,7 +47,8 @@ function cleanText(s: string): string {
   return s
     .replace(/\s*[-–—]{2,}\s*$/, '')
     .replace(/^\s*[-–—]{2,}\s*/, '')
-    .replace(/[_]/g, '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1') // inline **bold** → düz metin
+    .replace(/[*_]/g, '')
     .replace(EMOJI_REGEX, '')
     .replace(/\s+/g, ' ')
     .trim();

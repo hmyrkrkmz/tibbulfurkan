@@ -248,7 +248,7 @@ DISEASES = [
         "symptoms": ["Yüzde sivilce"],
         "causes": [
             {"category": "adak_hayvan", "weight": 8, "detail": "Erkekte koyun, kadında koç adağı"},
-            {"category": "zekat", "weight": 7, "detail": "Üzerinde zekat enerjisi"},
+            {"category": "zekat", "weight": 7, "detail": "Verilmeyen veya eksik verilen zekât, adaklarınızı tespit ettirmeniz gerekmektedir. Tespit için lütfen seans alınız"},
             {"category": "kinama", "weight": 9, "detail": "Sivilceli insanlarla alay etme, kınama"},
         ],
         "remedy": "Adak ve zekat tespiti, kınama tövbesi."

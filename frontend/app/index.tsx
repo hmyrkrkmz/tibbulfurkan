@@ -117,6 +117,22 @@ export default function Home() {
             </TouchableOpacity>
           </View>
 
+          {/* TIBB-UL FURKAN NEDİR */}
+          <Card style={styles.infoCard}>
+            <View style={styles.infoHeader}>
+              <View style={styles.infoBadge}>
+                <Body style={styles.infoBadgeIcon}>◈</Body>
+              </View>
+              <H3 style={styles.infoTitle}>Tıbb-ul Furkan Nedir?</H3>
+            </View>
+            <Body style={styles.infoSubtitle}>
+              Başımıza gelen musibetlerin gerçek sebeplerini bilme ve gerçek çözümlerini sunabilme
+            </Body>
+            <Body style={styles.infoBody}>
+              Tıbb-ul Furkan ilmi; başımıza gelen bela, musibet ve sıkıntıların arka yüzündeki gerçek sebeplerini bulabilme, analiz etme ve bunların çözümünü kişiye sunabilme ilmidir.
+            </Body>
+          </Card>
+
           {/* ANALİZ KAYITLARI */}
           {forms.length > 0 && (
             <>
@@ -219,4 +235,33 @@ const styles = StyleSheet.create({
     backgroundColor: colors.textPrimary, alignItems: 'center', justifyContent: 'center',
   },
   arrow: { fontSize: 22, color: colors.accentSage, marginLeft: spacing.sm },
+
+  infoCard: {
+    marginTop: spacing.lg,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.md,
+    backgroundColor: colors.bgCard,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: colors.borderSubtle,
+    borderLeftWidth: 4,
+    borderLeftColor: colors.accentSage,
+  },
+  infoHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: spacing.sm },
+  infoBadge: {
+    width: 30, height: 30, borderRadius: 15,
+    backgroundColor: colors.accentSage,
+    alignItems: 'center', justifyContent: 'center',
+    marginRight: spacing.sm,
+  },
+  infoBadgeIcon: { color: colors.bgPrimary, fontSize: 15, fontFamily: fonts.bodyBold, lineHeight: 17 },
+  infoTitle: { fontSize: 19, color: colors.textPrimary, flex: 1 },
+  infoSubtitle: {
+    fontStyle: 'italic',
+    color: colors.accentSage,
+    fontSize: 13,
+    lineHeight: 19,
+    marginBottom: spacing.sm,
+  },
+  infoBody: { fontSize: 14, lineHeight: 22, color: colors.textPrimary },
 });
