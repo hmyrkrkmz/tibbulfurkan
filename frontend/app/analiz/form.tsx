@@ -10,10 +10,6 @@ import { colors, fonts, radius, spacing } from '@/src/theme';
 const ELDERS: Array<{ key: ElderKey; label: string }> = [
   { key: 'anne', label: 'Anne' },
   { key: 'baba', label: 'Baba' },
-  { key: 'anneanne', label: 'Anneanne' },
-  { key: 'anne_babasi', label: 'Annenin Babası' },
-  { key: 'babaanne', label: 'Babaanne' },
-  { key: 'baba_babasi', label: 'Babanın Babası' },
 ];
 
 // Tam 17 soru — Tıbb-ul Furkan formundaki Sorular bölümü

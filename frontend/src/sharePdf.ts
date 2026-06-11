@@ -46,6 +46,12 @@ function parseAnalysisToSections(md: string): { sections: Section[]; closing: st
       if (text && current) current.bullets.push(text);
       continue;
     }
+    // **Topic:** body satırları da ayrı bullet olarak ele alınır
+    if (/^\*\*[^*]+\*\*/.test(line)) {
+      const text = line.replace(/[*_]/g, '').replace(/\s+/g, ' ').trim();
+      if (text && current) current.bullets.push(text);
+      continue;
+    }
     const cl = clean(line);
     if (current && cl) {
       if (current.bullets.length > 0) current.bullets[current.bullets.length - 1] += ' ' + cl;
@@ -83,6 +89,68 @@ function esc(s: string): string {
     .replace(/"/g, '&quot;');
 }
 
+// Bullet gövdesini "(1) Title: body. (2) Title: body. Şifa için: ..." kalıbına göre ayırır
+type SubPoint = { title?: string; body: string };
+function splitBulletBody(body: string): { intro?: string; points: SubPoint[]; remedy?: string } {
+  if (!body) return { points: [] };
+  let work = body;
+  let remedy: string | undefined;
+  const rm = work.match(/(?:Şifa\s*için|Sifa\s*icin|Şifa\s*yolu|Çözüm)[:：]\s*(.+)$/i);
+  if (rm && rm.index !== undefined) {
+    remedy = rm[1].trim();
+    work = work.slice(0, rm.index).trim();
+  }
+  // (1), (2), … gibi tek haneli numara açıcılarını bul; sıralı zinciri tut
+  const markerRe = /\((\d)\)/g;
+  const markers: { idx: number; n: number; end: number }[] = [];
+  let mm: RegExpExecArray | null;
+  while ((mm = markerRe.exec(work)) !== null) {
+    const n = parseInt(mm[1], 10);
+    if (n >= 1 && n <= 9) markers.push({ idx: mm.index, n, end: mm.index + mm[0].length });
+  }
+  const ordered: typeof markers = [];
+  let expect = 1;
+  for (const mk of markers) {
+    if (mk.n === expect) { ordered.push(mk); expect += 1; }
+  }
+  if (ordered.length === 0) {
+    return { intro: work.trim() || undefined, points: [], remedy };
+  }
+  const intro = work.slice(0, ordered[0].idx).trim() || undefined;
+  const points: SubPoint[] = ordered.map((mk, i) => {
+    const end = i + 1 < ordered.length ? ordered[i + 1].idx : work.length;
+    const raw = work.slice(mk.end, end).trim().replace(/^[.\s]+/, '');
+    const t = raw.match(/^([^:：]{2,60})[:：]\s*(.+)$/s);
+    if (t) {
+      return {
+        title: t[1].trim().replace(/\s+/g, ' '),
+        body: t[2].trim().replace(/\s+/g, ' '),
+      };
+    }
+    return { body: raw.replace(/\s+/g, ' ').trim() };
+  });
+  return { intro, points, remedy };
+}
+
+// "**Topic:** body" formatında ise topic ve body ayır
+function parseBullet(raw: string): { topic?: string; body: string; intro?: string; points: SubPoint[]; remedy?: string } {
+  const m = raw.match(/^\*\*([^*]+?)\*\*[:：]?\s*(.*)$/);
+  if (m) {
+    const topic = m[1].replace(/[:：]$/, '').trim();
+    const body = (m[2] || '').trim();
+    const split = splitBulletBody(body);
+    return { topic, body, ...split };
+  }
+  // "Topic: body" eski formatı (parseAnalysisToSections içinde dönüştürülmüş)
+  const m2 = raw.match(/^([A-ZĞÜŞİÖÇ][^:：]{2,50})[:：]\s*(.+)$/);
+  if (m2) {
+    const split = splitBulletBody(m2[2].trim());
+    return { topic: m2[1].trim(), body: m2[2].trim(), ...split };
+  }
+  const split = splitBulletBody(raw);
+  return { body: raw, ...split };
+}
+
 function buildHtml(opts: {
   ad_soyad: string;
   cinsiyet?: string;
@@ -95,14 +163,54 @@ function buildHtml(opts: {
     .map((s) => {
       const key = pickKey(s.title);
       const color = SECTION_COLOR[key];
-      const bullets = s.bullets.map((b) => `<li>${esc(b)}</li>`).join('');
+      const bullets = s.bullets.map((rawB) => {
+        const b = parseBullet(rawB);
+        const hasPoints = b.points && b.points.length > 0;
+        if (hasPoints) {
+          const intro = b.intro ? `<div class="sub-intro">${esc(b.intro)}</div>` : '';
+          const pts = b.points
+            .map((p, i) => `
+              <div class="point">
+                <span class="point-num" style="background:${color};">${i + 1}</span>
+                <div class="point-body">
+                  ${p.title ? `<div class="point-title" style="color:${color};">${esc(p.title)}</div>` : ''}
+                  <div class="point-text">${esc(p.body)}</div>
+                </div>
+              </div>`)
+            .join('');
+          const remedy = b.remedy
+            ? `<div class="remedy" style="background:${color}22;border-left-color:${color};">
+                 <div class="remedy-label" style="color:${color};">ŞİFA İÇİN</div>
+                 <div class="remedy-body">${esc(b.remedy)}</div>
+               </div>`
+            : '';
+          return `
+            <div class="bullet-card">
+              ${b.topic ? `<div class="bullet-topic" style="color:${color};">${esc(b.topic.toUpperCase())}</div>` : ''}
+              ${intro}
+              ${pts}
+              ${remedy}
+            </div>`;
+        }
+        // Sayılı liste yoksa eski sade satır
+        if (b.topic) {
+          return `<li><b style="color:${color};">${esc(b.topic)}:</b> ${esc(b.body)}</li>`;
+        }
+        return `<li>${esc(b.body)}</li>`;
+      });
+      // List item'ları topla (sayısız bullet'lar) ve kartlardan ayır
+      const cardItems = bullets.filter((h) => h.startsWith('<div class="bullet-card"'));
+      const listItems = bullets.filter((h) => h.startsWith('<li>'));
+      const listHtml = listItems.length ? `<ul>${listItems.join('')}</ul>` : '';
+      const cardsHtml = cardItems.join('');
       return `
         <div class="section" style="border-left-color:${color};">
           <div class="section-head">
             <span class="title-bar" style="background:${color};"></span>
             <h2>${esc(s.title)}</h2>
           </div>
-          <ul>${bullets}</ul>
+          ${listHtml}
+          ${cardsHtml}
         </div>
       `;
     })
@@ -188,6 +296,80 @@ function buildHtml(opts: {
   }
   .section ul { margin: 8px 0 0; padding-left: 18px; }
   .section li { margin-bottom: 6px; font-size: 12.5px; color: #2D2A24; line-height: 1.55; }
+
+  /* Hastalık bullet kartı + numaralı alt-kartlar */
+  .bullet-card {
+    background: #FAF6EF;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    page-break-inside: avoid;
+  }
+  .bullet-topic {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+  }
+  .sub-intro {
+    font-size: 11.5px;
+    color: #5C6B64;
+    font-style: italic;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .point {
+    display: flex;
+    align-items: flex-start;
+    background: #FFFFFF;
+    border: 1px solid #EBE5D8;
+    border-radius: 5px;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    page-break-inside: avoid;
+  }
+  .point-num {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    color: #FFFFFF;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 18px;
+    margin-right: 8px;
+    margin-top: 1px;
+  }
+  .point-body { flex: 1; }
+  .point-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .point-text {
+    font-size: 11px;
+    color: #2D2A24;
+    line-height: 1.5;
+  }
+  .remedy {
+    border-left: 3px solid;
+    border-radius: 5px;
+    padding: 8px 10px;
+    margin-top: 6px;
+    page-break-inside: avoid;
+  }
+  .remedy-label {
+    font-size: 9.5px;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .remedy-body {
+    font-size: 11px;
+    color: #2D2A24;
+    line-height: 1.5;
+  }
   .closing {
     background: #F5EFE2;
     border: 1.5px solid #5C8474;

@@ -176,8 +176,8 @@ export function computeCompletion(s: FormData): { percent: number; filled: numbe
   const personalFields = [s.ad_soyad, s.yas, s.tlf, s.medeni_durum, s.cocuk_sayisi, s.memleket, s.dogum_tarihi, s.cinsiyet];
   const personalFilled = personalFields.filter((v) => (v || '').trim() !== '').length;
 
-  // Elders: 6 elder (her birinde status seçilmesi yeterli; value bonus)
-  const elders: Elder[] = [s.anne, s.baba, s.anneanne, s.anne_babasi, s.babaanne, s.baba_babasi];
+  // Elders: 2 elder (anne, baba)
+  const elders: Elder[] = [s.anne, s.baba];
   const eldersFilled = elders.filter((e) => e.status !== '').length;
 
   // Mali: 2 (zekat, faiz)
