@@ -1,0 +1,54 @@
+{
+  "summary": "Backend-only test for Tıbb-ul Furkan Form Submissions feature. All 9 pytest cases PASSED (9/9, 100%). Verified: POST /api/form-submissions returns 200 with generated id+created_at and echoes required fields (ad_soyad, dogum_tarihi, cinsiyet, rahatsizliklar); GET list returns the created submission; GET /{id} returns the submission; GET unknown id returns 404; minimal-payload create works (only ad_soyad required). AI analysis at POST /api/form-submissions/{fid}/analyze returns 200 with {ai_analysis, signals}, ai_analysis is >=100 chars Turkish text, contains the EXACT required phrase 'Lütfen seans alınız' AT/NEAR THE END (within last 400 chars). Persisted ai_analysis is retrievable via GET. Analyze of unknown id returns 404. DELETE returns {ok: true} and subsequent GET returns 404. No MongoDB _id leak on any endpoint. EMERGENT_LLM_KEY budget is currently functional (no 503 budget errors during this run); Claude Sonnet 4.6 via emergentintegrations call completed successfully.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "POST /api/form-submissions/{fid}/analyze",
+        "issue": "build_system_message() is rebuilt on every analyze request (includes full DISEASE_PATTERNS + CAUSE_CATEGORIES blocks). Minor performance/cost optimisation: cache the string at module load."
+      },
+      {
+        "endpoint": "POST /api/form-submissions/{fid}/analyze",
+        "issue": "User prompt still ends with '>>> Yukarıdaki yapıya uygun şekilde 5 bölümden oluşan analizi hazırla.' (server.py line ~684) which contradicts the new free-form requirement and the system prompt that no longer enforces 5 sections. This stale instruction may bias the LLM toward 5-section output. Recommend removing or rewording to 'Akıcı bir analiz hazırla'."
+      },
+      {
+        "endpoint": "POST /api/form-submissions",
+        "issue": "FormSubmissionCreate has no validation for ad_soyad length / non-empty after stripping. Empty string '' is accepted as a valid submission."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_form_submissions.py",
+    "/app/test_reports/pytest/form_submissions_results.xml"
+  ],
+  "action_items": [
+    "Optional: Remove the stale '5 bölümden oluşan analizi hazırla' line in server.py analyze_form user prompt (~line 684) — system prompt already requests free-form output ending with 'Lütfen seans alınız.' so this line is contradictory.",
+    "Optional: Validate ad_soyad is non-empty (min_length=1 after .strip()) in FormSubmissionCreate to prevent garbage submissions.",
+    "Optional: Cache build_system_message() result at module import (it is deterministic) to avoid rebuilding the long KB string on each analyze call."
+  ],
+  "critical_code_review_comments": [
+    "server.py line ~684: user_text ends with '>>> Yukarıdaki yapıya uygun şekilde 5 bölümden oluşan analizi hazırla.' — contradicts the updated free-form spec where 5-section structure was removed.",
+    "server.py analyze_form correctly maps Budget/credit errors to HTTP 503 with a friendly Turkish message (good).",
+    "All form-submissions endpoints correctly project away MongoDB _id via {'_id': 0} (good).",
+    "build_system_message() correctly instructs the model to end with the literal phrase 'Lütfen seans alınız.' — verified by live LLM response in this test run."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_form_submissions.py (new)",
+    "/app/test_reports/pytest/form_submissions_results.xml (generated)"
+  ],
+  "success_rate": {
+    "backend": "100% (9/9 pytest cases passed)",
+    "frontend": "not tested (skipped per request)"
+  },
+  "seed_data_creation": "Tests create and delete one TEST_Mehmet Yılmaz form-submission plus one minimal TEST_Min User submission per run. Both are cleaned up via DELETE before exit. No residual seed data left in DB.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Backend public URL: https://furkan-medical.preview.emergentagent.com (from EXPO_PUBLIC_BACKEND_URL). Form-submissions pytest: pytest /app/backend/tests/test_form_submissions.py -v. Profile-based pytest still available at /app/backend/tests/test_backend_api.py (LLM test there may still fail if /api/profiles/{id}/llm-analysis hits 0.001 USD budget cap — separate endpoint). Form-analyze endpoint currently within budget and producing correct output ending with 'Lütfen seans alınız.' — phrase enforcement in /app/backend/knowledge_base.py build_system_message() is working as designed. If a future run sees the phrase missing, check that the system_message hasn't been edited.",
+  "rca_of_issue": "No bug. The 'Lütfen seans alınız' phrase requirement is satisfied by the LLM: knowledge_base.build_system_message() ends with an explicit instruction telling the model to append the phrase verbatim on a new line. The live Claude Sonnet 4.6 call honored this in tests — the phrase was found within the last 400 chars of the ai_analysis."
+}
