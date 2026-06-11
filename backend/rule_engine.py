@@ -70,14 +70,20 @@ def _match_diseases(text: str) -> List[Dict]:
                     hit = True
                     break
         
-        # 3. Semptom tam eşleşmesi (sadece uzun semptomlar)
+        # 3. Semptom tam eşleşmesi (uzun semptomlar substring; kısa semptomlar word-boundary)
         if not hit:
+            import re as _re
             for sym in d.get("symptoms", []):
                 sym_lower = sym.lower()
-                # Sadece 5+ karakter semptomlarla tam eşleşme
+                # Uzun semptomlar (>5 karakter): substring match
                 if len(sym_lower) > 5 and sym_lower in t:
                     hit = True
                     break
+                # Kısa semptomlar (3-5 karakter): kelime sınırı ile tam eşleşme
+                if 3 <= len(sym_lower) <= 5:
+                    if _re.search(r'(?:^|[^\wığüşöçİĞÜŞÖÇ])' + _re.escape(sym_lower) + r'(?:$|[^\wığüşöçİĞÜŞÖÇ])', t):
+                        hit = True
+                        break
         
         if hit and name_l not in seen_names:
             matched.append(d)

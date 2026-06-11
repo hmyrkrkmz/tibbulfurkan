@@ -130,43 +130,60 @@ DISEASE_PATTERNS = [
     },
     
     {
-        "name": "Böbrek Rahatsızlıkları",
+        "name": "Böbrek Rahatsızlıkları / Böbrek İltihabı / Böbrek Ağrısı",
         "category": "Üriner",
-        "symptoms": ["böbrek yetmezliği", "böbrek rahatsızlığı", "böbrek ağrısı"],
+        "symptoms": ["böbrek yetmezliği", "böbrek rahatsızlığı", "böbrek ağrısı", "böbrek iltihabı", "böbrek enfeksiyonu", "böbrek kumu"],
         "causes": ["zekat", "beddua"],
-        "description": "Kendi veya soyunun vermediği zekât (özellikle tarla zekâtı), kana ve suya edilen beddualar."
+        "description": (
+            "Böbrek rahatsızlıklarının 'patronu' zekât ruhsatıdır. "
+            "(1) Zekât Borcu: Zekâtın verilmemesi veya eksik verilmesi, zekâtçı görevlisinin doğrudan böbreklere yerleşmesine ve böbreklerin iflasına veya iltihaplanmasına sebep olur. 'Verilmeyen mallar ateş olur ve böğürlere (böbreklere) basılır.' "
+            "(2) Böbrek Taşı ve Kumu: Vücuttaki taş ve kum oluşumunun temel sebebi 'Tarla Zekâtı' olabilir. Tarlanın taş ve toprağının zekâtı verilmediğinde, bu durum vücutta böbrek taşı/kumu olarak tezahür eder. "
+            "(3) Suya ve Kana Beddua: Suya okunan lanetler, suyun kirletilmesi ve 'Midene, böbreğine taş otursun' veya 'İdrar damarların tıkansın/iltihaplansın' bedduaları böbrek sistemini bozar. "
+            "Şifa için: Kişinin ve atalarının zekât borçları (özellikle tarla, para, altın zekâtı) tespit edilip ödenir; suya/kana/böbreğe edilen-alınan bedduaların helalleşmesi yapılır."
+        )
     },
     
     {
-        "name": "Böbrek Taşı",
+        "name": "Böbrek Taşı / Kum",
         "category": "Üriner",
-        "symptoms": ["böbrek taşı", "idrar yolu taşı", "böbrekte kum"],
+        "symptoms": ["böbrek taşı", "idrar yolu taşı", "böbrekte kum", "böbrek kumu"],
         "causes": ["zekat", "beddua"],
-        "description": "Kendi veya soyunun vermediği zekât (özellikle tarla zekâtı), kana ve suya edilen beddualar."
+        "description": (
+            "Böbrek taşı ve kum oluşumunun temel sebebi 'Tarla Zekâtı'dır. "
+            "(1) Tarla Zekâtı: Tarlanın taş ve toprağının zekâtı verilmediğinde, manevi bir yansıma olarak vücutta böbrek taşı/kumu olarak tezahür eder. "
+            "(2) Beddualar: 'Midene/böbreğine taş otursun' gibi edilen veya alınan beddualar böbrekte taş oluşumuna manevi kapı açar. "
+            "(3) Suya Beddua: Suya okunan lanetler ve suyun kirletilmesi de böbrek sistemini bozar. "
+            "Şifa için: Tarla ve mal zekâtı borçları araştırılır; 'taş olsun' tipi bedduaların ve suya yönelik lanetlerin helalleşmesi yapılır."
+        )
     },
     
     {
-        "name": "Boyun Düzleşmesi",
+        "name": "Boyun Düzleşmesi / Boyun Fıtığı / Boyun Tutulması",
         "category": "Ortopedik",
-        "symptoms": ["boyun düzleşmesi", "servikal düzleşme", "boyun ağrısı"],
-        "causes": ["yetim_hakki"],
-        "description": "Yetime zulüm."
+        "symptoms": ["boyun düzleşmesi", "servikal düzleşme", "boyun ağrısı", "boyun fıtığı", "servikal fıtık", "boyun tutulması"],
+        "causes": ["yetim_hakki", "zulum_insan", "zulum_hayvan", "beddua"],
+        "description": (
+            "Boyun bölgesi sorunlarının başlıca sebebi yetim zulmü ve boyna yönelik fiziksel-sözlü zulümlerdir. "
+            "(1) Yetim Zulmü: Boyun tutulması, düzleşmesi ve fıtığının en belirgin sebebi, kişinin soyunda bir yetime zulmedilmesi, vurulması veya yetimin hakkının yenmesidir. "
+            "(2) Fiziksel Darbe: İnsanların veya hayvanların boyun kemiklerini kırmak, boyunlarına ağır yük yükleyerek eziyet etmek boyun bölgesini kilitler. "
+            "(3) Beddualar: 'Boynun kopsun', 'Boynun devrilsin' şeklinde edilen veya alınan beddualar boyun bölgesinde manevi kilitlenmelere yol açar. "
+            "Şifa için: Soyda ve kişide yetim zulmü için tövbe ve helalleşme; boyun kırma/yük yükleme zulümleri için pişmanlık; boyna edilen-alınan bedduaların helalleşmesi."
+        )
     },
     
     {
-        "name": "Boyun Fıtığı",
-        "category": "Ortopedik",
-        "symptoms": ["boyun fıtığı", "servikal fıtık", "boyun ağrısı"],
-        "causes": ["yetim_hakki"],
-        "description": "Yetime zulüm."
-    },
-    
-    {
-        "name": "Burun Tıkanıklığı",
+        "name": "Burun Tıkanıklığı / Burun Etleri / Nasal Polip",
         "category": "KBB",
-        "symptoms": ["burun tıkanıklığı", "burun akıntısı", "nefes alamama"],
-        "causes": ["suda_bogma", "beddua", "adak_hayvan"],
-        "description": "Kediyi veya başka hayvanları suda boğma. 'Nefesin kesilsin, ağzın burnun tıkansın' bedduası. Büyükbaş hayvan adakları."
+        "symptoms": ["burun tıkanıklığı", "burun ahtapotu", "nasal polip", "burun eti", "sinüzit", "nefes alamama"],
+        "causes": ["suda_bogma", "beddua", "adak_hayvan", "lanet"],
+        "description": (
+            "Burun tıkanıklığı, sinüzit ve burun içindeki etlerin (nasal polip / burun ahtapotu) büyümesinin manevi kökenleri şunlardır. "
+            "(1) Kedi ve Hayvan Suda Boğma: Soyda veya kişinin kendisinde kedileri (veya başka hayvanları) suda boğma eylemi varsa, bu durum burunda tıkanıklık ve et büyümesi olarak yansıyabilir. "
+            "(2) Tıkanıklık Bedduaları: 'Ağzın burnun tıkansın', 'Nefesin kesilsin' gibi beddualar burun içinde manevi kilitler oluşturur. "
+            "(3) Hava ve Doğaya Lanet: Havaya, bahara, yaza veya tozlu havaya okunan lanetler ve 'Bir nefes sana haram olsun' bedduaları tıkanıklığa yol açar. "
+            "(4) Büyükbaş Hayvan Adakları: Büyükbaş hayvan adakları da burun ve nefes yollarında rol oynar. "
+            "Şifa için: Kedileri ve hayvanları suda boğma için tövbe; nefes-burun beddualarının helalleşmesi; havaya-doğaya edilen lanetlerden tövbe; büyükbaş adak borçlarının yerine getirilmesi."
+        )
     },
     
     {
@@ -202,11 +219,15 @@ DISEASE_PATTERNS = [
     },
     
     {
-        "name": "Cilt Kuruluğu",
+        "name": "Cilt Kuruluğu / Deri Kuruluğu",
         "category": "Dermatolojik",
-        "symptoms": ["cilt kuruluğu", "kuru cilt", "ciltte çatlama"],
+        "symptoms": ["cilt kuruluğu", "kuru cilt", "ciltte çatlama", "deri kuruluğu", "sürekli susuzluk"],
         "causes": ["adak_eylem"],
-        "description": "Ağaç dikme adağının yerine getirilmemesi."
+        "description": (
+            "Ciltte kuruluk ve sürekli susuzluk hissinin en spesifik sebebi 'Ağaç Dikme Adağı'dır. "
+            "(1) Yerine Getirilmeyen Ağaç Dikme Sözü: Kişinin veya atasının ağaç dikme sözü verip de bunu yerine getirmemesi, cildin manevi olarak 'kurumasına' neden olur. "
+            "Şifa için: Verilmiş ağaç dikme adağı/sözü tespit edilip yerine getirilir (ağaç dikilir); soydaki benzer adak borçları için de niyet edip dikim yapılabilir."
+        )
     },
     
     {
@@ -239,19 +260,29 @@ DISEASE_PATTERNS = [
     },
     
     {
-        "name": "Dalak Şişmesi",
+        "name": "Dalak Şişmesi / Dalak Hastalıkları",
         "category": "İç Hastalık",
-        "symptoms": ["dalak şişmesi", "splenomegali", "dalak büyümesi"],
+        "symptoms": ["dalak şişmesi", "splenomegali", "dalak büyümesi", "dalak ağrısı"],
         "causes": ["beddua", "zulum_insan"],
-        "description": "Kendi veya soydan okunan 'Dalağın şişsin, patlasın' bedduaları, zulüm ile ah alma."
+        "description": (
+            "Dalak ile ilgili rahatsızlıkların temel sebebi, kişinin kendisinin veya soyunun aldığı beddualar ile yapılan bir zulüm sonucu bir mazlumun 'ahını' almaktır. "
+            "(1) Dalak Bedduaları: 'Dalağın şişsin', 'Dalağın patlasın' gibi edilen veya alınan beddualar dalağa yerleşerek şişme ve rahatsızlıklara yol açar. "
+            "(2) Mazlumun Ahı: Zulüm yaparak bir mazlumun ahını almak, bu negatif enerjinin dalağa yerleşmesine sebep olur. "
+            "Şifa için: Dalağa yönelik edilen-alınan bedduaların helalleşmesi; ah alınan kişilerle helalleşme ve zulüm için tövbe."
+        )
     },
     
     {
-        "name": "Damar Tıkanıklığı",
+        "name": "Damar Sertliği / Damar Tıkanıklığı",
         "category": "Kardiyovasküler",
-        "symptoms": ["damar tıkanıklığı", "ateroskleroz", "tromboz"],
+        "symptoms": ["damar tıkanıklığı", "damar sertliği", "ateroskleroz", "tromboz"],
         "causes": ["beddua", "zekat"],
-        "description": "Damara okunan beddualar ('Damarın tıkansın'), altın zekâtının verilmemesi."
+        "description": (
+            "Damar yolu hastalıklarının (sertlik, tıkanıklık) iki ana kaynağı vardır. "
+            "(1) Zekât Borcu: Özellikle para ve altın zekâtının verilmemesi veya eksik verilmesi; damar hastalıkları, kalp krizi ve beyin kanaması gibi ağır sonuçlara yol açabilir. "
+            "(2) Beddualar: Damara okunan veya alınan 'Damarın kurusun', 'Damarın tıkansın/şişsin' gibi beddualar damar sistemini manevi olarak kilitler. "
+            "Şifa için: Para ve altın zekâtı borçlarının tespit edilip ödenmesi; damara edilen-alınan bedduaların helalleşmesi."
+        )
     },
     
     {
@@ -319,11 +350,17 @@ DISEASE_PATTERNS = [
     },
     
     {
-        "name": "Egzama",
+        "name": "Egzama / Deri İltihabı",
         "category": "Dermatolojik",
-        "symptoms": ["egzama", "dermatit", "cilt tahrişi", "kaşıntı"],
-        "causes": ["adak_eti", "zekat", "zulum_insan"],
-        "description": "Yenmiş adak eti, zekât, zulüm."
+        "symptoms": ["egzama", "dermatit", "cilt tahrişi", "kaşıntı", "deri iltihabı"],
+        "causes": ["adak_eti", "zekat", "zulum_insan", "kinama"],
+        "description": (
+            "Deride oluşan iltihaplı durumların ve egzamanın en büyük sebebi 'Yenmiş Adak'tır. "
+            "(1) Yenmiş Adak Eti: Kişinin adadığı kurbanın etini (fakirin hakkı olduğu halde) kendisinin veya zengin akrabalarının yemesi, vücutta egzama ve kaşıntı olarak tezahür eder. "
+            "(2) Zekât Borcu: Verilmemiş veya eksik verilmiş zekât egzama ve cilt iltihabını tetikleyen ruhsatlardandır. "
+            "(3) Kınama ve Zulüm: Deri hastalığı olanları kınamak ve yapılan zulümler egzama oluşumuna manevi kapı açar. "
+            "Şifa için: Yenmiş adak etinin tespiti ve kefareti (fakire eşdeğer iade), zekât borçlarının ödenmesi, deri hastalarını kınamadan tövbe."
+        )
     },
     
     {
@@ -990,9 +1027,16 @@ DISEASE_PATTERNS = [
     {
         "name": "Cinsel Soğukluk",
         "category": "Cinsel",
-        "symptoms": ["cinsel soğukluk", "eşten soğuma"],
+        "symptoms": ["cinsel soğukluk", "eşten soğuma", "eşine ilgisizlik"],
         "causes": ["adak_hayvan", "zina_ensest", "kinama", "iftira"],
-        "description": "Erkekte dişi hayvan adağı, kadında erkek hayvan adağı, soydan ensest, cinsel soğukluk yaşayanları kınamak, eşler arası soğukluk iftirası."
+        "description": (
+            "Cinsel soğukluğun manevi sebepleri hayvan adağı dengesizliği ve soydan gelen ensest ruhsatı ile açıklanır. "
+            "(1) Kadında Erkek Hayvan Adağı Çokluğu: Kadınlarda genellikle erkek hayvan (koç, boğa, erkek dana) adaklarının adanıp kesilmemesi sonucu oluşur; bu adaklar kadında erkeksi bir yapıya ve eşine karşı cinsel soğukluğa yol açabilir. "
+            "(2) Erkekte Dişi Hayvan Adağı Çokluğu: Erkeklerde dişi hayvan adaklarının çokluğu karşı cinsten uzaklaşmaya sebep olabilir. "
+            "(3) Soyda Ensest Ruhsatı: Soydaki ensest ruhsatı, kişinin eşiyle bir araya gelmesini engelleyen manevi bir kilit oluşturabilir. "
+            "(4) Kınama ve İftira: Cinsel soğukluk yaşayanları kınamak, eşler arası soğukluk iftirası da ruhsat oluşturur. "
+            "Şifa için: Erkek/dişi hayvan adak borçları (koç, boğa, dana vb.) tespit edilip yerine getirilir; soydan ensest için tövbe ve helalleşme; cinsel sorun yaşayanları kınama ve iftiradan tövbe."
+        )
     },
     
     {
@@ -1506,6 +1550,386 @@ DISEASE_PATTERNS = [
             "(2) Anne-Baba Hakkı: Yaşlı anne ve babayı terk edip onları yol gözletmek, uzağı görememe veya genel görme kusurlarına yol açan manevi bir yüktür. "
             "(3) Günahlar ve Beddualar: Göz zinası yapmak, kör insanlarla alay etmek veya 'Gözün kör olsun/batsın' gibi beddualar almak göz sağlığını doğrudan etkiler. "
             "Şifa için: Kur'an/Yasin/hatim adaklarının yerine getirilmesi, anne-baba terk-yol gözletme için tövbe ve helalleşme, göz zinasından tövbe, kör/görmeyenleri kınamadan tövbe, göze edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Ateş (Vücutta Yanma Hissi)",
+        "category": "Genel",
+        "symptoms": ["ateş", "vücutta ateş", "iç yanma", "bağrı yanma", "hararet"],
+        "causes": ["beddua", "isyan", "zekat"],
+        "description": (
+            "Ateş, iç organların yanması hissi ve vücuttaki hararet, kişiye edilen-alınan bedduaların isyanla birleşmesi sonucu ortaya çıkar. "
+            "(1) Yanma Bedduaları: 'İçin yansın, bağrın yansın' gibi bedduaların isyanla birleşmesi vücutta yanma ve ateş olarak yansır. "
+            "(2) Zekât Yükü: Zekâtı verilmeyen malların manevi bir 'ateş' olup vücudun belirli bölgelerine basıldığı ifade edilir. "
+            "Şifa için: Yanma-isyan bedduaları için helalleşme; zekât borçlarının tespit edilip ödenmesi; isyan dilinden tövbe."
+        )
+    },
+
+    {
+        "name": "Ayak Ağrıları",
+        "category": "Ortopedik",
+        "symptoms": ["ayak ağrısı", "ayaklarda sızı", "topuk ağrısı", "ayak yanması"],
+        "causes": ["zulum_anne_baba", "zulum_hayvan", "beddua", "adak_hayvan", "zekat"],
+        "description": (
+            "Ayak ağrılarının temelinde anne-baba hakkı ile insanlara/hayvanlara yapılan zulümler yatar. "
+            "(1) Anne-Babaya Zulüm: Yaşlı anne ve babanın ayaklarına vurmak, onları terk edip yollarını gözletmek ayak ağrılarına sebep olur. "
+            "(2) Ayak Kırma ve Ah Alma: Birinin ayağını kırıp ahını almak ayaklarda sızı ve ağrı bırakır. "
+            "(3) Adak ve Zekât: Yerine getirilmemiş deve adakları ve yüksek zekât borcu ayaklarda ağrı ve sızlama yapar. "
+            "Şifa için: Anne-baba terk/dövme için tövbe; ayağa zulüm helalleşmesi; deve adağı ve zekât borçlarının yerine getirilmesi."
+        )
+    },
+
+    {
+        "name": "Ayak Burkulması / Bilek Burkulması",
+        "category": "Ortopedik",
+        "symptoms": ["ayak burkulması", "bilek burkulması", "ayak sakatlığı", "burkulma"],
+        "causes": ["beddua", "savastan_kacma", "yol_kesme"],
+        "description": (
+            "Ayak ve bilek burkulmaları, hareket kabiliyetini kısıtlayan sözler ve eylemlerle açıklanır. "
+            "(1) Tutmaz Olma Bedduaları: 'Ayakların çakılsın', 'Elin ayağın tutmaz olsun', 'Yürüyemeyesin' veya 'Bir yere gidemeyesin' şeklinde edilen veya alınan beddualar burkulmalara yol açar. "
+            "(2) Soyda Yol Kesme / Savaştan Kaçma: Eşkıyalık yaparak yol kesme, insanları vatanından/yerinden göç etmeye zorlama veya savaştan kaçma eylemleri ayaklarda ruhsat oluşturur. "
+            "Şifa için: Ayağa edilen-alınan bedduaların helalleşmesi; soyda yol kesme/savaştan kaçma için tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Ayak Çıbanı / Ayak Absesi",
+        "category": "Dermatolojik",
+        "symptoms": ["ayak çıbanı", "ayak absesi", "ayakta yara", "ayakta iltihaplı yara"],
+        "causes": ["zulum_insan", "zulum_anne_baba", "zulum_hayvan"],
+        "description": (
+            "Çıbanlar birer 'işaret'tir; kişi veya atası geçmişte birinin vücudunun neresine vurduysa veya neresine silah sıktıysa, çıban genellikle o bölgede çıkar. "
+            "(1) Ayağa Yönelik Zulüm: Ayakta çıkan çıban, ayağa yönelik bir zulmün (vurma, silahla yaralama) manevi yansımasıdır. "
+            "Şifa için: Geçmişte ayağına vurulan/silah sıkılan kişi-bölge tespit edilerek helalleşme; soyda yapılmış benzer zulümler için pişmanlık."
+        )
+    },
+
+    {
+        "name": "Ayak Şişmesi / Ayak Ödemi",
+        "category": "Genel",
+        "symptoms": ["ayak şişmesi", "ayak ödemi", "bacak şişmesi", "ayakta su toplama"],
+        "causes": ["lanet", "beddua"],
+        "description": (
+            "Ayaklardaki şişlikler ve ödemler, genellikle suya okunan lanetler ve 'Şişesin' bedduası ile ilgilidir. "
+            "(1) Suya Lanet: Suya okunan lanet ve küfürler vücutta su toplanmasına ve şişliğe yol açar. "
+            "(2) Şişme Bedduaları: 'Ayakların şişsin' veya 'Davul gibi olasın' şeklindeki beddualar ayak bölgesinde ruhsat oluşturur. "
+            "Şifa için: Suya edilen lanetlerden tövbe; ayağa-vücuda yönelik şişme bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Ayak Terlemesi (Aşırı Terleme)",
+        "category": "Genel",
+        "symptoms": ["ayak terlemesi", "aşırı terleme", "el ayak terlemesi", "hiperhidroz"],
+        "causes": ["lanet", "beddua"],
+        "description": (
+            "Terleme ile ilgili rahatsızlıklar, güneşe, sıcağa ve tere okunan lanetlerden kaynaklanır. "
+            "(1) Güneş ve Sıcağa Lanet: Güneşe, sıcağa, tere okunan lanetler vücut termoregülasyonunu etkiler. "
+            "(2) Terleme Bedduaları: 'Ter su içinde kalasın' veya 'Uykuda terleyesin' gibi beddualar ayaklarda ve vücutta aşırı terlemeye yol açar. "
+            "Şifa için: Güneşe-sıcağa-tere edilen lanetlerden tövbe; terleme bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Akut Solunum Yolu Güçlüğü Sendromu (ARDS)",
+        "category": "Solunum",
+        "symptoms": ["akut solunum güçlüğü", "ARDS", "ağır solunum güçlüğü", "akciğer yetmezliği"],
+        "causes": ["isyan", "zulum_insan", "zulum_hayvan", "beddua"],
+        "description": (
+            "Ağır solunum yolu güçlükleri (Astım ve KOAH ile benzer şekilde) hayata ve yaşamaya lanet okumaktan kaynaklanır. "
+            "(1) Hayata Lanet: Hayata ve yaşamaya lanet okumak, 'Bir nefes haram olsun' demek nefes almayı zorlaştırır. "
+            "(2) Duman ve Gazla Boğma: İnsanları veya hayvanları dumanla, gazla boğma zulümleri ağır solunum güçlüğü oluşturur. "
+            "(3) Ciğer Bedduaları: Ciğere yönelik 'Ciğerin kurusun/yansın/tıkansın' bedduaları nefes almayı imkânsız hale getiren ağır ruhsatlar oluşturur. "
+            "Şifa için: Hayata-nefese isyandan tövbe; duman/gazla boğma zulmü için helalleşme; ciğere edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Beyzbol Parmağı / El ve Parmak Travmaları",
+        "category": "Ortopedik",
+        "symptoms": ["beyzbol parmağı", "parmak sakatlığı", "el travması", "parmak kırığı", "tırnak koparması"],
+        "causes": ["zulum_insan", "zulum_hayvan"],
+        "description": (
+            "El ve parmak bölgesindeki sakatlıkların manevi kökeni 'Zulüm Ruhsatı' ile açıklanır. "
+            "(1) Fiziksel Zulümler: Geçmişte veya soyda; insanların veya hayvanların tırnaklarını koparmak, ellerine vurarak kemiklerini kırmak, parmaklarını kırmak veya birilerini ellerinden/ayaklarından asarak eziyet etmek bu bölgede kalıcı hasarlara veya sakatlıklara yol açar. "
+            "(2) İşaret: Kişi veya atası geçmişte birinin vücudunun neresine vurduysa veya neresine silah sıktıysa, rahatsızlık genellikle o bölgede açığa çıkar. "
+            "Şifa için: Tırnak koparma, el-parmak kırma, asma zulümleri için pişmanlık ve helalleşme; soyda yapılmış el-parmak zulümleri için tövbe."
+        )
+    },
+
+    {
+        "name": "Boğaz Ağrısı / Boğaz İltihabı",
+        "category": "KBB",
+        "symptoms": ["boğaz ağrısı", "boğaz iltihabı", "farenjit", "tonsilit", "boğaz şişmesi"],
+        "causes": ["beddua", "miras_laneti", "zulum_insan", "zulum_hayvan", "zekat", "hak_haram"],
+        "description": (
+            "Boğaz bölgesi, özellikle sözlü günahlar ve akrabalık hukuku ile ilişkilidir. "
+            "(1) Beddua ve Lanetler: Akrabaların birbirleri hakkında çok fazla beddualaşması ve 'zehir zıkkım olsun' gibi ağır sözler sarf etmesi boğaz iltihabına neden olur. 'Boğazın şişsin', 'Boğazın kurusun', 'Boğazından lokma geçmesin' gibi beddualar boğazda kilitlenmeler oluşturur. "
+            "(2) Boğaza Fiziksel Zulüm: İnsanların veya hayvanların boğazını kesmek, boğazına şiş veya zehirli ok saplamak, boynuna ip bağlayıp sürüklemek veya birilerini elleriyle boğmak boğaz hastalıklarının (guatr, haşimato vb.) manevi temelidir. "
+            "(3) Zekât ve Hak Haramlığı: Miras malı üzerine 'Hakkım haram olsun' diyerek beddua etmek boğazı sıkar ve göğüste huzursuzluk yapar. "
+            "Şifa için: Akraba beddualarından karşılıklı helalleşme; boğaz kesme/boğma zulmü için tövbe; miras laneti ve 'hakkım haram olsun' bedduaları için helalleşme."
+        )
+    },
+
+    {
+        "name": "Boğmaca (Ağır Öksürük)",
+        "category": "Solunum",
+        "symptoms": ["boğmaca", "ağır öksürük", "boğulma hissi", "öksürük krizi"],
+        "causes": ["isyan", "zulum_insan", "zulum_hayvan", "beddua", "suda_bogma"],
+        "description": (
+            "Boğulma hissi ve ağır öksürüklerle seyreden rahatsızlıklar, nefes ve yaşam enerjisine yönelik ihlallere dayanır. "
+            "(1) Nefese ve Hayata İsyan: Hayata lanet okumak, 'Bir nefes almak bana/sana haram olsun' demek ciğerleri ve boğazı etkiler. "
+            "(2) Boğma Zulmü: Bir canlıyı suda, dumanda veya havasız bir yerde hapsederek boğmaya çalışmak boğmaca-tipi rahatsızlıkların manevi kapısıdır. "
+            "(3) Boğulma Bedduaları: 'Öksüreğe boğulasın', 'Uykunda boğulasın' veya 'Nefesin kesilsin' şeklinde beddualar almak bu hastalığın ruhsatıdır. "
+            "Şifa için: Hayata-nefese isyandan tövbe; canlıyı boğma zulmü (su/duman/havasız hapsetme) helalleşmesi; nefes-boğulma bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Botulizm / Zehirlenme Bağlantılı Felçler",
+        "category": "Zehirlenme",
+        "symptoms": ["botulizm", "gıda zehirlenmesi", "zehirlenme felci", "kas felci"],
+        "causes": ["zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Gıda veya dış kaynaklı zehirlenmelerin manevi kökeni soydaki 'zehirleme' eylemleridir. "
+            "(1) Zehirleme Zulmü: Geçmişte insanları veya hayvanları ilaçla, yılan/akrep zehriyle kasten zehirlemek veya birilerine kurtlanmış/pis maddeler yedirerek hastalanmalarına sebep olmak zehirlenme vakalarına manevi bir kapı açar. "
+            "Şifa için: Soyda yapılmış zehirleme-kasten hastalandırma eylemleri için tövbe ve helalleşme; yedirilen pis/zehirli maddeler için pişmanlık."
+        )
+    },
+
+    {
+        "name": "Bronşit (Genel)",
+        "category": "Solunum",
+        "symptoms": ["bronşit", "kronik bronşit", "bronş iltihabı"],
+        "causes": ["isyan", "zulum_insan", "zulum_hayvan", "adak_eylem", "kinama"],
+        "description": (
+            "Akciğer ve solunum yollarını etkileyen bronşit, yaşam enerjisine ve nefese yönelik ağır ihlallerle ilişkilidir. "
+            "(1) Nefese ve Hayata İsyan: Hayata lanet okumak, 'Böyle hayata lanet olsun' demek veya 'Bir nefes almak bana/sana haram olsun' şeklindeki sözler ciğerleri ve bronşları etkiler. "
+            "(2) Boğma ve Duman Zulmü: İnsanları veya hayvanları havasız yerlerde hapsederek ateş, duman veya gazla boğmaya çalışmak; suda boğarak ciğerlerine su dolmasına sebep olmak. "
+            "(3) Ağaç Dikme Adağı: Dünyanın akciğerleri olan ağaçları dikme sözü verip tutmamak bronşit ve akciğer sorunlarına yol açabilir. "
+            "(4) Kınama: Nefes darlığı çeken veya bronşit olan insanlarla alay etmek veya onları kınamak. "
+            "Şifa için: Hayata-nefese isyandan tövbe; boğma/duman/suda boğma zulmü helalleşmesi; ağaç dikme adağının yerine getirilmesi; nefes hastalarını kınamadan tövbe."
+        )
+    },
+
+    {
+        "name": "Bulantı / Sebepsiz Kusma",
+        "category": "Sindirim",
+        "symptoms": ["bulantı", "sebepsiz kusma", "mide bulantısı", "mide krampı"],
+        "causes": ["hamile_zulum", "isyan"],
+        "description": (
+            "Mide bulantısı ve kusma durumları genellikle kadın hakları ve hamilelik süreçleriyle ilgilidir. "
+            "(1) Hamile Kadına Zulüm: Geçmişte veya soyda hamile bir kadına yapılan hakaretler, fiziksel veya sözlü zulümler sebepsiz kusmaların en büyük manevi sebebidir. "
+            "(2) İsyan: Doğuma veya hamileliğe karşı dille yapılan isyanlar ('Böyle doğuma/hamileliğe lanet olsun' gibi) mide ve rahim sistemini etkileyerek bulantı yapabilir. "
+            "Şifa için: Hamile kadına yapılan zulüm/hakaret için tövbe ve helalleşme; doğum-hamilelik isyanından tövbe."
+        )
+    },
+
+    {
+        "name": "Burun Akıntısı / Sümük Akması",
+        "category": "KBB",
+        "symptoms": ["burun akıntısı", "sümük akması", "nezle", "sürekli akan burun"],
+        "causes": ["kinama", "zulum_anne_baba"],
+        "description": (
+            "Burun akıntısının manevi sebepleri kınama ve yaşlılara zulümdür. "
+            "(1) Kınama: Burnu akan, horlayan veya nefes alamayan insanları kınamak, onların taklidini yapmak veya bu durumdakilerle alay etmek burun akıntısına sebep olan bir ruhsattır. "
+            "(2) Yaşlılara Zulüm: Bakıma muhtaç olan ve burnu akan yaşlı anne-babaya kızmak, onları bu hallerinden dolayı azarlamak sistemde bozulma yapar. "
+            "Şifa için: Burnu akan/nefes alamayan insanları kınamadan tövbe; yaşlı anne-baba bakımındaki kızgınlık ve azar için helalleşme."
+        )
+    },
+
+    {
+        "name": "Burun Kanaması",
+        "category": "KBB",
+        "symptoms": ["burun kanaması", "epistaksis", "burnun kanaması", "ağızdan burundan kan"],
+        "causes": ["beddua", "zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Burun kanamasının manevi sebepleri kana yönelik beddualar ve buruna fiziksel zulümdür. "
+            "(1) Kan ve Burun Bedduaları: 'Ağzından burnundan kan gelsin' veya 'Kanın kurusun/aksın' gibi edilen veya alınan ağır beddualar burun kanamalarını tetikleyebilir. "
+            "(2) Fiziksel Zulüm: İnsanların veya hayvanların burunlarına vurarak kırmak, yaralamak ve burunlarını kanatmak bu rahatsızlığın manevi işaretidir. "
+            "Şifa için: Kana ve buruna edilen-alınan bedduaların helalleşmesi; buruna vurma/kanatma zulümleri için tövbe."
+        )
+    },
+
+    {
+        "name": "Çarpıntı (Kalp Ritim Bozukluğu)",
+        "category": "Kardiyak",
+        "symptoms": ["çarpıntı", "kalp çarpıntısı", "ritim bozukluğu", "aritmi"],
+        "causes": ["miras_laneti", "hak_haram", "beddua"],
+        "description": (
+            "Çarpıntının temel sebebi 'Miras Lâneti' ruhsatıdır. "
+            "(1) Miras Üzerine Kavga ve Lanet: Mal ve miras üzerine yapılan kavgalar, edilen beddualar ('zehir zıkkım olsun' gibi) ve hak haramlıkları kalp kası üzerinde manevi bir çırpınma yaparak ritim bozukluğu ve çarpıntıya neden olur. "
+            "Şifa için: Mirasta hak yenmiş kişilerle helalleşme; 'zehir zıkkım olsun' bedduasının iadesi; kalp/göğse edilen bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Çıkıklar (Kol, Kalça, Eklem Çıkıkları)",
+        "category": "Ortopedik",
+        "symptoms": ["çıkık", "kol çıkığı", "kalça çıkığı", "doğuştan kalça çıkığı", "eklem çıkığı"],
+        "causes": ["zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Çıkıkların manevi kökeni soyda yapılmış uzuv zulümleridir. "
+            "(1) Uzuv Çıkarma / Asma Zulmü: Geçmişte insan veya hayvanların (at, eşek, kedi vb.) kollarını ve ayaklarını çıkararak, kırarak veya onları ellerinden/ayaklarından asarak yapılan zulümler, zürriyette kol ve kalça çıkıkları gibi kemik rahatsızlıkları olarak tezahür eder. "
+            "Şifa için: Soyda yapılmış kol-bacak kırma, asma, çıkarma zulümleri için tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Çiçek / Salgın Hastalıklar (Pandemi)",
+        "category": "Enfeksiyon",
+        "symptoms": ["çiçek hastalığı", "veba", "pandemi", "salgın hastalık"],
+        "causes": ["isyan", "zulum_insan", "beddua"],
+        "description": (
+            "Salgın hastalıkların (çiçek, pandemi, veba vb.) genel sebebi, toplumun veya bireylerin işlediği günahlar ve isyanlardır. "
+            "(1) Toplumsal Günah ve İsyan: Toplumun veya bireylerin işlediği günahlar ve topyekûn isyan, salgın hastalıkların manevi temelidir. "
+            "Şifa için: Toplumsal isyan ve günahlardan tövbe; tövbe-istiğfar, sadaka, dua ile arınma."
+        )
+    },
+
+    {
+        "name": "Çift Cinsiyetlilik (Hermafroditizm)",
+        "category": "Genetik/Cinsel",
+        "symptoms": ["çift cinsiyet", "hermafroditizm", "interseks", "cinsiyet belirsizliği"],
+        "causes": ["zina_ensest", "zulum_insan", "beddua"],
+        "description": (
+            "Çift cinsiyetlilik, soydaki çok ağır cinsel zulümler ve beddualarla ilişkilidir. "
+            "(1) Soyda Ağır Cinsel Zulüm: Ataların kız veya erkek çocuklarını kaçırıp hadım etmesi, cinsel organlarını kesmesi veya taciz etmesi sonucu alınan 'evlatlarınız çift cinsiyetli olsun, zürriyetiniz kurusun' şeklindeki ağır beddualar bu duruma manevi bir sebep teşkil edebilir. "
+            "Şifa için: Soyda yapılmış cinsel taciz, hadım etme, cinsel organ kesme zulümleri için ağır tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Çiller / Cilt Lekeleri",
+        "category": "Dermatolojik",
+        "symptoms": ["çil", "yüzde çil", "cilt çili", "çillenme"],
+        "causes": ["lanet", "kufur", "kinama"],
+        "description": (
+            "Çillerin sebebi güneşe, sıcağa ve gün ışığına okunan lanetler ve çilli/lekeli insanlarla alay etmektir. "
+            "(1) Güneşe/Sıcağa Lanet: Güneşe, sıcağa ve gün ışığına okunan lanetler ve küfürler çil oluşumuna yol açar. "
+            "(2) Çilli İnsanlarla Alay: Cildi çilli veya lekeli olan insanlarla alay etmek (örneğin 'çilli horoz' demek) veya onları kınamak bu ruhsatı tetikler. "
+            "Şifa için: Güneşe-sıcağa-gün ışığına edilen lanet ve küfürlerden tövbe; çilli/lekeli insanları kınama ve alaydan tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Çocuk Felci (Polio) / Kas Erimesi",
+        "category": "Nörolojik",
+        "symptoms": ["çocuk felci", "polio", "kas erimesi", "felç", "uzuv kaybı"],
+        "causes": ["hasta_zulum", "zulum_anne_baba", "zulum_hayvan", "mezarci"],
+        "description": (
+            "Çocuk felci ve benzeri felçlerin manevi temeli soyda yapılmış engelli/yaşlı zulmü ve mezarcı ruhsatıdır. "
+            "(1) Engelli/Mahkûm/Yaşlı Zulmü: Geçmişte veya soyda; engelli çocuklara, mahkûmlara veya yaşlı anne-babaya fiziksel eziyet edilmesi, onların kollarının ve bacaklarının kırılması veya felç edilerek ölüme terk edilmeleri bu hastalığın temelidir. "
+            "(2) Yılanlı Kuyu / Mezarcı Ruhsatı: Yılanlı kuyuya atma zulmü de kas erimesine ve felce yol açabilen 'mezarcı' ruhsatını getirir. "
+            "Şifa için: Engelli/mahkûm/yaşlı zulmü için ağır tövbe ve helalleşme; soydaki mezarcı ruhsatı için tövbe-istiğfar."
+        )
+    },
+
+    {
+        "name": "Çocuklarda Gelişme Bozuklukları (Cücelik, Boy Kısalığı)",
+        "category": "Pediatrik/Endokrin",
+        "symptoms": ["gelişme bozukluğu", "cücelik", "boy kısalığı", "büyüme geriliği", "çocukta büyümeme"],
+        "causes": ["beddua", "kinama"],
+        "description": (
+            "Çocukların fiziksel veya zihinsel gelişimini engelleyen sözler ve kınamalardan kaynaklanır. "
+            "(1) Gelişimi Kilitleyen Beddualar: 'Cüce kalasın, büyümez olasın, çocuk kalasın' gibi beddualar almak gelişimi kilitler. "
+            "(2) Boy Kısa İnsanlarla Alay: Kısa boylu insanlarla alay etmek (cüce demek vb.) bu ruhsatı tetikler. "
+            "(3) Kur'an Adağı: Kur'an-ı Kerim okuma/dağıtma adaklarının tutulmaması da zihinsel gelişimi ve algıyı olumsuz etkileyebilir. "
+            "Şifa için: Çocuğa-büyümeye edilen-alınan bedduaların helalleşmesi; boy kısa insanlarla alaydan tövbe; Kur'an okuma/dağıtma adaklarının yerine getirilmesi."
+        )
+    },
+
+    {
+        "name": "Cüzzam",
+        "category": "Enfeksiyon",
+        "symptoms": ["cüzzam", "lepra", "Hansen hastalığı"],
+        "causes": ["zulum_insan", "soy_laneti"],
+        "description": (
+            "Cüzzam, hak edilmeden verilmeyen bir bela ve musibet olarak tanımlanır. "
+            "(1) İşlenen Günahlar: Temel sebebi yine işlenen günahlar olup, kişinin kendisinin veya soyunun yaptığı zulümlerin bir cezası olarak görülür. "
+            "Şifa için: Kişinin ve soyunun yapmış olduğu ağır zulümler için ağır tövbe; zulüm yapılan kişilerle helalleşme; sadaka, dua ve istiğfar ile arınma."
+        )
+    },
+
+    {
+        "name": "DEHB (Dikkat Eksikliği ve Hiperaktivite Bozukluğu)",
+        "category": "Nörogelişimsel",
+        "symptoms": ["DEHB", "dikkat eksikliği", "hiperaktivite", "odaklanma sorunu", "ADHD"],
+        "causes": ["soy_laneti", "hasta_zulum", "kinama"],
+        "description": (
+            "Çocuklarda görülen odaklanamama, dikkat dağınıklığı ve hiperaktiflik durumları, yedi kuşağın manevi yükü ile ilişkilidir. "
+            "(1) Yedi Kuşak Manevi Yükü: Soydan gelen manevi yükler çocuklarda odaklanma ve davranış sorunları olarak yansır. "
+            "(2) Hasta ve Engelli Zulmü: Geçmişte hasta, engelli veya zekâ özürlü insanlarla alay edilmesi, onların kınanması veya onlara zulmedilmesi, zürriyette bu tür odaklanma ve davranış bozukluklarına sebep olabilir. "
+            "Şifa için: Soyda yapılmış engelli/zihinsel engelli zulmü ve kınama için ağır tövbe ve helalleşme; soydaki manevi yüklerin tespit ve arınması."
+        )
+    },
+
+    {
+        "name": "Çok Uyumak (Aşırı Uyku, Uyuşukluk)",
+        "category": "Uyku",
+        "symptoms": ["çok uyuma", "aşırı uyku", "uyuşukluk", "tembellik", "hipersomni"],
+        "causes": ["adak_hayvan"],
+        "description": (
+            "Aşırı uyku ve uyuşukluğun en belirgin sebebi 'Koyun ve Dişi Kuzu' adaklarıdır. "
+            "(1) Koyun/Kuzu Adağı Borcu: Üzerinde koyun veya dişi kuzu adak borcu olan kişilerde aşırı uyku hali, tembellik ve uyuşukluk görülür. "
+            "Şifa için: Verilmemiş koyun/dişi kuzu adaklarının tespit edilip yerine getirilmesi."
+        )
+    },
+
+    {
+        "name": "Çürükler (Deri ve Kemik Çürümesi)",
+        "category": "Genel",
+        "symptoms": ["deri çürümesi", "kemik çürümesi", "et çürümesi", "vücutta çürüme", "morarma"],
+        "causes": ["beddua", "zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Vücuttaki deri ve etlerin çürümesi hissi, ağır beddualar ve canlılara yapılan asit/yüzme zulümlerinin kefaretidir. "
+            "(1) Çürüme Bedduaları: 'Derin çürüsün, etlerin lime lime dökülsün' gibi ağır beddualar çürüme/morarma olarak yansır. "
+            "(2) Asit ve Yüzme Zulmü: İnsanlara/hayvanlara asit dökerek veya canlı canlı derisini yüzerek yapılan zulümler bu durumun manevi kapısıdır. "
+            "(3) Yüksek Günah Yükü: Organlarda hasar ve çürüme bazen yüksek günah yüküyle gelen ağır enfeksiyonların bir sonucudur. "
+            "Şifa için: Çürüme/morarma bedduaları için helalleşme; asit dökme/canlı yüzme zulümleri için tövbe; ağır günahlardan tövbe-istiğfar."
+        )
+    },
+
+    {
+        "name": "Deri Kanseri (Detaylı)",
+        "category": "Onkolojik/Dermatolojik",
+        "symptoms": ["deri kanseri", "cilt kanseri", "melanom", "skuamöz hücreli kanser"],
+        "causes": ["adak_eti", "zekat", "kinama", "adak_eylem", "hayrat_mali"],
+        "description": (
+            "Deri kanseri, deriyle ilgili diğer rahatsızlıkların (zekât, adak eti yeme, kınama) daha yüksek zekât borcu ve ağır zulüm yükleriyle birleşmiş halidir. "
+            "(1) Hayrat ve Vakıf Derisi Gasp Etme: Özellikle hayrat veya vakıf mallarından elde edilen derileri gasp edip yeme/satma eylemlerinin deri kanserine yol açabileceği belirtilir. "
+            "(2) Adak Eti ve Zekât: Adak eti yemek, verilmeyen veya eksik verilen zekât (yüksek borç) deri kanserine zemin hazırlar. "
+            "(3) Kınama Zulmü: Cilt hastalığı olanları kınamak da ağır bir ruhsattır. "
+            "(4) Çocuk Giydirme/Sevindirme Adakları: Yerine getirilmeyen bu tür adaklar deri sistemine yerleşir. "
+            "Şifa için: Yenmiş hayrat/vakıf derileri için kefaret ve iade; adak eti ve zekât borçlarının tespit edilip ödenmesi; cilt hastalarını kınamadan tövbe; çocuk giydirme/sevindirme adaklarının yerine getirilmesi."
+        )
+    },
+
+    {
+        "name": "Deri Lekeleri (Siyah Nokta, Benler)",
+        "category": "Dermatolojik",
+        "symptoms": ["deri lekesi", "siyah nokta", "ben", "cilt lekesi", "yüzde leke"],
+        "causes": ["zulum_anne_baba", "yetim_hakki", "lanet", "kinama", "kufur"],
+        "description": (
+            "Vücuttaki lekelerin farklı zulüm kökenleri vardır. "
+            "(1) Anne-Babaya Zulüm: Anne-babaya tokat atmak, çocukların yüzlerinde ve ellerinde kalıcı lekelere sebep olabilir. "
+            "(2) Yetim Yakma Zulmü: Geçmişte veya soyda yetim yakma eylemi varsa, bu durum yüzde ve ciltte siyah lekelere yol açar. "
+            "(3) Güneşe Lanet ve Kınama: Güneşe veya gün ışığına küfür/lanet okumak ile çilli/lekeli insanları kınamak vücutta çil ve leke oluşmasına manevi kapı açar. "
+            "Şifa için: Anne-babaya tokat/şiddet için tövbe ve helalleşme; soyda yetim yakma için ağır tövbe; güneşe edilen lanetlerden tövbe; lekeli insanları kınamaktan tövbe."
+        )
+    },
+
+    {
+        "name": "Difteri / Karadavun (Ağır Boğaz Hastalıkları)",
+        "category": "KBB/Enfeksiyon",
+        "symptoms": ["difteri", "karadavun", "ağır boğaz iltihabı", "boğazda zar"],
+        "causes": ["miras_laneti", "beddua", "zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Boğazı tutan ağır enfeksiyonlar (Karadavun) ve iltihaplar şu nedenlere bağlanır. "
+            "(1) Akraba Bedduaları: Akrabaların birbirine 'Zehir zıkkım olsun' diyerek ağır beddualar etmesi boğaz iltihaplanmalarına neden olur. "
+            "(2) Boğaza Zulüm: İnsanların veya hayvanların boğazını kesmek, boğmak veya boğazına yabancı cisimler sokarak eziyet etmek boğaz bölgesindeki sistemleri bozar. "
+            "Şifa için: Akraba beddualarından karşılıklı helalleşme ve tövbe; boğaza kesme/boğma/yabancı cisim sokma zulümleri için tövbe ve helalleşme."
         )
     },
 ]
