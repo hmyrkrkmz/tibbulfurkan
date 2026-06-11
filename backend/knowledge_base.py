@@ -337,8 +337,17 @@ DISEASE_PATTERNS = [
         "name": "Diyabet (Şeker Hastalığı)",
         "category": "Endokrin",
         "symptoms": ["diyabet", "şeker hastalığı", "yüksek şeker", "kan şekeri yüksekliği"],
-        "causes": ["zekat", "kinama", "beddua", "miras_laneti", "adak_eylem", "adak_eti"],
-        "description": "Verilmeyen veya eksik verilen zekât, kınama, beddua, miras/soy laneti, 'Şeker bana haram olsun' sözü, şeker/tatlı dağıtma adakları, bolca yenilmiş hayvan adakları."
+        "causes": ["zekat", "kinama", "beddua", "miras_laneti", "adak_eylem", "adak_eti", "soy_laneti"],
+        "description": (
+            "Diyabet (şeker hastalığı) çoklu manevi yüklerle ilişkilidir. "
+            "(1) Verilmeyen Zekât: Verilmeyen veya eksik verilen zekât diyabetin temel sebeplerindendir. "
+            "(2) Kınama ve Soy Laneti: Şeker/diyabet hastalarını kınamak ve soydan gelen lanetler. "
+            "(3) 'Şeker Bana Haram Olsun' Sözü: Bu söz manevi bir kilit oluşturarak şeker hastalığına kapı açar. "
+            "(4) Şeker/Tatlı Dağıtma Adakları: Verilmiş ama tutulmamış 'şeker/tatlı dağıtacağım' adakları. "
+            "(5) Yenilmiş Hayvan Adakları: Bolca yenilmiş ama fakire verilmemiş hayvan adakları. "
+            "(6) Miras Laneti: Mirasta hak haramlığı ve 'zehir zıkkım olsun' bedduaları. "
+            "Şifa için: Zekât borçları (özellikle anne-baba zekâtı) tespit edilip ödenir; 'şeker bana haram olsun' tipi sözlerden tövbe; şeker/tatlı dağıtma adaklarının yerine getirilmesi; yenmiş adak eti kefareti; soy ve miras laneti için tövbe-helalleşme; şeker hastalarını kınamadan tövbe."
+        )
     },
     
     {
@@ -444,19 +453,59 @@ DISEASE_PATTERNS = [
     },
     
     {
-        "name": "Göz Kanlanması",
+        "name": "Göz Kanlanması / Göz Kızarması",
         "category": "Oftalmolojik",
-        "symptoms": ["göz kanlanması", "kırmızı göz", "gözde kızarıklık"],
+        "symptoms": ["göz kanlanması", "kırmızı göz", "gözde kızarıklık", "göz iltihabı"],
         "causes": ["beddua", "adak_eylem", "adak_hayvan"],
-        "description": "Göze okunan beddualar, hatim ve Yasin okuma adakları, normal hayvan adakları."
+        "description": (
+            "Göz kanlanması ve kızarmasının başlıca sebepleri göze yönelik beddualar ve adak borçlarıdır. "
+            "(1) Göze Beddualar: Göze okunan-alınan beddualar göz damarlarında manevi etki bırakır. "
+            "(2) Hatim ve Yasin Adakları: Yerine getirilmemiş hatim veya Yasin okuma adakları (Kur'an gözle okunduğu için görevli varlık göze yerleşir) göz kanlanmasına sebep olur. "
+            "(3) Normal Hayvan Adakları: Yerine getirilmemiş hayvan adakları gözde rahatsızlığa kapı açabilir. "
+            "Şifa için: Göze edilen-alınan bedduaların helalleşmesi; hatim/Yasin adaklarının yerine getirilmesi; hayvan adak borçlarının ödenmesi."
+        )
     },
     
     {
-        "name": "Göz Hastalıkları",
+        "name": "Göz Hastalıkları (Görme Kaybı, İltihap)",
         "category": "Oftalmolojik",
-        "symptoms": ["göz hastalığı", "görme kaybı", "miyop", "hipermetrop"],
+        "symptoms": ["göz hastalığı", "görme kaybı", "miyop", "hipermetrop", "göz iltihabı", "göz ağrısı"],
         "causes": ["adak_eylem", "kinama", "zulum_insan", "beddua", "zekat", "zina_ensest"],
-        "description": "Kur'an/Yasin okuma adağı, kör insanı kınama, göze zulüm, 'Gözün kör olsun' bedduaları, zekâtsızlık, göz zinası."
+        "description": (
+            "Göz rahatsızlıklarının (görme kaybı, iltihap, ağrı) çoklu manevi temelleri vardır. "
+            "(1) Kur'an Okuma ve Hatim Adakları: Yerine getirilmemiş Kur'an okuma ve hatim adakları görme bozukluklarına sebep olur. "
+            "(2) Kör İnsanı Kınama: Kör insanı veya görme bozukluğu olanı kınamak/alay etmek. "
+            "(3) Göze Yönelik Zulüm: Göze vurmak, morartmak, şiş sokmak, gözü yakmak gibi fiziksel zulümler. "
+            "(4) Zekât Borcu: Yüksek zekât borcu gözde de hastalık başlatabilir. "
+            "(5) Göz Zinası: Haram bakışlar (göz zinası) göz sağlığını manevi olarak bozar. "
+            "(6) 'Gözün Kör Olsun' Beddualar: Göze yönelik 'Gözün kör olsun/batsın' tipi beddualar göz iltihabı, kanlanma, görme kaybına yol açar. "
+            "Şifa için: Kur'an/hatim/Yasin adaklarının yerine getirilmesi; kör/görme güçlüğü çekenleri kınamadan tövbe; göze yönelik fiziksel zulüm için tövbe ve helalleşme; zekât borçlarının ödenmesi; göz zinasından tövbe; göze edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+    
+    {
+        "name": "Göz Titremesi (Tiki) / Göz Seğirmesi",
+        "category": "Oftalmolojik",
+        "symptoms": ["göz titremesi", "göz tiki", "göz seğirmesi", "göz kapağı titremesi"],
+        "causes": ["adak_eylem"],
+        "description": (
+            "Göz titremesi (tik) soydan veya kişinin kendisinin adayıp yerine getirmediği hatim ve Yasin okuma adaklarından kaynaklanır. "
+            "(1) Hatim/Yasin Adağı Borcu: 'Hatim indireceğim' veya 'Yasin okuyacağım' diye söz verip yerine getirmemek göz tiki olarak yansır (Kur'an gözle okunduğu için bu adağın görevlisi göze yerleşir). "
+            "Şifa için: Verilmiş ama tutulmamış hatim, Yasin ve Kur'an okuma adaklarının yerine getirilmesi; soyda benzer adak borçları için niyet edip okumak."
+        )
+    },
+    
+    {
+        "name": "Göz Kapağı İltihabı ve Şişliği",
+        "category": "Oftalmolojik",
+        "symptoms": ["göz kapağı iltihabı", "kapak şişliği", "blefarit", "arpacık", "göz kapağı kızarması"],
+        "causes": ["beddua", "zulum_insan"],
+        "description": (
+            "Göz kapağı iltihabı ve şişliğinin manevi sebepleri göz kapağına yönelik beddualar ve fiziksel zulümlerdir. "
+            "(1) Göz Kapağı Bedduaları: 'Göz kapağın düşsün', 'Gözlerin pörtlesin' gibi edilen veya alınan beddualar göz kapağında manevi kilit oluşturur. "
+            "(2) Göz Kapağına Zulüm: Göz kapaklarını kopararak veya yakarak yapılan zulümler etkilidir. "
+            "Şifa için: Göz kapağına edilen-alınan bedduaların helalleşmesi; göz kapağı kopartma/yakma zulümleri için tövbe."
+        )
     },
     
     {
@@ -1930,6 +1979,187 @@ DISEASE_PATTERNS = [
             "(1) Akraba Bedduaları: Akrabaların birbirine 'Zehir zıkkım olsun' diyerek ağır beddualar etmesi boğaz iltihaplanmalarına neden olur. "
             "(2) Boğaza Zulüm: İnsanların veya hayvanların boğazını kesmek, boğmak veya boğazına yabancı cisimler sokarak eziyet etmek boğaz bölgesindeki sistemleri bozar. "
             "Şifa için: Akraba beddualarından karşılıklı helalleşme ve tövbe; boğaza kesme/boğma/yabancı cisim sokma zulümleri için tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Diş Ağrısı / Diş Çürümesi / Diş Dökülmesi",
+        "category": "Dental",
+        "symptoms": ["diş ağrısı", "diş çürümesi", "diş dökülmesi", "çürük diş", "diş kaybı"],
+        "causes": ["zulum_insan", "zulum_anne_baba", "haram_kazanc", "adak_eti", "kinama", "beddua"],
+        "description": (
+            "Diş ağrısı, çürümesi ve dökülmesinin başlıca manevi sebepleri ağız-diş zulümleri ve haram lokmadır. "
+            "(1) Dişe Vurma / Kırma Zulmü: İnsanların veya hayvanların dişlerine vurarak kırmak, sökmek bu rahatsızlıkların temel sebebidir. "
+            "(2) Anne-Babayı Isırma: Anne-babayı dişle ısırarak yapılan zulüm. "
+            "(3) Haram Lokma ve Adak Eti: Haram lokma yemek ve fakirin hakkı olan adak etini tüketmek. "
+            "(4) Diş Çürüğü Olanları Kınama: Dişleri çürük olanları kınamak. "
+            "(5) Beddualar: 'Dişlerin dökülsün' gibi edilen veya alınan beddualar diş kaybına yol açar. "
+            "Şifa için: Dişe-ağıza vurma/kırma zulmü için tövbe ve helalleşme; anne-baba ısırma için tövbe; haram lokma ve yenmiş adak eti için kefaret; çürük dişlileri kınamadan tövbe; dişe edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Guatr / Hipotiroidi / Haşimato",
+        "category": "Endokrin",
+        "symptoms": ["guatr", "hipotiroidi", "hipertiroidi", "haşimato", "tiroid", "boyunda şişlik"],
+        "causes": ["miras_laneti", "beddua", "hak_haram", "zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Guatr ve tiroid rahatsızlıklarının manevi temeli boğaz bölgesi ile mal/miras üzerine yapılan günahlardır. "
+            "(1) Mal ve Mirasa Beddua/Lanet: Mal ve miras üzerine beddua ve lânet okumak, özellikle 'zehir zıkkım olsun' sözü. "
+            "(2) Miras Hak Haramlığı: Miras malından pay vermeme, hak yeme zulmü. "
+            "(3) Boğaza Fiziksel Zulüm: İnsan ve hayvanların boğazını kesmek, boğmak, boyna ip bağlama gibi zulümler. "
+            "Şifa için: Miras laneti ve 'zehir zıkkım olsun' bedduaları için karşılıklı helalleşme; miras hakkı yenmiş kişilere iade; boğaz zulmü için tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Horlama / Apne",
+        "category": "Uyku",
+        "symptoms": ["horlama", "uyku apnesi", "apne", "uykuda nefes durması"],
+        "causes": ["kinama", "zulum_anne_baba"],
+        "description": (
+            "Horlamanın manevi sebebi kınama ve özellikle yaşlı anne-baba zulmüdür. "
+            "(1) Horlayanları Kınama: Horlayan veya nefes alamayan insanları (özellikle anne-babayı) kınamak, alay etmek veya taklidini yapmak. "
+            "(2) Yaşlıya Zulüm: Yaşlanmış anne-babayı veya bakıma muhtaç olanları nefes-uyku halinden dolayı azarlamak. "
+            "Şifa için: Horlayan/nefes güçlüğü çekenleri kınamadan tövbe; anne-baba taklit-azar için helalleşme."
+        )
+    },
+
+    {
+        "name": "Fazla Terlemek / Aşırı Terleme",
+        "category": "Genel",
+        "symptoms": ["fazla terlemek", "aşırı terleme", "hiperhidroz", "el terlemesi", "uykuda terleme"],
+        "causes": ["beddua", "lanet", "zulum_insan"],
+        "description": (
+            "Fazla terlemenin manevi sebepleri tere edilen beddualar ve güneş zulmüdür. "
+            "(1) Terleme Bedduaları: 'Ter su içinde kalasın', 'Uykuda terleyesin' gibi edilen veya alınan beddualar. "
+            "(2) Güneşte İşletme Zulmü: İnsanları güneşin altında/sıcakta işleterek veya bağlayarak zulmetmek. "
+            "Şifa için: Tere edilen-alınan bedduaların helalleşmesi; güneşte/sıcakta çalıştırma-bağlama zulümleri için tövbe."
+        )
+    },
+
+    {
+        "name": "Gastrit / Reflü / Mide Yanması",
+        "category": "Sindirim",
+        "symptoms": ["gastrit", "reflü", "mide yanması", "mide ekşimesi", "ülser"],
+        "causes": ["adak_eti", "hayrat_mali"],
+        "description": (
+            "Gastrit ve reflünün manevi temeli yenmiş adak eti ve kendi sadakasını yemedir. "
+            "(1) Adak Etini Yeme: Kendi adak etini (fakirin hakkı olduğu halde) yeme veya hayrat malını tüketme. "
+            "(2) Kendi Sadakasını Yeme: 'Kendi kusmuğunu yalamak' olarak tanımlanan, verdiği sadakayı geri yeme ya da geri alma durumu reflüye yol açar. "
+            "Şifa için: Yenmiş adak eti ve hayrat malı için kefaret (fakire iade); geri alınmış sadakaları telafi etme; tövbe."
+        )
+    },
+
+    {
+        "name": "İshal / Kabızlık (Bağırsak Sorunları)",
+        "category": "Sindirim",
+        "symptoms": ["ishal", "kabızlık", "bağırsak iltihabı", "bağırsak rahatsızlığı", "kolon iltihabı"],
+        "causes": ["faiz", "hak_haram", "miras_laneti", "haram_kazanc", "kinama", "beddua"],
+        "description": (
+            "İshal, kabızlık ve bağırsak sorunlarının temelinde faiz, haram lokma, miras ve kınama yer alır. "
+            "(1) Faiz ve Haram Lokma: Faiz yeme veya yedirme; haram kazançtan yemek bağırsak sistemini bozar. "
+            "(2) Miras Laneti: Miras malları üzerine yapılan kavgalar ve hak haramlıkları. "
+            "(3) İshal/Kabız Olanları Kınama: Bu durumdaki insanları kınamak. "
+            "(4) Bağırsak Bedduaları: 'Bağırsağın kilitlensin', 'Bağırsağın kurtlansın' gibi beddualar. "
+            "Şifa için: Faiz ve haram lokmadan tövbe; miras laneti için karşılıklı helalleşme; ishal/kabız olanları kınamadan tövbe; bağırsağa edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Kalın Bağırsak İltihabı / Kolit",
+        "category": "Sindirim",
+        "symptoms": ["kalın bağırsak iltihabı", "kolit", "ülseratif kolit", "crohn"],
+        "causes": ["faiz", "beddua", "miras_laneti", "hak_haram"],
+        "description": (
+            "Kalın bağırsak iltihabı azılı şeytanların etkisindeki ağır bir ruhsattır. "
+            "(1) Faiz Günahı: Faiz yeme veya yedirme. "
+            "(2) Ağır Beddualar: Bağırsağa yönelik edilen-alınan ağır beddualar. "
+            "(3) Miras Hak Haramlığı: Miras malı üzerindeki hak haramlıkları ve kavgalar. "
+            "Şifa için: Faizden derhal çıkış ve tövbe; bağırsağa edilen-alınan ağır bedduaların helalleşmesi; miras hak haramlığı için iade ve helalleşme."
+        )
+    },
+
+    {
+        "name": "İdrar Yolu Sorunları (İltihap, Tutamama, Yanma, Kan İşeme)",
+        "category": "Üriner",
+        "symptoms": ["idrar yolu iltihabı", "idrar tutamama", "idrar yanması", "kan işeme", "hematüri", "idrar yolu enfeksiyonu", "sistit"],
+        "causes": ["zekat", "beddua", "kinama"],
+        "description": (
+            "Tüm idrar yolu sorunlarının (iltihap, tutamama, yanma, kan işeme) manevi temeli zekât borcudur. "
+            "(1) Zekât Borcu: Zekâtın verilmemesi sonucu malların 'ateş' olup böğürlere (böbreklere) basılması temel sebeptir. "
+            "(2) İdrar Bedduaları: 'Sidliğin kesilsin', 'İdrarın iltihaplansın', 'İdrar damarların tıkansın' bedduaları idrar sistemini kilitler. "
+            "(3) Altını Islatanları Kınama: Altını ıslatan çocukları veya yaşlıları kınamak da idrar yolu sisteminde ruhsat oluşturur. "
+            "Şifa için: Zekât borçlarının (özellikle para, altın, tarla zekâtı) tespit edilip ödenmesi; idrara yönelik edilen-alınan bedduaların helalleşmesi; altını ıslatanları kınamadan tövbe."
+        )
+    },
+
+    {
+        "name": "Kalp Hastalıkları (Genel)",
+        "category": "Kardiyak",
+        "symptoms": ["kalp hastalığı", "kalp ağrısı", "kalp yetmezliği", "kalp krizi", "kardiyak"],
+        "causes": ["zulum_anne_baba", "isyan", "zekat", "miras_laneti", "hak_haram"],
+        "description": (
+            "Kalp hastalıklarının temel manevi sebepleri anne-baba hukuku, isyan ve zekât-miras yükleridir. "
+            "(1) Anne-Baba Hukukunu Çiğneme: Anne-babaya karşı gelmek, hukuklarını çiğnemek kalbi bozar. "
+            "(2) İsyan ve Kadere Rızasızlık: Allah'a, kadere ve imtihanlara isyan kalbi etkiler. "
+            "(3) Zekât Borcu: Para ve altın zekâtının verilmemesi kalp krizine yol açabilir. "
+            "(4) Miras Laneti: Miras üzerine 'Zehir zıkkım olsun' bedduaları ve hak haramlıkları kalp kası üzerinde manevi bir çırpınma yaparak ritim bozukluğu ve ağrıya yol açar. "
+            "Şifa için: Anne-babaya isyandan tövbe ve helalleşme; kadere-imtihanlara isyandan tövbe; para/altın zekâtının ödenmesi; miras laneti ve hak haramlığı için karşılıklı helalleşme."
+        )
+    },
+
+    {
+        "name": "Kalp Ağrısı ve Delikliği (Kalp Deliği)",
+        "category": "Kardiyak",
+        "symptoms": ["kalp ağrısı", "kalp deliği", "kalp delinmesi", "kalp şişmesi"],
+        "causes": ["zulum_insan", "beddua", "kufur"],
+        "description": (
+            "Kalp ağrısı ve kalp deliğinin manevi sebepleri kalbe yönelik zulümler ve bedduadır. "
+            "(1) Kalbi Bıçaklama / Şişleme Zulmü: İnsanları kalbinden bıçaklama, şişleme veya silahla vurma zulümleri. "
+            "(2) Kalbe Beddualar: 'Kalbin delinsin', 'Kalbinden vurulasın' gibi edilen veya alınan beddualar. "
+            "(3) Müslümana 'Kâfir' Demek: Müslümana 'kâfir/gâvur' demek de kalp delikliği ruhsatlarındandır. "
+            "Şifa için: Kalbi hedef alan zulüm-cinayet için ağır tövbe ve helalleşme; kalbe edilen-alınan bedduaların helalleşmesi; iman-küfür sözlerinden tövbe."
+        )
+    },
+
+    {
+        "name": "Kansızlık / Anemi (Genel)",
+        "category": "Hematolojik",
+        "symptoms": ["kansızlık", "anemi", "düşük hemoglobin", "demir eksikliği"],
+        "causes": ["zulum_insan", "insan_oldurme", "beddua", "miras_laneti", "zekat"],
+        "description": (
+            "Kansızlık (anemi) soydan gelen kan zulümleri ve miras lanetinin birleşimidir. "
+            "(1) Soydan Cinayet ve İşkence: Soydan gelen insan öldürme, işkence ile öldürme, kan akıtma zulümleri. "
+            "(2) 'Yiyemeyesiniz' Bedduası: Mirasta hakkı yenen bir alacaklının ettiği 'yiyemeyesiniz', 'kanınız kurusun' tipi beddualar. "
+            "(3) Eksik Zekât: Verilmemiş zekât borcu (Akdeniz Anemisi/talasemi de bu kapsamda). "
+            "Şifa için: Soydaki cinayet/işkence için ağır tövbe ve helalleşme; mirasta hakkı yenmiş kişilere iade ve helalleşme; zekât borçlarının ödenmesi; kana edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Halsizlik / Güçsüzlük",
+        "category": "Genel",
+        "symptoms": ["halsizlik", "güçsüzlük", "yorgunluk", "bitkinlik", "gücü olmama"],
+        "causes": ["zekat", "beddua"],
+        "description": (
+            "Halsizlik, zekât borcu ve güç-kuvvete edilen bedduaların birleşimidir. "
+            "(1) Zekât Borcu: Yüksek zekât yükü vücutta halsizlik ve elin kolun kalkmaması olarak yansır. "
+            "(2) Güç-Kuvvet Bedduaları: 'Gücün kuvvetin kalmasın', 'Kolun bacağın tutmaz olsun' gibi beddualar halsizlik oluşturur. "
+            "Şifa için: Zekât borçlarının ödenmesi; güç-kuvvete edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Kanda Kolesterol Yüksekliği / Yüksek Kolesterol",
+        "category": "Kardiyovasküler",
+        "symptoms": ["kolesterol", "yüksek kolesterol", "ldl yüksekliği", "trigliserit"],
+        "causes": ["zekat", "beddua"],
+        "description": (
+            "Kanda kolesterol yüksekliği, damar yolu hastalıklarıyla aynı manevi kökene sahiptir. "
+            "(1) Altın ve Para Zekâtı: Verilmeyen altın ve para zekâtı damar sisteminde tıkanıklık ve yağlanma olarak yansır. "
+            "(2) Damar Bedduaları: 'Damarın tıkansın', 'Damarın yağlansın' gibi edilen-alınan beddualar damar yağlanmasına ve kolesterole yol açar. "
+            "Şifa için: Para ve altın zekâtı borçlarının tespit edilip ödenmesi; damara edilen-alınan bedduaların helalleşmesi."
         )
     },
 ]
