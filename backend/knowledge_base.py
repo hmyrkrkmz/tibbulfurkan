@@ -46,6 +46,8 @@ CAUSE_CATEGORIES = {
     "yuva_yikma": "Yuva Yıkma / Sevenleri Ayırma / Aşk Acısı Çektirme",
     "yol_kesme": "Yol Kesme / Eşkıyalık / İnsanları Bekletme",
     "savastan_kacma": "Savaştan Kaçma / Hainlik",
+    "kiz_kacirma": "Kız Kaçırma",
+    "soz_tutmama": "Allah'a Yürüme / Türbe / Umre Sözünü Tutmama",
 }
 
 # ============================================================
@@ -583,11 +585,78 @@ DISEASE_PATTERNS = [
     },
     
     {
+        "name": "Ön Çapraz Bağ Zedelenmesi / Menisküs / Diz Bağ Sorunları",
+        "category": "Ortopedik",
+        "symptoms": [
+            "menisküs", "ön çapraz bağ", "çapraz bağ", "diz bağı", "diz yırtığı",
+            "dizde yırtık", "diz sorunu", "diz ağrısı", "diz tutulması",
+            "diz kapağı", "diz bağ kopması", "öçb", "acl"
+        ],
+        "causes": [
+            "savastan_kacma", "zulum_anne_baba", "adak_hayvan", "soz_tutmama",
+            "beddua", "kiz_kacirma", "adak_eylem"
+        ],
+        "description": (
+            "Diz bölgesini etkileyen rahatsızlıklar (ön çapraz bağ zedelenmesi, menisküs yırtığı, diz bağ ve eklem sorunları) Tıbb-ul Furkan ilmine göre kişinin kendisinin veya atalarının işlediği belirli günahlar, zulümler ve yerine getirilmemiş adaklar ile ilişkilendirilir. Temel manevi sebepler şunlardır: "
+            "(1) Savaştan Kaçma ve Hainlik: Soyda veya kişinin kendisinde savaştan kaçma, vatan hainliği yapma veya insanların yerinden yurdundan olmasına sebep olma eylemleri (özellikle menisküs ve benzeri yırtıkların en önemli sebebidir). "
+            "(2) Anne ve Babaya Yapılan Zulümler: Yaşlı anne ve babanın dizlerine veya ayaklarına vurmak, onları fiziksel olarak incitmek veya bakıma muhtaç olduklarında onları terk ederek yol gözletmek dizlerde manevi 'ruhsat' (hasar) oluşturur. "
+            "(3) Yerine Getirilmeyen Adaklar: Deve adağı (kendisinin veya atalarının bir deve adayıp da yerine getirmemesi veya zengin olduğu halde adak etinden yemesi); Allah yolunda 'yürüyeceğim' deyip yürümemek, türbe ziyareti veya umre adayıp bu sözü tutmamak (diz kapaklarında ve bağlarında kilitlenmelere sebep olur). "
+            "(4) Beddualar ve Ahlar: Birine dizle vurarak zulmetmek veya birinin bacağını kırarak ahını almak. 'Dizlerin sızlasın', 'Dizlerin tutmaz olsun', 'Dizlerin bükülmesin' gibi edilen veya alınan beddualar bağların zayıflamasına ve zedelenmesine yol açar. "
+            "(5) Kız Kaçırma: Soyda veya kişinin hayatında bulunan kız kaçırma eylemi de dizlere yerleşen manevi yükler arasındadır. "
+            "Şifa için: Soyda ve kişide savaştan kaçma/hainlik, anne-babaya diz/ayak zulmü, terk etme; ödenmemiş deve adağı, yürüyüş–türbe–umre sözleri, kız kaçırma ve dize yönelik beddualar tek tek tespit edilip tövbe ve adak iadesi yapılır."
+        )
+    },
+    
+    {
+        "name": "Kulak Duymaması (İşitme Kaybı, Sağırlık)",
+        "category": "Kulak",
+        "symptoms": [
+            "kulak duymaması", "kulak duymuyor", "işitme kaybı", "isitme kaybi",
+            "sağırlık", "sagirlik", "duymama", "kulak rahatsızlığı",
+            "kulak zarı patlaması", "kulak iltihabı", "kulak ağrısı", "işitme güçlüğü"
+        ],
+        "causes": [
+            "zulum_anne_baba", "yetim_hakki", "zulum_hayvan", "zulum_insan",
+            "iftira", "kinama", "beddua"
+        ],
+        "description": (
+            "Tıbb-ul Furkan ilmine göre kulak duymaması, işitme kayıpları ve kulakla ilgili rahatsızlıkların temelinde kişinin kendisinin veya soyunun işlediği belirli zulümler, yanlış davranışlar ve alınan beddualar yatmaktadır. Manevi sebepler: "
+            "(1) Fiziksel Zulümler: Geçmişte veya soyda; anne, baba, yetim, yaşlı veya hayvanların kulaklarına vurmak, kulaklarına şiş/mil/bıçak sokmak, kulaklarını çekip koparmak veya kulak zarlarını patlatmak gibi işkenceler yapılması. Kulaklara mum tıkamak veya asit, kurşun, kaynar su gibi maddeler dökmek de bu ruhsatlar arasındadır. "
+            "(2) Sessiz Kalma ve Onaylama (Kulak Misafirliği): Dine, kitaba sövüldüğünde veya gıybet, kınama, iftira yapıldığında buna şahit olup sessiz kalmak. "
+            "(3) Sözlü Zulüm ve Sesle Taciz: İnsanlara veya hayvanlara yüksek sesle bağırarak zulmetmek, gürültü yaparak rahatsızlık vermek. "
+            "(4) Beddualar ve Ahlar: 'Kulakların çınlasın', 'Kulağın duymaz olsun', 'Kulağının zarı patlasın', 'Kulağın tıkansın/aksın' gibi edilen veya alınan beddualar kulaklarda manevi kilitler oluşturur. "
+            "(5) Kınama ve Alay Etme: Sağır olan veya işitme güçlüğü çeken insanlarla alay etmek, onları kınamak. Özellikle anne ve babanın yaşlılıktan dolayı duymamasına veya yüksek sesle konuşmasına kızmak, onları bu durumdan dolayı azarlamak veya beddua etmek kulak sağlığını doğrudan etkileyen büyük günahlardan biri olarak sayılır. "
+            "Şifa için: Kulak zulümleri (anne–baba–yetim–hayvan), gıybet/iftiraya sessiz kalma, kulağa edilen/alınan beddualar ve sağır/işitme güçlüğü çekenlerle alay tespit edilip helalleşme ve tövbe yapılır."
+        )
+    },
+    
+    {
+        "name": "Safra Kesesi (Taş, İltihap, Hastalıkları)",
+        "category": "Sindirim",
+        "symptoms": [
+            "safra kesesi", "safra taşı", "safra kesesi taşı", "kolesistit",
+            "safra iltihabı", "safra yolu", "safra ağrısı", "safra"
+        ],
+        "causes": [
+            "zekat", "beddua", "miras_laneti", "haram_kazanc", "hak_haram",
+            "adak_eti", "adak_hayvan"
+        ],
+        "description": (
+            "Safra kesesi rahatsızlıklarının (taş, iltihap, kum birikmesi) manevi sebepleri Tıbb-ul Furkan ilminin temel ilkeleri ve organlardaki taş oluşumu / karaciğer bağlantısı üzerinden açıklanır: "
+            "(1) Taş Oluşumu ve Tarla Zekâtı: Kişinin kendisinin veya atasının sahip olduğu tarlanın zekâtını vermemesi, o tarlanın taş ve toprağının manevi bir yansıma olarak vücutta (böbrek, safra kesesi vb.) taş oluşmasına neden olur. 'Tarla, taş ve toprak olduğu için genelde organlarda taş ve toprak sıkıntısına sebep olabilmektedir.' "
+            "(2) Beddualar ve 'Taş' İle İlgili Sözler: 'Midene, böbreğine taş otursun', 'Yediğin taş olsun' gibi beddualar sindirim sistemi ve ona bağlı organlarda (mide, safra kesesi, böbrek) taş oluşmasına manevi bir ruhsat oluşturur. Kefareti için 'Yediğin İçtiğinden Hayır Gör Niyeti' uygulaması tavsiye edilir. "
+            "(3) Zekât ve Genel Organ Rahatsızlıkları: Zekât ruhsatı vücudun patronudur ve tüm hastalıkların temelidir. Soydan gelen yüksek zekât borçları vücudun en zayıf noktasında hastalık başlatabilir. Haram lokma ve miras malları üzerindeki hak haramlıkları veya haksız kazançlar, karaciğer ve sindirim sistemine bağlı organlarda (safra kesesi dahil) rahatsızlıklara yol açabilir. "
+            "(4) Karaciğer ve Adak Bağlantısı: Safra kesesi karaciğer ile doğrudan bağlantılı bir organ olduğu için ciğere yönelik 'Ciğerin şişsin, patlasın' gibi beddualar ve adak hayvanının ciğerinin yenmesi safra yollarını da etkileyebilir. "
+            "Şifa için: Tarla zekâtı borçlarını araştır, soydan gelen miras ve mal beddualarına karşı tövbe et, varsa adak borçlarını (özellikle büyükbaş veya yenmiş adaklar) tespit ettirip yerine getir; yenmiş adak eti ve 'taş olsun' tipi bedduaların helalleşmesi yapılır."
+        )
+    },
+    
+    {
         "name": "Menisküs",
         "category": "Ortopedik",
-        "symptoms": ["menisküs", "diz sorunu", "dizde yırtık"],
+        "symptoms": ["menisküs yırtığı"],
         "causes": ["savastan_kacma"],
-        "description": "Savaştan kaçma ve hainlik."
+        "description": "Savaştan kaçma ve hainlik. (Detaylı sebepler için 'Ön Çapraz Bağ Zedelenmesi / Menisküs / Diz Bağ Sorunları' kaydına bakınız.)"
     },
     
     {
@@ -761,9 +830,17 @@ DISEASE_PATTERNS = [
     {
         "name": "Tansiyon",
         "category": "Kardiyovasküler",
-        "symptoms": ["tansiyon", "hipertansiyon", "yüksek tansiyon"],
-        "causes": ["zekat", "adak_eylem", "isyan", "zulum_anne_baba", "sirk"],
-        "description": "Verilmeyen veya eksik verilen zekât, adak, isyan (özellikle namazı vaktinde kılamamaya isyan, kadere/şükürsüzlüğe isyan), anne babaya isyan, şirk."
+        "symptoms": ["tansiyon", "hipertansiyon", "yüksek tansiyon", "kan basıncı yüksekliği"],
+        "causes": ["isyan", "zulum_anne_baba", "zekat", "adak_eylem", "sirk", "beddua"],
+        "description": (
+            "Tıbb-ul Furkan ilmine göre tansiyon hastalığının (hipertansiyon) temelinde yatan manevi sebepler, kişinin kaderine, imtihanlarına veya çevresine karşı gösterdiği isyan ve yerine getirilmeyen manevi yükümlülüklerdir: "
+            "(1) İsyan: Tansiyonun en temel manevi sebebi isyandır. Kişinin başına gelen olaylara, yaşadığı imtihanlara veya hayatın kendisine 'bıktım artık', 'dayanamıyorum', 'neden hep benim başıma geliyor?' diyerek itiraz etmesi tansiyona yol açar. Hatta sabah namazını kaçırdığı için kendisine çok kızarak isyan etmesi dahi tansiyonunun yükselmesine sebep olabilir. "
+            "(2) Anne ve Babaya İsyan: İslam'da en büyük günahlardan biri sayılan anne ve babaya karşı gelmek, onlara isyankâr davranmak tansiyonun nedenlerinden biridir. "
+            "(3) Zekât ve Adak Borçları: Verilmeyen zekâtlar ve Allah'a verilip de yerine getirilmeyen adak sözleri vücutta bu tür hastalıklara zemin hazırlayan manevi yükler (ruhsatlar) oluşturur. "
+            "(4) Şirk: Allah'ın sıfatlarını veya kudretini başkalarına ya da maddelere yüklemek (şirk) tansiyonun manevi kökenleri arasında sayılmaktadır. "
+            "(5) Beddua ve Lanet Okumak: Kişinin kendi vücuduna, aklına, beynine veya çevresindekilere okuduğu beddua, küfür ve lanetlerin tansiyon üzerinde doğrudan etkisi olduğu belirtilir. "
+            "Şifa için: İsyandan (kadere, imtihanlara, anne-babaya) tövbe edilir; zekât ve adak borçları tespit edilerek ödenir, şirk niteliğindeki bağlılıklardan ve kendine/çevreye edilen beddualardan helalleşme ve tövbe ile arınılır. Zekât ve adak borçlarının tespit edilerek ödenmesi şifa kapısını açan önemli bir adımdır."
+        )
     },
     
     {

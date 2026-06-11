@@ -31,6 +31,9 @@ CAUSE_CATEGORIES = {
     "cocuk_aldirma": "Çocuk Aldırma",
     "harami_esme": "Harami Eşme",
     "haramzade": "Haramzade",
+    "savastan_kacma": "Savaştan Kaçma / Hainlik",
+    "kiz_kacirma": "Kız Kaçırma",
+    "soz_tutmama": "Allah'a Yürüme / Türbe / Umre Sözünü Tutmama",
 }
 
 # Hastalık veritabanı
@@ -620,5 +623,75 @@ DISEASES = [
             {"category": "beddua", "weight": 8, "detail": "Ete, kemiğe, damara lânet ve beddua"},
         ],
         "remedy": "Zulüm helalleşmesi, zekat tamamlama."
+    },
+    {
+        "name": "Ön Çapraz Bağ Zedelenmesi (Menisküs, Diz Bağ Sorunları)",
+        "category": "Ortopedik",
+        "symptoms": [
+            "Ön çapraz bağ zedelenmesi", "Menisküs yırtığı", "Diz bağı sorunu",
+            "Diz ağrısı", "Diz kapağı sorunları", "ÖÇB", "ACL", "diz tutulması"
+        ],
+        "causes": [
+            {"category": "savastan_kacma", "weight": 10, "detail": "Savaştan kaçma, vatan hainliği, insanların yerinden yurdundan olmasına sebep olma"},
+            {"category": "zulum_anne_baba", "weight": 9, "detail": "Yaşlı anne-babanın dizine/ayağına vurmak, bakıma muhtaç iken terk edip yol gözletmek"},
+            {"category": "adak_hayvan", "weight": 9, "detail": "Deve adağı: kişinin veya atalarının deve adayıp yerine getirmemesi ya da zengin olduğu halde adak etinden yemesi"},
+            {"category": "soz_tutmama", "weight": 9, "detail": "Allah yolunda 'yürüyeceğim' deyip yürümeme; türbe ziyareti, umre/hac adağını tutmama"},
+            {"category": "beddua", "weight": 9, "detail": "'Dizlerin sızlasın / tutmaz olsun / bükülmesin' gibi edilen veya alınan beddualar; dizle vurarak / bacak kırarak alınan ah"},
+            {"category": "kiz_kacirma", "weight": 8, "detail": "Soyda veya kişinin kendinde kız kaçırma eylemi"},
+            {"category": "adak_eylem", "weight": 7, "detail": "Yerine getirilmeyen yürüyüş ve ziyaret adakları"},
+        ],
+        "remedy": "Savaştan kaçma/hainlik, anne-babaya diz-ayak zulmü ve terk etme, ödenmemiş deve adağı, yürüyüş–türbe–umre sözleri, kız kaçırma ve dize edilen/alınan beddualar tek tek tespit edilip tövbe, helalleşme ve adak iadesi yapılır."
+    },
+    {
+        "name": "Kulak Duymaması (İşitme Kaybı, Sağırlık)",
+        "category": "Kulak",
+        "symptoms": [
+            "Kulak duymaması", "İşitme kaybı", "Sağırlık", "Duymama",
+            "Kulak zarı patlaması", "İşitme güçlüğü", "Kulak iltihabı"
+        ],
+        "causes": [
+            {"category": "zulum_anne_baba", "weight": 10, "detail": "Anne-babanın yaşlılıktan duymamasına/yüksek sesle konuşmasına kızıp azarlamak veya beddua etmek; kulaklarına vurmak"},
+            {"category": "yetim_hakki", "weight": 9, "detail": "Yetim çocukların kulaklarına vurmak / koparmak / işkence etmek"},
+            {"category": "zulum_hayvan", "weight": 8, "detail": "Hayvanların kulaklarına şiş/mil/bıçak sokma, kulaklarını çekip koparma"},
+            {"category": "zulum_insan", "weight": 9, "detail": "Kulağa vurma; mum tıkama; asit/kurşun/kaynar su dökme; yüksek sesle bağırarak/gürültüyle taciz"},
+            {"category": "iftira", "weight": 8, "detail": "Gıybet, iftira, kınama yapılırken sessiz kalıp dinleme (kulak misafirliği); dine-kitaba sövüldüğünde sessiz kalma"},
+            {"category": "kinama", "weight": 8, "detail": "Sağır veya işitme güçlüğü çekenlerle alay etmek, onları kınamak"},
+            {"category": "beddua", "weight": 9, "detail": "'Kulakların çınlasın / duymaz olsun / zarı patlasın / tıkansın' gibi beddualar"},
+        ],
+        "remedy": "Kulak zulümleri (anne-baba, yetim, hayvan), gıybet/iftira/küfre sessiz kalma, kulağa edilen-alınan beddualar ve sağır/işitme güçlüğü çekenlerle alay etme tespit edilip helalleşme ve tövbe yapılır."
+    },
+    {
+        "name": "Safra Kesesi (Taş, İltihap)",
+        "category": "Sindirim",
+        "symptoms": [
+            "Safra kesesi", "Safra taşı", "Kolesistit", "Safra iltihabı",
+            "Safra yolu sorunu", "Safra ağrısı"
+        ],
+        "causes": [
+            {"category": "zekat", "weight": 10, "detail": "Tarla zekâtı: kişinin veya atasının tarla zekâtını vermemesi → organlarda taş/toprak birikmesi (safra kesesi dahil)"},
+            {"category": "beddua", "weight": 9, "detail": "'Midene/böbreğine taş otursun', 'Yediğin taş olsun' gibi beddualar"},
+            {"category": "miras_laneti", "weight": 9, "detail": "Miras malları üzerindeki hak haramlıkları, miras üzerine kavga ve lânet"},
+            {"category": "haram_kazanc", "weight": 8, "detail": "Haksız kazanç → karaciğer ve sindirim sistemi rahatsızlıkları"},
+            {"category": "hak_haram", "weight": 8, "detail": "Haram lokma; hak haramlığı"},
+            {"category": "adak_eti", "weight": 8, "detail": "Adak hayvanının ciğerini yeme; yenmiş adak eti"},
+            {"category": "adak_hayvan", "weight": 7, "detail": "Yerine getirilmeyen (özellikle büyükbaş) hayvan adağı"},
+        ],
+        "remedy": "Tarla zekâtı borçları araştırılır; soydan gelen miras ve mal bedduaları için tövbe edilir; varsa adak borçları (özellikle büyükbaş veya yenmiş adaklar) tespit edilip yerine getirilir; 'taş olsun' tipi beddualar ve yenmiş adak eti için helalleşme yapılır."
+    },
+    {
+        "name": "Tansiyon (Hipertansiyon)",
+        "category": "Kardiyovasküler",
+        "symptoms": [
+            "Tansiyon", "Yüksek tansiyon", "Hipertansiyon", "Kan basıncı yüksekliği"
+        ],
+        "causes": [
+            {"category": "isyan", "weight": 10, "detail": "Kadere/imtihanlara isyan: 'bıktım, dayanamıyorum, neden hep ben?'; sabah namazı kaçırıp kendine aşırı kızma"},
+            {"category": "zulum_anne_baba", "weight": 9, "detail": "Anne-babaya isyankâr davranma, karşı gelme"},
+            {"category": "zekat", "weight": 9, "detail": "Verilmeyen veya eksik zekât borçları"},
+            {"category": "adak_eylem", "weight": 9, "detail": "Allah'a verilip yerine getirilmeyen adak sözleri"},
+            {"category": "sirk", "weight": 8, "detail": "Allah'ın sıfatlarını / kudretini başkalarına veya maddelere yükleme"},
+            {"category": "beddua", "weight": 8, "detail": "Kendi vücuduna, aklına, beynine veya çevresindekilere edilen beddua, küfür ve lanet"},
+        ],
+        "remedy": "İsyandan (kadere, imtihanlara, anne-babaya) tövbe edilir; zekât ve adak borçları tespit edilerek ödenir; şirk niteliğindeki bağlılıklar terk edilir; kendine ve çevreye edilen beddualardan helalleşme/tövbe ile arınılır."
     },
 ]
