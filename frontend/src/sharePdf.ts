@@ -199,8 +199,8 @@ function buildHtml(opts: {
         return `<li>${esc(b.body)}</li>`;
       });
       // List item'ları topla (sayısız bullet'lar) ve kartlardan ayır
-      const cardItems = bullets.filter((h) => h.startsWith('<div class="bullet-card"'));
-      const listItems = bullets.filter((h) => h.startsWith('<li>'));
+      const cardItems = bullets.filter((h) => h.trimStart().startsWith('<div class="bullet-card"'));
+      const listItems = bullets.filter((h) => h.trimStart().startsWith('<li>'));
       const listHtml = listItems.length ? `<ul>${listItems.join('')}</ul>` : '';
       const cardsHtml = cardItems.join('');
       return `
