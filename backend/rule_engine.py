@@ -274,7 +274,7 @@ def build_sifa(doc: Dict) -> List[str]:
         "Hayat yolunda yaşadığınız rahatsızlıklar ve düğümler, soyunuzdan gelen ve şifaya kavuşmayı bekleyen manevi yüklerdir:"
     )
     
-    for d in diseases[:10]:
+    for d in diseases[:30]:
         name = d['name']
         desc = d.get('description', '')
         
