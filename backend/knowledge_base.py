@@ -43,6 +43,8 @@ CAUSE_CATEGORIES = {
     "suda_bogma": "Hayvanı Suda Boğma",
     "tarla_yakma": "Tarla / Buğday Yakma",
     "mezarci": "Mezarcı Ruhsatı (Soydan Ağır Zulüm)",
+    "mahkum_zulum": "Mahkûm / Tutsak Zulmü",
+    "hirsizlik": "Hırsızlık Günahı",
     "yuva_yikma": "Yuva Yıkma / Sevenleri Ayırma / Aşk Acısı Çektirme",
     "yol_kesme": "Yol Kesme / Eşkıyalık / İnsanları Bekletme",
     "savastan_kacma": "Savaştan Kaçma / Hainlik",
@@ -621,11 +623,18 @@ DISEASE_PATTERNS = [
     },
     
     {
-        "name": "Kekemelik",
+        "name": "Kekemelik / Konuşma Bozukluğu",
         "category": "Konuşma",
-        "symptoms": ["kekemelik", "konuşma bozukluğu", "takılma"],
-        "causes": ["beddua", "adak_hayvan", "kinama"],
-        "description": "Zulümle alınan ah ve beddualar ('Çenen batsın/sussun'), hindi, tavuk, horoz, kaz adakları, peltek insanları kınama."
+        "symptoms": ["kekemelik", "konuşma bozukluğu", "takılma", "kekeleme"],
+        "causes": ["beddua", "adak_hayvan", "kinama", "zulum_insan"],
+        "description": (
+            "Kekemeliğin manevi temeli zulümle alınan ahlar ve konuşmaya yönelik beddualardır. "
+            "(1) Zulümle Alınan Ah: Geçmişte yapılan zulümler sonucu alınan ahlar konuşma yetisini etkiler. "
+            "(2) Konuşmaya Beddualar: 'Çenen batsın', 'Çenen sussun', 'Konuşamayasın', 'Dilin tutulsun' şeklindeki beddualar kekemeliğe yol açar. "
+            "(3) Yerine Getirilmemiş Kümes Hayvanı Adakları: Tavuk, horoz, hindi, kaz adaklarının yerine getirilmemesi konuşmada takılmaya kapı açar. "
+            "(4) Kekeme/Peltek Kınama: Kekemelik veya peltek konuşan insanlarla alay etmek ya da onları kınamak. "
+            "Şifa için: Soyda ve kişide yapılmış zulümler için tövbe ve helalleşme; konuşmaya/çeneye edilen-alınan bedduaların helalleşmesi; tavuk-horoz-hindi-kaz adak borçlarının yerine getirilmesi; kekeme/peltek insanları kınamadan tövbe."
+        )
     },
     
     {
@@ -633,31 +642,38 @@ DISEASE_PATTERNS = [
         "category": "Konuşma",
         "symptoms": ["pelteklik", "S harfi zorluğu", "konuşma güçlüğü"],
         "causes": ["beddua", "adak_hayvan", "kinama"],
-        "description": "Zulümle alınan ah ve beddualar ('Çenen batsın/sussun'), hindi, tavuk, horoz, kaz adakları, peltek insanları kınama."
+        "description": "Zulümle alınan ah ve beddualar ('Çenen batsın/sussun'), hindi, tavuk, horoz, kaz adakları, peltek insanları kınama. (Detaylı sebepler için 'Kekemelik / Konuşma Bozukluğu' kaydına bakınız.)"
     },
     
     {
-        "name": "Kellik",
+        "name": "Kellik / Saç Dökülmesi (Detaylı)",
         "category": "Dermatolojik",
-        "symptoms": ["kellik", "saç dökülmesi", "kel"],
-        "causes": ["adak_eylem", "kinama", "beddua", "zulum_insan", "yetim_hakki", "zulum_anne_baba"],
-        "description": "Yerine getirilmeyen adak, kel insanı kınama/dalga geçme, 'Saçın dökülsün, kel kalasın' bedduası, saçı yolarak zulmetme, yetimi dövme, anne babanın kafasına vurma."
+        "symptoms": ["kellik", "saç dökülmesi", "kel", "alopesi", "saç kaybı"],
+        "causes": ["yetim_hakki", "zulum_anne_baba", "kinama", "beddua", "adak_eylem"],
+        "description": (
+            "Kellik ve saç dökülmesinin manevi sebepleri yetim ve anne-baba zulmü ile beddua ve kınamadır. "
+            "(1) Yetime Zulüm: Yetime zulmetmek, özellikle yetimin başına vurmak saç dökülmesinin temel sebebidir. "
+            "(2) Anne-Babanın Kafasına Vurma: Anne ve babanın kafasına vurmak kellik ruhsatı oluşturur. "
+            "(3) Kel İnsanlarla Alay: Kel insanlarla alay edip onları kınamak (örn. 'kel adam' demek) saç dökülmesine kapı açar. "
+            "(4) Saç Bedduaları: 'Saçın dökülsün', 'Kel kalasın' gibi edilen veya alınan beddualar. "
+            "(5) Saç Yolarak Zulüm: Birinin saçlarını yolarak yapılan zulümler. "
+            "(6) Yerine Getirilmeyen Adaklar: Saça/baş tıraşına dair adakların yerine getirilmemesi. "
+            "Şifa için: Yetime başa vurma için ağır tövbe ve helalleşme; anne-babanın başına vurma için tövbe; kel insanlarla alaydan tövbe; saça edilen-alınan bedduaların helalleşmesi; saç-baş ile ilgili adak borçlarının yerine getirilmesi."
+        )
     },
     
     {
-        "name": "Saç Dökülmesi",
-        "category": "Dermatolojik",
-        "symptoms": ["saç dökülmesi", "alopesi", "saç kaybı"],
-        "causes": ["adak_eylem", "kinama", "beddua", "zulum_insan", "yetim_hakki", "zulum_anne_baba"],
-        "description": "Yerine getirilmeyen adak, kel insanı kınama/dalga geçme, 'Saçın dökülsün, kel kalasın' bedduası, saçı yolarak zulmetme, yetimi dövme, anne babanın kafasına vurma."
-    },
-    
-    {
-        "name": "Kemik Erimesi",
+        "name": "Kemik Erimesi / Osteoporoz",
         "category": "Kemik",
-        "symptoms": ["kemik erimesi", "osteoporoz", "kemik zayıflığı"],
-        "causes": ["adak_eti", "beddua", "zulum_insan"],
-        "description": "Adak etini yeme veya kemiklerini kaynatıp suyunu içme, zulümle alınan ah, 'İliğin kemiğin kurusun' bedduası."
+        "symptoms": ["kemik erimesi", "osteoporoz", "kemik zayıflığı", "kemik kaybı"],
+        "causes": ["adak_eti", "beddua", "zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Kemik erimesinin manevi sebepleri adak eti yeme, soydan gelen zulüm ahları ve kemiğe edilen beddualardır. "
+            "(1) Adak Eti / Kemik Suyu: Kişinin kendi adadığı adak hayvanının etini yeme veya özellikle kemiklerini kaynatıp suyunu içme. "
+            "(2) Soydan Gelen Ahlar: Soyda yapılmış zulümler sonucu alınan ahlar kemik sistemini bozar. "
+            "(3) Kemiğe Beddualar: 'İliğin kemiğin kurusun' gibi edilen veya alınan beddualar kemik erimesine yol açar. "
+            "Şifa için: Yenmiş adak eti ve kaynatılmış kemik suyu için kefaret; soyda yapılmış zulümler için tövbe ve helalleşme; kemiğe/iliğe edilen-alınan bedduaların helalleşmesi."
+        )
     },
     
     {
@@ -2160,6 +2176,183 @@ DISEASE_PATTERNS = [
             "(1) Altın ve Para Zekâtı: Verilmeyen altın ve para zekâtı damar sisteminde tıkanıklık ve yağlanma olarak yansır. "
             "(2) Damar Bedduaları: 'Damarın tıkansın', 'Damarın yağlansın' gibi edilen-alınan beddualar damar yağlanmasına ve kolesterole yol açar. "
             "Şifa için: Para ve altın zekâtı borçlarının tespit edilip ödenmesi; damara edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Karaciğer Büyümesi ve Şişmesi (Hepatomegali)",
+        "category": "Karaciğer",
+        "symptoms": ["karaciğer büyümesi", "karaciğer şişmesi", "hepatomegali", "ciğer şişmesi"],
+        "causes": ["zekat", "beddua", "adak_eti"],
+        "description": (
+            "Karaciğer büyümesi ve şişmesinin manevi sebepleri zekât, ciğer bedduaları ve adak eti tüketimidir. "
+            "(1) Verilmeyen Zekâtlar: Verilmeyen veya eksik verilen zekâtlar karaciğerde şişlik ve büyüme oluşturur. "
+            "(2) Ciğer Bedduaları: 'Ciğerin şişsin', 'Ciğerin çıksın', 'Ciğerin patlasın' gibi ciğere okunan ağır beddualar ve lânetlerle gelen manevi görevliler bu duruma sebep olur. "
+            "(3) Adak Hayvanının Ciğerini Yeme: Adak hayvanının ciğerini yemek de ciğerde rahatsızlık oluşturur. "
+            "Şifa için: Zekât borçlarının tespit edilip ödenmesi; ciğere edilen-alınan bedduaların helalleşmesi; yenmiş adak ciğeri için kefaret."
+        )
+    },
+
+    {
+        "name": "Karaciğer Yağlanması",
+        "category": "Karaciğer",
+        "symptoms": ["karaciğer yağlanması", "yağlı karaciğer", "fatty liver", "hepatosteatoz"],
+        "causes": ["beddua", "zulum_anne_baba", "zulum_hayvan"],
+        "description": (
+            "Karaciğer yağlanmasının manevi sebepleri yağlanma bedduaları ve soğukta dondurma zulmüdür. "
+            "(1) Yağlanma Bedduaları: Ciğere yönelik 'Ciğerin yağlansın', 'Yağda boğulasın' gibi edilen veya alınan beddualar. "
+            "(2) Soğukta Dondurma Zulmü: Kişiyi veya bir canlıyı (anne-baba, çocuk, hayvan) karda, kışta dondurarak ciğerlerinin hastalanmasına sebep olma. "
+            "Şifa için: Ciğere yağlanma bedduasının helalleşmesi; soğukta dondurma/üşütme zulmü için tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Karaciğer Yetmezliği / Yetersizliği",
+        "category": "Karaciğer",
+        "symptoms": ["karaciğer yetmezliği", "karaciğer yetersizliği", "ciğer yetmezliği", "hepatik yetmezlik"],
+        "causes": ["zekat", "beddua"],
+        "description": (
+            "Karaciğer yetmezliği ağır bir tablo olup verilmeyen zekât borcu ve ağır ciğer beddualarına bağlanır. "
+            "(1) Verilmeyen Zekât: Yüksek zekât borcu karaciğerde yetersizliğe yol açabilir. "
+            "(2) Ciğer Bedduaları: 'Ciğerin kurusun', 'Ciğerin yansın', 'Ciğerin batsın' gibi edilen veya alınan beddualar karaciğeri çalışamaz hale getirir. "
+            "Şifa için: Zekât borçlarının (özellikle anne-baba zekâtı) tespit edilip ödenmesi; ciğere edilen-alınan ağır bedduaların helalleşmesi; tövbe-istiğfar."
+        )
+    },
+
+    {
+        "name": "Karın Ağrısı",
+        "category": "Sindirim",
+        "symptoms": ["karın ağrısı", "karın sancısı", "mide krampı", "abdominal ağrı"],
+        "causes": ["hamile_zulum", "beddua"],
+        "description": (
+            "Karın ağrısının manevi sebepleri hamile kadına zulüm ve karna edilen beddualardır. "
+            "(1) Hamile Kadına Zulüm: Hamile bir kadına yapılan zulüm, hakaret ve beddualar karın bölgesi rahatsızlıklarına yol açar. "
+            "(2) Karın Bedduaları: 'Karnınız sancılansın', 'Karnınızın sancısı bitmez olsun' gibi edilen veya alınan beddualar karın ağrısının doğrudan kaynağıdır. "
+            "Şifa için: Hamile kadına yapılan hakaret/zulüm/beddua için tövbe ve helalleşme; karna edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Kaşıntı (Vücutta Yaygın Kaşıntı)",
+        "category": "Dermatolojik",
+        "symptoms": ["kaşıntı", "deri kaşıntısı", "vücutta kaşıntı", "kızarıklık", "döküntü"],
+        "causes": ["adak_eylem", "adak_eti"],
+        "description": (
+            "Kaşıntının en belirgin manevi sebebi yerine getirilmemiş fakir giydirme adağı ve yenmiş 'Kelle Paça' adağıdır. "
+            "(1) Fakir Giydirme Adağı: Verilmiş ama yerine getirilmemiş 'fakir giydirme' adağı vücutta kaşıntıya yol açar. "
+            "(2) Yenmiş Kelle-Paça Adağı: 'Kelle Paça Adağı'nın etini zengin olduğu halde yemek, hayvanın neresi yendiyse o bölgede şiddetli kaşıntı, kızarıklık ve döküntüye neden olur. "
+            "Şifa için: Fakir giydirme adağının yerine getirilmesi; yenmiş kelle-paça adak eti için kefaret (fakire eşdeğer iade); tövbe."
+        )
+    },
+
+    {
+        "name": "Katarakt / Görme Kayıpları",
+        "category": "Oftalmolojik",
+        "symptoms": ["katarakt", "görme kaybı", "bulanık görme", "perdeli görme", "göz kanseri"],
+        "causes": ["adak_eylem", "kinama", "beddua", "zina_ensest", "zekat", "zulum_insan"],
+        "description": (
+            "Katarakt ve görme kayıplarının manevi temelleri çoklu olup Kur'an adağı, kınama, göze beddua ve zekât yüküdür. "
+            "(1) Kur'an / Hatim Adakları: Yerine getirilmemiş Kur'an okuma, Yasin ve hatim adakları görmeyi olumsuz etkiler. "
+            "(2) Kör İnsanları Kınama: Kör veya görme bozukluğu olan insanlarla alay etmek/kınamak. "
+            "(3) Göze Beddualar: 'Gözün batsın', 'Gözün kör olsun' gibi edilen veya alınan beddualar. "
+            "(4) Göz Zinası: Haram bakışlar görme sağlığını manevi olarak bozar. "
+            "(5) Verilmeyen Zekât: Yüksek zekât borcu gözde de hastalık başlatabilir. "
+            "Şifa için: Kur'an/Yasin/hatim adaklarının yerine getirilmesi; kör/görme güçlüğü çekenleri kınamadan tövbe; göze edilen-alınan bedduaların helalleşmesi; göz zinasından tövbe; zekât borçlarının ödenmesi."
+        )
+    },
+
+    {
+        "name": "Kemik İltihabı ve Yumuşaması",
+        "category": "Kemik",
+        "symptoms": ["kemik iltihabı", "kemik yumuşaması", "osteomyelit", "kemik enfeksiyonu"],
+        "causes": ["beddua", "zulum_insan", "zulum_hayvan"],
+        "description": (
+            "Kemik iltihabı ve yumuşamasının manevi sebepleri kemiğe edilen beddualar ve fiziksel zulümlerdir. "
+            "(1) Kemik Bedduaları: 'Kemiklerin erisin', 'Donsun', 'Kireçlensin' gibi edilen veya alınan beddualar kemik iltihabı ve yumuşamasına yol açar. "
+            "(2) Kemik Kırma / Ağır Yük: İnsan ve hayvanların kemiklerini vurarak kırma veya onlara ağır yük yükleyerek eziyet etme zulümleri bu hastalıklara kapı açar. "
+            "Şifa için: Kemiğe edilen-alınan bedduaların helalleşmesi; kemik kırma ve ağır yük yükleme zulümleri için tövbe ve helalleşme."
+        )
+    },
+
+    {
+        "name": "Kemik Veremi (Tüberküloz)",
+        "category": "Kemik/Enfeksiyon",
+        "symptoms": ["kemik veremi", "kemik tüberkülozu", "Pott hastalığı"],
+        "causes": ["beddua", "zulum_anne_baba", "zulum_hayvan", "zulum_insan"],
+        "description": (
+            "Kemik veremi, kemik ve ciğer hastalıklarının ağır bir birleşimi olup birden fazla manevi sebebe dayanır. "
+            "(1) Ciğer Bedduaları: Ciğere okunan 'Ciğerin yansın/kurusun' tipi beddualar. "
+            "(2) Soğukta Dondurma Zulmü: Anne-babayı, çocuğu, hayvanı karda-kışta dondurarak ciğerlerinin hastalanmasına sebep olma. "
+            "(3) Kemiğe Beddualar: 'Kemiklerin kurusun', 'Erisin' gibi edilen veya alınan beddualar. "
+            "Şifa için: Ciğere edilen-alınan bedduaların helalleşmesi; soğukta dondurma/üşütme zulmü için tövbe ve helalleşme; kemiğe yönelik bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Kırım-Kongo Kanamalı Ateşi (KKKA)",
+        "category": "Enfeksiyon",
+        "symptoms": ["kırım-kongo", "kkka", "kanamalı ateş", "kene hastalığı"],
+        "causes": ["tarla_yakma", "hayvan_yakma", "beddua"],
+        "description": (
+            "Kırım-Kongo gibi kanamalı hastalıkların manevi temeli böcek/canlı yakma zulmü ve kana edilen beddualardır. "
+            "(1) Anız / Tarla Yakma: Tarlada anız yakarak böcek, kene, arı, kuş gibi canlıları yakma zulmü. "
+            "(2) Kana Beddualar: 'Kanınız aksın durmasın', 'Kanı kuruyasın' gibi kana okunan beddualar kanamalı ateş ruhsatına kapı açar. "
+            "Şifa için: Anız/tarla yakma için tövbe ve helalleşme; soyda yapılmış böcek/canlı yakma için pişmanlık; kana edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Klostrofobi (Kapalı Alan Korkusu)",
+        "category": "Psikolojik",
+        "symptoms": ["klostrofobi", "kapalı alan korkusu", "fobiler", "panik atak"],
+        "causes": ["mahkum_zulum", "zulum_insan", "beddua"],
+        "description": (
+            "Klostrofobinin manevi kökeni soyda mahkûm zulmü ve kapalı yere beddualardır. "
+            "(1) Mahkûmlara Zulüm: Soyda veya kişinin kendinde mahkûmlara, tutsaklara yapılmış işkence ve kötü muamele. "
+            "(2) Hapsetme Zulmü: İnsanları odaya, eve, ahıra hapsetme; karanlıkta veya havasız ortamda tutma. "
+            "(3) Kapalı Alan Bedduaları: 'O evde boğulasın', 'Kapalı yerde kalamayasın', 'Dört duvar arası' gibi edilen veya alınan beddualar. "
+            "Şifa için: Soyda mahkûm/tutsak zulmü için ağır tövbe ve helalleşme; hapsetme zulümleri için tövbe; kapalı alana edilen-alınan bedduaların helalleşmesi."
+        )
+    },
+
+    {
+        "name": "Kleptomani (Hırsızlık Eğilimi)",
+        "category": "Psikolojik",
+        "symptoms": ["kleptomani", "hırsızlık", "çalma dürtüsü", "çalma eğilimi"],
+        "causes": ["hirsizlik", "kinama"],
+        "description": (
+            "Kleptomani ve hırsızlık eğilimi, soyda ve kişide işlenmiş hırsızlık günahı ile bağlantılıdır. "
+            "(1) Soyda/Kişide Hırsızlık Günahı: Kişinin kendisinin veya soyunun işlediği hırsızlık günahı ile ilişkilendirilir. Hırsızlık yapıldığında vücuda hırsızlıktan bir şeytan girer. "
+            "(2) Hırsızları Kınama: Hırsızlık yapanları kınamak da bu eylemin kişinin kendisinde veya evladında zuhur etmesine manevi bir kapı açar. "
+            "Şifa için: Çalınmış hak/eşya için sahiplerine iade ve helalleşme; soyda yapılmış hırsızlıklar için ağır tövbe; hırsızları kınamadan tövbe."
+        )
+    },
+
+    {
+        "name": "Kırıklar (Kemik Kırılmaları)",
+        "category": "Kemik",
+        "symptoms": ["kemik kırığı", "kırıklar", "sık kırılma", "kırık kemik"],
+        "causes": ["zulum_insan", "zulum_anne_baba", "yetim_hakki", "zulum_hayvan"],
+        "description": (
+            "Vücuttaki kemik kırılmaları ve buna yatkınlık 'İlik ve Kemik Uygulaması' kapsamında açıklanır. "
+            "(1) Soyda/Kişide Kemik Kırma Zulmü: Geçmişte veya soyda; insanların (özellikle anne-baba ve yetimlerin) veya hayvanların (at, eşek, kedi vb.) kemiklerini vurarak kırmak. "
+            "(2) Uzuv Çıkarma: Kollarını çıkarmak, tırnaklarını koparmak gibi fiziksel zulümler bugünkü kırıkların ve kemik hastalıklarının temelidir. "
+            "Şifa için: Soyda yapılmış kemik kırma, uzuv çıkarma, tırnak koparma zulümleri için tövbe ve helalleşme; özellikle anne-baba ve yetim zulmü için ağır tövbe."
+        )
+    },
+
+    {
+        "name": "Kısırlık (Çocuk Olmaması, İnfertilite)",
+        "category": "Kadın/Erkek Sağlığı",
+        "symptoms": ["kısırlık", "infertilite", "çocuk olmaması", "tüp bebek", "gebelik olmaması"],
+        "causes": ["cocuk_aldirma", "cocuk_oldurme", "beddua", "hamile_zulum", "kinama"],
+        "description": (
+            "Kısırlığın (çocuk olmamasının) ağır manevi sebepleri kürtaj, ağır beddualar ve hamile zulmüdür. "
+            "(1) Kürtaj ve Çocuk Öldürme: Soyda bilerek çocuk düşürmek veya kürtaj yapmak rahmi kilitler. "
+            "(2) Ağır Beddualar: 'Zürriyetin kurusun', 'Allah evlat vermesin', 'Rahmin kapansın/çürüsün' gibi edilen veya alınan beddualar kısırlığa yol açar. "
+            "(3) Hamile Kadına Zulüm: Hamile bir kadına fiziksel veya sözlü zulmetmek, çocuğunun düşmesine sebep olmak zürriyeti kesen bir ruhsattır. "
+            "(4) Çocuğu Olmayanları Kınama: Çocuğu olmayanları veya kısır olanları ayıplamak ve kınamak. "
+            "Şifa için: Soyda kürtaj/çocuk düşürme için ağır tövbe ve helalleşme; zürriyete-rahme edilen-alınan bedduaların helalleşmesi; hamile kadına zulüm için tövbe; çocuğu olmayanları kınamadan tövbe."
         )
     },
 ]
